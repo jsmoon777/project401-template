@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="nboardMapper">
+   <!--  idx,  menu_id, title,  cont,  writer,  regdate,
+    readcount,  bnum,  lvl,  step,  nref -->
+
+    
+   
+    
+   <!-- 게시판 글 작성 -->
+	<insert id="insert" parameterType="com.green.ffee.nboard.vo.BoardVo" useGeneratedKeys="true" keyProperty="nno">
+	    <selectKey keyProperty="nno" resultType="int" order="BEFORE">
+	    	SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+	    </selectKey>
+	    INSERT INTO NOTICE(    NNO 
+	   					       , TITLE 
+	   					       , CONTENT 
+	   					       , WRITER  )
+	                  VALUES(    #{nno}
+	                 		   , #{title}
+	                 		   , #{content}
+	                 		   , #{writer}  )
+   
+    </insert>
+   
+	<select id="listPage" resultType="com.green.ffee.nboard.vo.BoardVo" 
+	parameterType="com.green.ffee.nboard.vo.SearchCriteria">
+		SELECT  NNO, 
+		        TITLE, 
+		        CONTENT,
+		        WRITER, 
+		        REGDATE,
+		        HIT
+		 FROM ( 
+		        SELECT NNO, 
+		               TITLE, 
+		               CONTENT, 
+		               WRITER, 
+		               REGDATE, 
+		               HIT,
+		               ROW_NUMBER() OVER(ORDER BY NNO DESC) AS RNUM
+		         FROM NOTICE
+		         WHERE 1=1 
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY NNO DESC
+	</select>
+	
+	<select id="listCount" parameterType="com.green.ffee.nboard.vo.SearchCriteria" resultType="int">
+		SELECT COUNT(NNO)
+		   FROM NOTICE
+		   WHERE 1=1
+		<include refid="search"></include>	
+		   AND NNO > 0
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	<select id="read" parameterType="int" resultType="com.green.ffee.nboard.vo.BoardVo">
+		SELECT   NNO
+			   , TITLE
+			   , CONTENT
+			   , WRITER
+			   , REGDATE
+		  FROM NOTICE
+		 WHERE NNO = #{nno}
+	</select>
+	
+	<update id="update" parameterType="com.green.ffee.nboard.vo.BoardVo">
+		UPDATE NOTICE
+		   SET TITLE    =   #{title},
+		   	   CONTENT  =   #{content}
+		 WHERE NNO = #{nno} 
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM NOTICE
+		 WHERE NNO = #{nno}
+	</delete>
+   
+   <!-- 첨부파일 업로드 -->
+    <insert id="insertFile" parameterType="hashMap">
+		INSERT INTO NOTICEFILE(
+			FILE_NO,
+			NNO,
+			ORG_FILE_NAME,
+			STORED_FILE_NAME,
+			FILE_SIZE
+		)VALUES(
+			SEQ_NOTICEFILE.NEXTVAL,
+			#{NNO},
+			#{ORG_FILE_NAME},
+			#{STORED_FILE_NAME},
+			#{FILE_SIZE}
+		)
+    </insert>
+    
+    <!-- 첨부파일 조회 -->
+	<select id="selectFileList" parameterType="int" resultType="hashMap">
+		SELECT NOTICEFILE.FILE_NO,
+           NOTICEFILE.ORG_FILE_NAME,
+           STORED_FILE_NAME,
+           notice.nno
+    FROM NOTICEFILE
+    join notice on notice.nno = noticefile.nno
+    WHERE NOTICEFILE.NNO =#{nno}
+    
+		   <!-- AND DEL_GB = 'N' -->
+	</select>
+	
+	<!-- 게시판 조회수 -->
+    <update id="nboardHit" parameterType="int">
+    	UPDATE NOTICE SET
+    	HIT = HIT+1
+    	WHERE NNO = #{nno}
+    </update>
+    
+</mapper>

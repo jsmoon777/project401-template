@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="eventMapper">
+
+
+	<!-- eventlist -->
+	<select id="selectEventList" resultType="com.green.ffee.event.vo.EventFileVO">
+	<!-- 	
+		SELECT 
+			STORED_FILE_NAME,ENO 
+		FROM 
+			MP_EVENT_FILE
+		ORDER BY 
+			REGDATE DESC -->
+			
+		SELECT  STORED_FILE_NAME,TITLE,EVENTDAY,ENO FROM (
+		
+		    SELECT 
+                E.TITLE,
+                E.EVENTDAY,
+		        MP.ENO,
+		        MP.ORG_FILE_NAME,
+		        MP.STORED_FILE_NAME,
+		        ROW_NUMBER() OVER ( PARTITION BY MP.ENO ORDER BY MP.FILE_NO ) CNT
+		        FROM MP_EVENT_FILE MP,MP_EVENT E
+                WHERE MP.ENO =E.ENO
+		)
+		WHERE CNT=1
+        ORDER BY ENO DESC
+		
+		
+	</select>
+
+	<select id="selectlist" resultType="com.green.ffee.event.vo.EventVO">
+		
+			
+	SELECT  
+		EF.STORED_FILE_NAME,E.TITLE,E.EVENTDAY,E.REGDATE, EF.ENO,E.ENO
+	FROM 
+		MP_EVENT_FILE EF,MP_EVENT E
+	WHERE
+	    EF.ENO = E.ENO
+	ORDER BY 
+		E.REGDATE DESC
+	</select>
+
+
+	<!-- 게시판 글 작성 -->
+	<insert id="insert" parameterType="com.green.ffee.event.vo.EventFileVO" useGeneratedKeys="true" keyProperty="eno">
+	
+	<!-- 자동증가  -->
+    <selectKey keyProperty="eno" resultType="int" order="BEFORE">
+    	SELECT MP_EVENT_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+	INSERT INTO MP_EVENT(    	ENO 
+	   					       , TITLE 
+	   					       , CONTENT 
+                               , EVENTDAY
+	   					       , WRITER  )
+	                  VALUES(    #{eno}
+	                 		   , #{title}
+                               , #{eventday}
+	                 		   , #{content}
+	                 		   , #{writer}  )
+   
+    </insert>
+   
+   <!-- 파일 넣기  -->
+    <insert id="insertFile" parameterType="hashMap">
+		INSERT INTO MP_EVENT_FILE(
+			FILE_NO,
+			ENO,
+			ORG_FILE_NAME,
+			STORED_FILE_NAME,
+			FILE_SIZE
+		)VALUES(
+			SEQ_MP_EVENT_FILE.NEXTVAL,
+			#{ENO},
+			#{ORG_FILE_NAME},
+			#{STORED_FILE_NAME},
+			#{FILE_SIZE}
+		)
+    </insert>
+    
+    <!-- 게시글 목록 조회 -->
+    <select id="read" parameterType="int" resultType="com.green.ffee.event.vo.EventVO">
+    	SELECT   ENO
+			   , TITLE
+			   , EVENTDAY
+			   , CONTENT
+			   , WRITER
+			   , REGDATE
+		  FROM MP_EVENT
+		 WHERE ENO = #{eno}
+		 
+    </select>
+    
+    <!-- 첨부파일조회 -->
+    
+    <select id="selectFileList" parameterType="int" resultType="com.green.ffee.event.vo.EventFileVO">
+    	SELECT FILE_NO,
+			   ORG_FILE_NAME,
+			   STORED_FILE_NAME,
+			   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+		  FROM MP_EVENT_FILE
+		 WHERE ENO = #{eno}
+		   AND DEL_GB = 'N'
+    </select>
+</mapper>
