@@ -45,7 +45,7 @@
      <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-        <property name="username" value="NR_DB"/>
+        <property name="username" value="ffee"/>
         <property name="password" value="1234"/>
     </bean>
 
