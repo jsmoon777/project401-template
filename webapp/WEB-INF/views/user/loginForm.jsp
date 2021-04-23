@@ -20,7 +20,7 @@
            } else {
                hide_caps_lock();
            }
-       }
+       } 
 
    function show_caps_lock() {
         $("#capslock").show();
