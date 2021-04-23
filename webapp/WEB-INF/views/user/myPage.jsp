@@ -14,6 +14,6 @@
 </script>
 </head>
 <body>
-	<h2>mypage</h2>
+	<h2>mypage22</h2>
 </body>
 </html>
