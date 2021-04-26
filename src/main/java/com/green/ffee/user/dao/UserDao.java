@@ -12,5 +12,9 @@ public interface UserDao {
 	int checkOverId(String user_id);
 
 	int checkOverNickname(String nickname);
+
+	void userUpdate(UserVo vo);
+
+	void userDelete(String user_id);
 	
 }

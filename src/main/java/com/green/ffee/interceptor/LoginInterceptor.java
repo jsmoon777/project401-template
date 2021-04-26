@@ -8,6 +8,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.green.ffee.user.vo.UserVo;
+
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     private static final String LOGIN = "login";
@@ -26,10 +28,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
         HttpSession session = request.getSession();
         ModelMap modelMap = modelAndView.getModelMap();
         Object userVO =  modelMap.get("user");
+         
         if (userVO != null) {
             session.setAttribute(LOGIN, userVO);
             //response.sendRedirect("/");

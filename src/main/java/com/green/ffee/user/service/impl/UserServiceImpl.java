@@ -40,6 +40,17 @@ public class UserServiceImpl implements UserService {
 		return checknickname;
 	}
 
+	@Override
+	public void userUpdate(UserVo vo) {
+		userDao.userUpdate(vo);
+	}
+
+	@Override
+	public void userDelete(String user_id) {
+		userDao.userDelete(user_id);
+		
+	}
+
 //	@Override
 //	public UserVo getUser(String user_id) {
 //		

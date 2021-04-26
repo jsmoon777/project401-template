@@ -22,14 +22,12 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void register(UserVo vo) {
-		System.out.println("dao register:"+vo);
 		sqlSession.insert("User.Register", vo);
 		
 	}
 
 	@Override
 	public int checkOverId(String user_id) {
-		System.out.println("dao checkOverId:"+user_id);
 		int	result	=	sqlSession.selectOne("User.checkOverId", user_id);
 		return result;
 		
@@ -37,9 +35,20 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int checkOverNickname(String nickname) {
-		System.out.println("dao nicknamecheck:"+nickname);
 		int	result	=	sqlSession.selectOne("User.checkOverNickname", nickname);
 		return result;
+	}
+
+	@Override
+	public void userUpdate(UserVo vo) {
+		sqlSession.update("User.userUpdate", vo);
+		
+	}
+
+	@Override
+	public void userDelete(String user_id) {
+		sqlSession.delete("User.userDelete", user_id);
+		
 	}
 
 }
