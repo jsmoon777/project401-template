@@ -208,7 +208,7 @@
                     document.getElementById("user_extraAddress").value = extraAddr;
                 
                 } else {
-                    document.getElementById("user_extraAddress").value = '';
+                    document.getElementById("user_extraAddress").value = ''; 
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
