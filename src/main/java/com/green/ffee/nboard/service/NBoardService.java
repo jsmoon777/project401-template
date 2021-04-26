@@ -6,15 +6,16 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.green.ffee.nboard.vo.BoardVo;
+import com.green.ffee.nboard.vo.Criteria;
 import com.green.ffee.nboard.vo.SearchCriteria;
 
 public interface NBoardService {
 
 	//게시물 목록 조회
-	public List<BoardVo> list(SearchCriteria scri) throws Exception;
+	public List<BoardVo> list(Criteria cri) throws Exception;
 
 	//게시글 총 개수
-	public int listCount(SearchCriteria scri);
+	public int listCount();
 	
 	// 게시글 작성
 	public void write(BoardVo boardVo, MultipartHttpServletRequest mpRequest) throws Exception;

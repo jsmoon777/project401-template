@@ -43,19 +43,20 @@
 		               HIT,
 		               ROW_NUMBER() OVER(ORDER BY NNO DESC) AS RNUM
 		         FROM NOTICE
-		         WHERE 1=1 
-		         	<include refid="search"></include>
-		                       ) MP
+		        
+		                       )
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY NNO DESC
 	</select>
 	
 	<select id="listCount" parameterType="com.green.ffee.nboard.vo.SearchCriteria" resultType="int">
+		
 		SELECT COUNT(NNO)
 		   FROM NOTICE
 		   WHERE 1=1
-		<include refid="search"></include>	
+		
 		   AND NNO > 0
+		  
 	</select>
 	
 	<sql id="search">

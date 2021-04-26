@@ -8,13 +8,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
 
-	private int totalCount;
-	private int startPage;
-	private int endPage;
-	private boolean prev;
-	private boolean next;
-	private int displayPageNum = 10;
-	private Criteria cri;
+	private int totalCount; //게시글 총 갯수
+	private int startPage;  //10개의 페이지중 첫번째
+	private int endPage;   //10개의 페이지중 마지막
+	private boolean prev; //페이지 이전버튼 생성조건이되는 필드
+	private boolean next; //페이지 다음 버튼 생성조건이 되는 필드
+	private int displayPageNum = 5;
+	private Criteria cri; //페이지 정보 객체
 	
 	public void setCri(Criteria cri) {
 		this.cri = cri;
@@ -53,26 +53,35 @@ public class PageMaker {
 		return cri;
 	}
 	 
-	private void calcData() {
+	private void calcData() { //페이지 데이터 처리
+		//1~10페이지는 endPage가 10으로 고정되고 11~20페이지는 endPage가 20으로 고정되는 방식
 		endPage = (int) (Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum);
+		
+		//startPage는 매 첫번째 페이지
 		startPage = (endPage - displayPageNum) + 1;
 	  
 		int tempEndPage = (int) (Math.ceil(totalCount / (double)cri.getPerPageNum()));
 		if (endPage > tempEndPage) {
 			endPage = tempEndPage;
+			//마지막 게시물이 있는 페이지가 endPage로 다시 할당해준다.
 		}
 		prev = startPage == 1 ? false : true;
+		//첫번째 페이지가 1이면 false를 반환하여 이전버튼이 사라지게한다.
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
+		//마지막 페이지의 게시글이 10개 이하면 false를반환
 	}
 	
 	public String makeQuery(int page) {
+		//원하는 페이지로 페이지 쿼리문을 날려준다.
 		UriComponents uriComponents =
 		UriComponentsBuilder.newInstance()
-						    .queryParam("page", page)
-							.queryParam("perPageNum", cri.getPerPageNum())
+						    .queryParam("page", page) //page번호를 파라미터값으로 날려준다.
+							//.queryParam("perPageNum", cri.getPerPageNum())
 							.build();
 		   
 		return uriComponents.toUriString();
+		//UriComponent <a href을 작성할때 파라미터를 동적으로 넘겨줄 수 있는 객체.
+		//PageMaker 클래스를 사용할 땐 totalCount(전체 게시글 수)와 Criteria가 먼저 셋팅되어 있어야 한다
 	}
 	
 	public String makeSearch(int page)

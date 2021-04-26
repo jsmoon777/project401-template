@@ -59,9 +59,23 @@
        font-weight: 900;
     }
     
+    
+    .listpage{
+    position: absolute;
+    left:800px;
+    list-style:none;
+    padding: 6px;
+    }
+    
+    .td{
+    float:left; 
+    
+    }
+    
    .search{
    position: absolute;
    left:650px;
+   top: 1080px;
    }
     
    /* 버튼 css */
@@ -76,7 +90,7 @@
       outline: none;
        position: absolute;
       left:700px;
-      top:950px;
+      top:1130px;
       
    }
    
@@ -143,6 +157,23 @@
 						</c:forEach>
 						
 						</table>
+						
+						<div class="listpage">
+						  <th>
+						     <c:if test="${pageMaker.prev }">
+						        <td><a href="list${pageMaker.makeSearch(pageMaker.startPage -1) }">이전</a></td>
+						     </c:if>
+						     
+						     <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						       <td><a href="list${pageMaker.makeSearch(idx) }">${idx }</a></td>
+						     </c:forEach>
+						     
+						     <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+						      <td><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></td>
+						     </c:if>
+						  </th>
+						</div>
+						
 						   <div class="search">
 						     <select name="searchType">
 						       <option value="n"<c:out value="${scri.searchType == null ?'selected' : '' }"/>>---</option>

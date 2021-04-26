@@ -16,6 +16,7 @@ import com.green.ffee.nboard.vo.BoardVo;
 import com.green.ffee.nboard.vo.NFileVo;
 import com.green.ffee.nboard.vo.PageMaker;
 import com.green.ffee.nboard.vo.SearchCriteria;
+import com.green.ffee.nboard.vo.Criteria;
 
 
 
@@ -31,20 +32,20 @@ public class NBoradController {
 	private NBoardService nboardService;
 	
 	//게시판 목록 조회
-	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-		
-		model.addAttribute("list", nboardService.list(scri));
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(nboardService.listCount(scri));
-		
-		model.addAttribute("pageMaker", pageMaker);
-		
-		return "nboard/list";
-		
-	}
+		@RequestMapping(value="/list", method = RequestMethod.GET)
+		public String list(Model model, Criteria cri) throws Exception{
+			
+			model.addAttribute("list", nboardService.list(cri));
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(nboardService.listCount());
+			
+			model.addAttribute("pageMaker", pageMaker);
+			
+			return "nboard/list";
+			
+		}
 	
 	// 게시판 글 작성 화면
 	@RequestMapping(value="/nboard/writeView", method=RequestMethod.GET)
