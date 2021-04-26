@@ -36,6 +36,24 @@
      FROM     USER_TBL
      WHERE	  NICKNAME = #{nickname}
   </select>
+  
+  <update id="userUpdate" parameterType = "hashmap">
+  	UPDATE USER_TBL 
+  	SET USER_PW = #{user_pw},
+  		USER_NAME = #{user_name},
+  		USER_EMAIL = #{user_email},
+  		USER_PHONE = #{user_phone},
+  		USER_OADDRESS = #{user_oaddress},
+  		USER_ADDRESS = #{user_address},
+  		USER_DTADDRESS = #{user_dtaddress}
+  	WHERE	  USER_ID = #{user_id}
+  </update>
+  
+  <delete id="userDelete" parameterType="hashmap">
+		DELETE 
+		  FROM USER_TBL
+		 WHERE USER_ID = #{user_id}
+	</delete>
 </mapper>
 
 

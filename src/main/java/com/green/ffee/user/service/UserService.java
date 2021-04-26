@@ -15,6 +15,10 @@ public interface UserService {
 
 	int nicknameCheck(String nickname);
 
+	void userUpdate(UserVo vo);
+
+	void userDelete(String user_id);
+
 //	UserVo getUser(String user_id);
 	
 }

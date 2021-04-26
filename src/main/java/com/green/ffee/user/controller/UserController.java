@@ -1,7 +1,5 @@
 package com.green.ffee.user.controller;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -63,7 +61,6 @@ public class UserController {
 	//
 	@RequestMapping(value = "/registerForm", method = RequestMethod.GET)
 	public  ModelAndView   registerForm( UserVo vo ) {
-		System.out.println(vo);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vo", vo);
 		mv.setViewName("user/register");
@@ -90,6 +87,68 @@ public class UserController {
 	public int nicknameCheck(@RequestParam("nickname") String nickname) {
 		
 		return userService.nicknameCheck(nickname);
+	}
+	
+	@RequestMapping(value="/selfcheckUForm")
+	public String selfCheckUForm() {
+		return "user/selfcheckU"; 
+	}
+	
+	@RequestMapping(value="/selfcheckDForm")
+	public String selfCheckDForm() {
+		return "user/selfcheckD"; 
+	}
+	
+	@RequestMapping(value="/selfcheckU")
+	public String selfCheckU(LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception {
+		
+		UserVo vo = userService.login(loginDTO);
+
+       if (vo == null || !BCrypt.checkpw(loginDTO.getUser_pw(), vo.getUser_pw())) {
+           return"user/catchPostU";
+       }
+       
+		return "redirect:/userupdateForm";
+	}
+	
+	@RequestMapping(value="/selfcheckD")
+	public String selfCheckD(LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception {
+		
+		UserVo vo = userService.login(loginDTO);
+		
+		if (vo == null || !BCrypt.checkpw(loginDTO.getUser_pw(), vo.getUser_pw())) {
+			return"user/catchPostD";
+		}
+		
+		return "redirect:/userDelete";
+	}
+	
+	
+	
+	@RequestMapping(value="/userupdateForm")
+	public ModelAndView userUpdateForm(UserVo vo, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user/userupdate");
+		return  mv;
+	}
+	
+
+	@RequestMapping(value = "/userupdate")
+	public  String   userUpdate(  UserVo vo, RedirectAttributes redirectAttributes  ) {
+		String hashedPw = BCrypt.hashpw(vo.getUser_pw(), BCrypt.gensalt());
+        vo.setUser_pw(hashedPw);
+		userService.userUpdate( vo );
+		return  "redirect:/mypage";
+	}
+	
+	@RequestMapping(value = "/userDelete")
+	public String userDelete(UserVo vo, HttpSession session) throws Exception{
+		vo = (UserVo) session.getAttribute("login");
+		
+		System.out.println("delete-------------" + vo);
+		userService.userDelete(vo.getUser_id());
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/idsearch", method=RequestMethod.GET)

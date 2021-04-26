@@ -6,121 +6,225 @@
 <meta charset="UTF-8">
 <title>ffee 약관동의</title>
 <style>
-	body {
-		font-size: small; 
-		font-family: Arial, '맑은 고딕';
-	}
-</style>
+   body {
+      margin:0;
+      padding:0;
+      width:100%;
+      font-size: small; 
+      font-family: Arial, '맑은 고딕';
+   }
+   
+   #register{
+      margin:0 auto;
+      padding-top:250px;
+      padding-bottom:250px;
+      margin-bottom:250px;
+      text-align: center;
+      width:1200px;
+      height: 100vh;
+      background: #fff;
+   }
+      
+   .table {
+      border-collapse: collapse;
+      border-top: 3px solid #000;
+      border-left:1px;
+      border-right:1px;
+      width:1200px;
+      text-align: center;
+      margin: 0 auto;
+    }  
+    .table th {
+      width:100px;
+      font-size:13px;
+      color: #333;
+      background: #ffffff;
+      text-align: left;
+    }
+    .table th, .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+    .table th:first-child, .table td:first-child {
+      border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+      border-right: 0;
+    }
+    .table tr td:first-child{
+      text-align: left;
+    }
+    .table caption{caption-side: bottom; display: none;}
+    
+    textarea{
+       width:100%;
+       height: 200px;
+    }
+    input[type="text"]{
+       width:100%;
+    }
+    /* 타이틀 */
+    .sns_title_box{
+       width:1200px;
+       height: 60px;
+       background:#fff;
+       margin: 0 auto;
+    }
+    
+    .sns_title{
+       float: left;
+       line-height: 60px;
+       font-size: 20px;
+       font-weight: 900;
+    }
+   /* 버튼 css */
+   
+   .button {
+      display: inline-block;
+      width: 200px;
+      height: 54px;
+      text-align: center;
+      text-decoration: none;
+      line-height: 54px;
+      outline: none;
+   }
+   .button::before,
+   .button::after {
+      position: absolute;
+      z-index: -1;
+      display: block;
+      content: '';
+   }
+   .button,
+   .button::before,
+   .button::after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+   }
+   
+   .button {
+   background-color: #000;
+   color: #fff;
+   }
+   .button:hover {
+      letter-spacing: 5px;
+   }
+   </style>
+   
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 $(function() {
-	var doc = document; 
-	var form1 = doc.getElementById('form1'); 
-	var inputs = form1.getElementsByTagName('INPUT'); 
-	var form1_data = {
-		"c1": false, 
-		"c2": false, 
-		"loca_prov": false
-	}; 
+   var doc = document; 
+   var form1 = doc.getElementById('form1'); 
+   var inputs = form1.getElementsByTagName('INPUT'); 
+   var form1_data = {
+      "c1": false, 
+      "c2": false, 
+      "loca_prov": false
+   }; 
 
-	var c1 = doc.getElementById('c1'); 
-	var c2 = doc.getElementById('c2'); 
-	var loca_prov = doc.getElementById('loca_prov'); 
+   var c1 = doc.getElementById('c1'); 
+   var c2 = doc.getElementById('c2'); 
+   var loca_prov = doc.getElementById('loca_prov'); 
 
-	function checkboxListener() {
-		form1_data[this.name] = this.checked; 
+   function checkboxListener() {
+      form1_data[this.name] = this.checked; 
 
-		if(this.checked) {
-			// submit 할때 체크하지 않아 색이 변한 font 를 다시 원래 색으로 바꾸는 부분. 
-			this.parentNode.style.color = "#000"; 
-		}
-	}
-
-
-		c1.onclick = c2.onclick = loca_prov.onclick = checkboxListener; 
-
-		var all = doc.getElementById('all'); 
-
-		all.onclick = function() {
-			if (this.checked) {
-				setCheckbox(form1_data, true); 
-			} else {
-				setCheckbox(form1_data, false); 
-			}
-		}; 
+      if(this.checked) {
+         // submit 할때 체크하지 않아 색이 변한 font 를 다시 원래 색으로 바꾸는 부분. 
+         this.parentNode.style.color = "#000"; 
+      }
+   }
 
 
-		function setCheckbox(obj, state) {
-			for (var x in obj) {
-				obj[x] = state; 
+      c1.onclick = c2.onclick = loca_prov.onclick = checkboxListener; 
 
-				for(var i = 0; i < inputs.length; i++) {
-					if(inputs[i].type == "checkbox") {
-						inputs[i].checked = state; 
-					}
-				}
+      var all = doc.getElementById('all'); 
 
-			}
-		}
-
-
-	/*all.onclick = function() {
-		if (this.checked) {
-			for (var x in form1_data) {
-				form1_data[x] = true; 
-				for(var i = 0; i < inputs.length; i++) {
-					if(inputs[i].type == "checkbox") {
-						inputs[i].checked = true; 
-					}
-				}
-			}
-		} else {
-			for (var x in form1_data) {
-				form1_data[x] = false; 
-				for(var i = 0; i < inputs.length; i++) {
-					if(inputs[i].type == "checkbox") {
-						inputs[i].checked = false; 
-					}
-				}
-			}
-		}
-	}; */
+      all.onclick = function() {
+         if (this.checked) {
+            setCheckbox(form1_data, true); 
+         } else {
+            setCheckbox(form1_data, false); 
+         }
+      }; 
 
 
-	form1.onsubmit = function(e) {
-		e.preventDefault(); // 서브밋 될때 화면이 깜빡이지 않게 방지
+      function setCheckbox(obj, state) {
+         for (var x in obj) {
+            obj[x] = state; 
 
-		if ( !form1_data['c1'] ) {
-			alert('ffee 이용약관 동의를 하지 않았습니다'); 
-			c1.parentNode.style.color = 'red'; 
-			return false; 
-		}
+            for(var i = 0; i < inputs.length; i++) {
+               if(inputs[i].type == "checkbox") {
+                  inputs[i].checked = state; 
+               }
+            }
 
-		if ( !form1_data['c2'] ) {
-			alert('개인정보 수집 및 이용에 대한 안내를 선택하지 않았습니다.'); 
-			return false; 
-		}
+         }
+      }
 
-		this.submit(); 
-	}
+
+   /*all.onclick = function() {
+      if (this.checked) {
+         for (var x in form1_data) {
+            form1_data[x] = true; 
+            for(var i = 0; i < inputs.length; i++) {
+               if(inputs[i].type == "checkbox") {
+                  inputs[i].checked = true; 
+               }
+            }
+         }
+      } else {
+         for (var x in form1_data) {
+            form1_data[x] = false; 
+            for(var i = 0; i < inputs.length; i++) {
+               if(inputs[i].type == "checkbox") {
+                  inputs[i].checked = false; 
+               }
+            }
+         }
+      }
+   }; */
+
+
+   form1.onsubmit = function(e) {
+      e.preventDefault(); // 서브밋 될때 화면이 깜빡이지 않게 방지
+
+      if ( !form1_data['c1'] ) {
+         alert('ffee 이용약관 동의를 하지 않았습니다'); 
+         c1.parentNode.style.color = 'red'; 
+         return false; 
+      }
+
+      if ( !form1_data['c2'] ) {
+         alert('개인정보 수집 및 이용에 대한 안내를 선택하지 않았습니다.'); 
+         return false; 
+      }
+
+      this.submit(); 
+   }
 });
 </script>
 </head>
-<h1>ffee 회원가입</h1>
-
+<body>
+<%@include file="/WEB-INF/include/sub_header.jsp" %>
+<div id="register" >
+<h1 style="float: left; margin-bottom:20px;">ffee 회원가입 약관선택</h1>
+<!-- <h2>약관선택</h2> -->
 <form action="/registerForm" method="get" id="form1">
 
-	<h2>약관선택</h2>
-	<p>
-		<label>
-			<input type="checkbox" name="all" id="all">
-			ffee 이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택)에 모두 동의합니다.
-		</label>
-	</p>
-	<p>
-		<label>
-			<textarea id="ffee_pro">
-			여러분을 환영합니다.
+<table class="table">
+
+   
+   <tr>
+      <td>
+         <p>
+      <label>
+         <textarea id="ffee_pro" style="width: 100%; height: 200px;">여러분을 환영합니다.
 ffee 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 ffee 서비스의 이용과 관련하여 ffee 서비스를 제공하는 ffee 주식회사(이하 ‘ffee’)와 이를 이용하는 ffee 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 ffee 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
 
 ffee 서비스를 이용하시거나 ffee 서비스 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 확인하거나 동의하게 되므로, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
@@ -238,15 +342,19 @@ ffee 서비스에는 기본적으로 본 약관이 적용됩니다만, 부득이
 공지 일자: 2018년 3월 30일
 적용 일자: 2018년 5월 1일
 ffee 서비스와 관련하여 궁금하신 사항이 있으시면 고객센터(대표번호: 1588 – 3820/ 평일 09:00~18:00)로 문의 주시기 바랍니다.
-			</textarea><br>
-			<input type="checkbox" name="c1" id="c1"> 
-			ffee 이용약관 동의(필수)
-		</label>
-	</p>
-	<p>
-		<label>
-			<textarea id="private_pro">
-			개인정보보호법에 따라 ffee에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
+         </textarea><br>
+         <input type="checkbox" name="c1" id="c1"> 
+         ffee 이용약관 동의(필수)
+      </label>
+   </p>   
+      </td>
+   </tr>
+   
+   <tr>
+      <td>
+         <p>
+      <label>
+         <textarea id="private_pro" style="width: 100%; height: 200px;">개인정보보호법에 따라 ffee에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
 
 1. 수집하는 개인정보
 이용자는 회원가입을 하지 않아도 정보 검색, 뉴스 보기 등 대부분의 ffee 서비스를 회원과 동일하게 이용할 수 있습니다. 이용자가 메일, 캘린더, 카페, 블로그 등과 같이 개인화 혹은 회원제 서비스를 이용하기 위해 회원가입을 할 경우, ffee는 서비스 이용을 위해 필요한 최소한의 개인정보를 수집합니다.
@@ -305,14 +413,19 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
 4. 개인정보 수집 및 이용 동의를 거부할 권리
 이용자는 개인정보의 수집 및 이용 동의를 거부할 권리가 있습니다. 회원가입 시 수집하는 최소한의 개인정보, 즉, 필수 항목에 대한 수집 및 이용 동의를 거부하실 경우, 회원가입이 어려울 수 있습니다.
 </textarea><br>
-			<input type="checkbox" name="c2" id="c2"> 
-			개인정보 수집 및 이용에 대한 안내(필수)
-		</label>
-	</p>
-	<p>
-		<label>
-			<textarea id="location_pro">
-			위치정보 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 ffee 위치기반 서비스를 이용할 수 있습니다.
+         <input type="checkbox" name="c2" id="c2"> 
+         개인정보 수집 및 이용에 대한 안내(필수)
+      </label>
+   </p>
+         
+      </td>
+   </tr>
+   
+   <tr>
+      <td>
+         <p>
+      <label>
+         <textarea id="location_pro" style="width: 100%; height: 200px;">위치정보 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 ffee 위치기반 서비스를 이용할 수 있습니다.
 
 
 제 1 조 (목적)
@@ -386,15 +499,35 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
 위치정보 관리책임자 : (개인)정보보호 담당 부서 임원(개인정보 보호책임자 겸직)
 전화번호 : 1588-3820
 이메일 주소 : privacy@ffee.com
-			</textarea><br>
-			<input type="checkbox" name="loca_prov" id="loca_prov"> 
-			위치정보 이용약관 동의(선택)
-		</label>
-	</p>
+         </textarea><br>
+         <input type="checkbox" name="loca_prov" id="loca_prov"> 
+         위치정보 이용약관 동의(선택)
+      </label>
+   </p>
+            
+      
+      </td>
+   
+   </tr>
+   
+      <tr>
+         <td>
+         <label>
+         <input type="checkbox" name="all" id="all">
+         <b style="font-weight: 900;">ffee 이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택)에 모두 동의합니다.</b>
+         </label>
+         </td>
 
-	<p>
-		<input type="submit" value="동의">
-		<input type="reset" value="미동의">
-	</p>
+   </tr>
+      
+</table>
+   <p style="text-align: center; margin-top:50px;">
+      <input type="submit" class="button" value="동의">
+      <input type="reset" class="button" value="미동의">
+   </p>
+   
 </form>
+</div>
+<%@include file="/WEB-INF/include/footer.jsp" %>
+</body>
 </html>
