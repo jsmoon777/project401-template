@@ -9,7 +9,7 @@ import com.green.ffee.nboard.vo.BoardVo;
 import com.green.ffee.nboard.vo.Criteria;
 import com.green.ffee.nboard.vo.SearchCriteria;
 
-public interface NBoardService {
+public interface NBoardService { 
 
 	//게시물 목록 조회
 	public List<BoardVo> list(Criteria cri) throws Exception;
