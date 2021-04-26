@@ -194,6 +194,7 @@
 						        });
 						     </script>
 						</div>
+						 
 						<tr>	
 							<td colspan="10">
 								<button type="submit" class="update_btn" formaction="/nboard/writeView">글쓰기</button>
