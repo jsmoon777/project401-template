@@ -31,6 +31,10 @@ public interface NBoardService {
     
     // 첨부파일 조회
  	public List<Map<String, Object>> selectFileList(int nno) throws Exception;
+
+	public int listCount(SearchCriteria scri);
+
+	List<BoardVo> list(SearchCriteria scri) throws Exception;
      
 
 }

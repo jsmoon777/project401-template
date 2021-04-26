@@ -14,6 +14,7 @@ import com.green.ffee.nboard.dao.NBoardDao;
 import com.green.ffee.nboard.service.NBoardService;
 import com.green.ffee.nboard.utils.FileUtils;
 import com.green.ffee.nboard.vo.BoardVo;
+import com.green.ffee.nboard.vo.Criteria;
 import com.green.ffee.nboard.vo.SearchCriteria;
 
 
@@ -83,6 +84,18 @@ public class NBoardServiceImpl implements NBoardService{
 		// TODO Auto-generated method stub
 		return daoo.selectFileList(nno);
 	}
+
+		@Override
+		public List<BoardVo> list(Criteria cri) throws Exception {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public int listCount() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 
 	
 	
