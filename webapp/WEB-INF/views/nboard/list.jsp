@@ -173,7 +173,7 @@
 						     </c:if>
 						  </th>
 						</div>
-						
+						 
 						   <div class="search">
 						     <select name="searchType">
 						       <option value="n"<c:out value="${scri.searchType == null ?'selected' : '' }"/>>---</option>
