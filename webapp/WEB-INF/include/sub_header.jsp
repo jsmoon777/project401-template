@@ -150,6 +150,13 @@
 		color: #000;
 		float: right;
 	}
+	#loginok_name{
+		width:200px;
+		float: left;
+		font-size: 12px;
+		line-height: 50px;
+		text-align: center;
+	}
 	.top_menu_ul>li{
 		width:100px;
 		float: left;
@@ -157,7 +164,6 @@
 		line-height: 50px;
 		text-align: center;
 	}
-	
 </style>
 
 <script>
@@ -188,13 +194,13 @@ $(function(){
 
 <header class="header">
 <div id="top_header">
-  <ul class="top_menu_ul">
-  	<c:if test="${member == null}">
+   <ul class="top_menu_ul">
+  	<c:if test="${login == null}">
 	  	<li><a href="/login">로그인</a></li>
 	  	<li><a href="/registerPro">회원가입</a></li>
   	</c:if>
-	<c:if test="${member != null}">
-		<li><span style="font-weight: 900;">${member.userId}</span> 님 안녕하세요.</li>
+	<c:if test="${login != null}">
+		<li id="loginok_name"><span style="font-weight: 900;">${login.user_id}</span> 님 안녕하세요.</li>
 		<li><a href="/logout">로그아웃</a></li>
 	</c:if>
   	<li><a href="/">메인페이지</a></li>
@@ -202,10 +208,11 @@ $(function(){
 </div>
   <nav class="menu_nav">
     <ul class="menu_ul">
-		<li><a href="/mat/map"  class="hvr-underline-from-left">맛집정보</a></li>
-		<li class="hvr-underline-from-left"><a href="#">카페추천</a></li>
+		<li class="hvr-underline-from-left"><a href="/mat/map">맛집정보</a></li>
+		<li class="hvr-underline-from-left"><a href="/board/list">카페추천</a></li>
 		<li class="hvr-underline-from-left"><a href="/board/snslist">SNS</a></li>
-		<li><img src="/img/logo.png" width="70px;"alt="ffee"></a></li>
+		<li><a href="/"><img src="/img/logo.png" width="100px;"alt="ffee"></a></li>
+		<li class="hvr-underline-from-left"><a href="/product/productList">주문</a></li>
 		<li class="hvr-underline-from-left"><a href="/event/eventlist">이벤트</a></li>
 		<li class="hvr-underline-from-left"><a href="/nboard/list">공지</a></li>
 		<li class="hvr-underline-from-left"><a href="#">문의</a></li>
