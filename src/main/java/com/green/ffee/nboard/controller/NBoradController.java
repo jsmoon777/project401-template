@@ -33,12 +33,12 @@ public class NBoradController {
 	
 	//게시판 목록 조회
 		@RequestMapping(value="/list", method = RequestMethod.GET)
-		public String list(Model model, Criteria cri) throws Exception{
+		public String list(Model model, SearchCriteria scri) throws Exception{
 			
-			model.addAttribute("list", nboardService.list(cri));
+			model.addAttribute("list", nboardService.list(scri));
 			
 			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(cri);
+			pageMaker.setCri(scri);
 			pageMaker.setTotalCount(nboardService.listCount());
 			
 			model.addAttribute("pageMaker", pageMaker);

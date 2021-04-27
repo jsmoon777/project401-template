@@ -12,7 +12,7 @@ import com.green.ffee.nboard.vo.SearchCriteria;
 public interface NBoardService { 
 
 	//게시물 목록 조회
-	public List<BoardVo> list(Criteria cri) throws Exception;
+	public List<BoardVo> list(SearchCriteria scri) throws Exception;
 
 	//게시글 총 개수
 	public int listCount();
@@ -34,7 +34,5 @@ public interface NBoardService {
 
 	public int listCount(SearchCriteria scri);
 
-	List<BoardVo> list(SearchCriteria scri) throws Exception;
-     
 
 }

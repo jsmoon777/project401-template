@@ -144,18 +144,26 @@
 					<table  class="table">
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th></tr>
 						
-						<c:forEach items="${list}" var = "list">
-							<tr>
-								<td><c:out value="${list.nno}" /></td>
-								<td>
-									<a href="/nboard/readView?nno=${list.nno}"><c:out value="${list.title}" /></a>
-								</td>
-								<td><c:out value="${list.writer}" /></td>
-								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
-							    <td><c:out value="${list.hit }"/></td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${list == null}">
+								<tr>등록된 글이 없습니다.</tr>
+							</c:when>
 						
+							<c:when test="${list != null}">
+							<c:forEach items="${list}" var = "list">
+								<tr>
+									<td><c:out value="${list.nno}" /></td>
+									<td>
+										<a href="/nboard/readView?nno=${list.nno}"><c:out value="${list.title}" /></a>
+									</td>
+									<td><c:out value="${list.writer}" /></td>
+									<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
+								    <td><c:out value="${list.hit }"/></td>
+								</tr>
+							</c:forEach>
+						
+						</c:when>
+						</c:choose>
 						</table>
 						 
 						<div class="listpage">

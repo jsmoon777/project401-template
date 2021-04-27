@@ -85,11 +85,6 @@ public class NBoardServiceImpl implements NBoardService{
 		return daoo.selectFileList(nno);
 	}
 
-		@Override
-		public List<BoardVo> list(Criteria cri) throws Exception {
-			// TODO Auto-generated method stub
-			return null;
-		}
 
 		@Override
 		public int listCount() {
