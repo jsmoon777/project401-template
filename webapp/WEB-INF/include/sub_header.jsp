@@ -209,13 +209,13 @@ $(function(){
   <nav class="menu_nav">
     <ul class="menu_ul">
 		<li class="hvr-underline-from-left"><a href="/mat/map">맛집정보</a></li>
-		<li class="hvr-underline-from-left"><a href="/board/list">카페추천</a></li>
+		<li class="hvr-underline-from-left"><a href="/Mboard/View">카페추천</a></li>
 		<li class="hvr-underline-from-left"><a href="/board/snslist">SNS</a></li>
 		<li><a href="/"><img src="/img/logo.png" width="100px;"alt="ffee"></a></li>
 		<li class="hvr-underline-from-left"><a href="/product/productList">주문</a></li>
 		<li class="hvr-underline-from-left"><a href="/event/eventlist">이벤트</a></li>
 		<li class="hvr-underline-from-left"><a href="/nboard/list">공지</a></li>
-		<li class="hvr-underline-from-left"><a href="#">문의</a></li>
+		<li class="hvr-underline-from-left"><a href="/Menus/List">문의</a></li>
 	  </ul>
   </nav>
 </header>
