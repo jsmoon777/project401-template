@@ -17,12 +17,12 @@
 <script src="/js/script.js"></script>
 <script src="/js/common_renew.js"></script>
 <script src="/js/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
 <link rel="stylesheet" href="css/swiper-bundle.min.css">
 <link rel="stylesheet" href="css/swiper-bundle2.min.css">
 <link href="/css/hover.css" rel="stylesheet" media="all">
 <link href="/css/header.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
-	
 </head>
 <!--헤더-->
 
@@ -43,7 +43,7 @@
 <%@include file="/WEB-INF/include/header.jsp" %>
 
 <section class="img_wrap" >
-  
+
 <div class="swiper-container">
     <div class="swiper-wrapper">
 	  <div class="swiper-slide">
@@ -82,7 +82,7 @@
  <!--인스타그램 sns 부분-->
   <section class="main_content" id="main_sns_warp">
     <article id="main_sns" class="view">
-      <h2><span class="strong">미스터피자</span><br>
+      <h2><span class="strong">FFEE 에서</span><br>
         SNS를 만나보세요</h2>
       <ul class="sns_channel">
         <li><a href="main.html#" target="_blank"><img src="img/youtube_icon.png" alt="" class="ico"></a></li>
@@ -91,9 +91,235 @@
       </ul>
     </article>
   </section>
-	<!-- 포장 퀵 배달 메뉴-->
+  
+  
+  <style>
+  
+  /* 인기카페 신상카페 탭 디자인 */
+  	#tab_box{
+  		width: 500px;
+  		height: 100px;
+  		background: pink;
+  		margin: 0 auto;
+  	}
+  	#tab_box ul{
+  		width: 500px;
+  		height: 100px;
+  		background: red;
+  	}
+  	#tab_box ul li{
+  		width: 250px;
+  		height: 100px;
+  		background: red;
+  		float: left;
+  		text-align: center;
+  		line-height: 100px;
+  		font-size: 20px;
+  	}
+  .popcafe{
+  	display: block;
+  }
+  .newcafe{
+  	display: none;
+  }
+  </style>
+ <script>
+ 
+ $(function(){ 
+	 $('#popShowBtn').click(function() {
+		 alert('인기카페 보이기');
+	    $(".popcafe").css("display","block");
+	    $(".newcafe").css("display","none");
+		    // goodsBtn을 클릭하면 goodsDiv를 보여줘라
+		 
+		})
+	 
+	$('#newsHideBtn').click(function() {
+		alert('신상카페 보이기');
+		$(".popcafe").css("display","none");
+		$(".newcafe").css("display","block");
+	    // goodsBtn을 클릭하면 goodsDiv를 숨겨라
+	 
+	})
+ });
+</script>
+  <!--민성님 카페추천 탭 -->
+  
   <section class="main_content">
-    <article id="main_pre_sale" class="view">
+  
+   <div id="tab_box">
+	    <ul>   
+			<li><button id="popShowBtn">인기카페</button></li>
+        	<li><button id="newsHideBtn">신상카페</button></li>
+        </ul>
+    </div>
+    
+    
+    <!-- ****인기카페 -->
+    <article id="main_pre_sale" class="view popcafe">
+   
+      <div class="sale_list">
+        <div class="list_slider">
+          <ul class="slides" style="width: 1980px;">
+          
+          <!-- 인기카페 리스트 -->
+            <li tabindex="0">
+              <div class="inner">
+            
+                <div class="photo">
+                <img src="img/menu_1_img.png" alt="#"> </div>
+                <div class="desc">
+                  
+                  <p class="name">인기카페쪽임
+					  <span id="top_img">
+						  <img width="50px" src="img/slide_icon2.png"></span></p>
+                  <p class="address">포장주문시 20%할인</p>
+                  <div class="btn_wish">
+                  </div>
+                  <div class="info" style="padding-top: 0px; height: 0px;">
+                    <table>
+                      <caption>
+                     		 혜택
+                      </caption>
+                      <tbody>
+                        <tr>
+                          <th scope="row">혜택 : </th>
+                          <td>등급별 혜택30%</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="btn_more"> <a href="#" target="_blank" title="새창">주문하기</a> </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- 끝 -->
+            
+            
+            
+            
+            
+            <li tabindex="0">
+              <div class="inner">
+                
+                <div class="photo"> <img src="img/menu_2_img.png" alt="포장주문"> </div>
+                <div class="desc">
+                 
+                  <p class="name">포장주문<span id="top_img">
+						  <img width="50px" src="img/slide_icon2.png"></span></p>
+                  <p class="address">보너스파우치 / 홈런박스 주문 가능 </p>
+                  <div class="btn_wish"> 
+                  </div>
+                  <div class="info" style="padding-top: 0px; height: 0px;">
+                    <table>
+                      <caption>
+                      혜택&amp;할인
+                      </caption>
+                      <tbody>
+                        <tr>
+                          <th scope="row">혜택 : </th>
+                          <td>등급별 혜택30%</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">할인 : </th>
+                          <td>현대M카드 30%할인</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="btn_more"> <a href="#" target="_blank" title="새창">주문하기</a> </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li tabindex="0">
+              <div class="inner">
+                
+                <div class="photo"><img src="img/menu_3_img.png" alt=""> </div>
+                <div class="desc">
+                  
+                  <p class="name">퀵오더
+					  <span id="top_img">
+						  <img width="50px" src="img/slide_icon2.png"></span></p>
+                  <p class="address">빠르고 신속한 퀵 오더</p>
+                  <div class="btn_wish"> 
+                    
+                   
+                    
+                    
+                  </div>
+                  <div class="info" style="padding-top: 0px; height: 0px;">
+                    <table>
+                      <caption>
+                      혜택
+                      </caption>
+                      <tbody>
+                        <tr>
+                          <th scope="row">혜택 : </th>
+                          <td>배달서비스 가입시 20% 적립</td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                    <div class="btn_more"> <a href="sales/s/oncheon4.html" target="_blank" title="새창">주문하기</a> </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li tabindex="0">
+              <div class="inner">
+           
+                <div class="photo">
+					<img src="img/menu_4_img.png"> </div>
+                <p class="notice">드라이빙 픽업으로 주문이 가능합니다.</p>
+                <div class="desc">
+                 
+                  <p class="name">드라이빙 픽업<span id="top_img">
+						  <img width="50px" src="img/slide_icon2.png"></span></p>
+                  <p class="address">바로 바로 드실수 있는 서비스</p>
+                  <div class="btn_wish"> 
+                  </div>
+                  <div class="info" style="padding-top: 0px; height: 0px;">
+                    <table>
+                      <caption>
+                      혜택
+                      </caption>
+                      <tbody>
+                        <tr>
+                          <th scope="row">혜택 : </th>
+                          <td>미스터피자 포인트 적립</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">할인 : </th>
+                          <td>현대M카드 30%할인</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="btn_more"> <a href="#" target="_blank" title="새창">주문하기</a> </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          
+          
+			          
+            <!-- 여기부턴 지우면 안댐 ㄴㄴ -->
+          </ul>
+        </div>
+           <div class="btn_guide_set">
+          <button type="button" class="prev"><img src="img/btn_mps_prev.png" alt="이전" /></button>
+          <div class="btn_navi">
+            <ol>
+              <!--<li><a href="#" class="active">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li>-->
+            </ol>
+          </div>
+          <button type="button" class="next"><img src="img/btn_mps_next.png" alt="다음" /></button>
+        </div>
+      </div>
+      
+    </article>
+
+	<!-- ****신상카페 -->
+   <article id="main_pre_sale" class="view newcafe">
    
       <div class="sale_list">
         <div class="list_slider">
@@ -104,7 +330,7 @@
                 <div class="photo"> <img src="img/menu_1_img.png" alt="#"> </div>
                 <div class="desc">
                   
-                  <p class="name">배달주문
+                  <p class="name">신상카페 타이틀쪽임
 					  <span id="top_img">
 						  <img width="50px" src="img/slide_icon2.png"></span></p>
                   <p class="address">포장주문시 20%할인</p>
@@ -324,7 +550,9 @@
       },
     });
   </script>
-	<!--할인혜택안내-->
+  
+  
+
   <section class="main_content">
     <article id="main_gallery">
       <h2 class="hidden_cont">할인혜택안내</h2>
