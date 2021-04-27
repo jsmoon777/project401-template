@@ -10,22 +10,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.green.ffee.sns.service.SnsService;
 
-@Controller
-public class HomeController {
-	
-	@Autowired
-	private  SnsService  service;
-	
-	@RequestMapping("/")
-	public  String  home() {
-		return "home";     // 이동할 jsp 이름
-	}
-	
-	
-	
-	
-	
-}
+/*
+ * @Controller public class HomeController {
+ * 
+ * @Autowired private SnsService service;
+ * 
+ * @RequestMapping("/") public String home() { return "home"; // 이동할 jsp 이름 }
+ * 
+ * }
+ */
 
 
 
