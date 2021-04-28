@@ -61,8 +61,8 @@
     
     
     .listpage{
-    position: absolute;
-    left:800px;
+    position: relative;
+    left:900px;
     list-style:none;
     padding: 6px;
     }
@@ -73,9 +73,9 @@
     }
     
    .search{
-   position: absolute;
-   left:650px;
-   top: 1080px;
+   position: relative;
+   left:800px;
+   
    }
     
    /* 버튼 css */
@@ -88,9 +88,9 @@
       text-decoration: none;
       line-height: 54px;
       outline: none;
-       position: absolute;
-      left:700px;
-      top:1130px;
+       position: relative;
+      left:850px;
+     top:5px;
       
    }
    
