@@ -1,11 +1,16 @@
 package com.green.ffee.user.service.impl;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.ffee.user.dao.UserDao;
 import com.green.ffee.user.logindto.LoginDTO;
 import com.green.ffee.user.service.UserService;
+import com.green.ffee.user.vo.ProfileVo;
 import com.green.ffee.user.vo.UserVo;
 
 @Service
@@ -50,11 +55,34 @@ public class UserServiceImpl implements UserService {
 		userDao.userDelete(user_id);
 		
 	}
+	
+	@Override
+	public void insertProfile(HashMap<String, Object> map,
+			HttpServletRequest request) {
 
-//	@Override
-//	public UserVo getUser(String user_id) {
-//		
-//		return ;
-//	}
+		//System.out.println("service1 map:" + map);
+		
+		// db 와 관련없는 로직처리 - 비지니스 로직
+		// 1. request 처리  - 넘어온 파일을 처리
+	    ProfileUtil.save(map, request);
+		
+	    //	System.out.println("service2 map:" + map);
+		
+		// 2. 넘어온 정보 db 저장
+		userDao.insertProfile(map); 
+		
+	}
+
+	@Override
+	public ProfileVo readProfile(String user_id) {
+		return userDao.readProfile(user_id);
+	}
+
+	@Override
+	public UserVo getUser(String user_id) {
+		
+		return userDao.getUser(user_id);
+	}
+
 
 }

@@ -37,7 +37,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             //response.sendRedirect("/");
             // 로그인 하기전 가려고 했던 장소로 이동
             Object destination = session.getAttribute("destination");
-            System.out.println("getdesti:" + destination);
             response.sendRedirect(destination != null ? (String) destination : "/");
         }
 

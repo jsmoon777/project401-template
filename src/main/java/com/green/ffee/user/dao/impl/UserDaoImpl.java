@@ -1,11 +1,14 @@
 package com.green.ffee.user.dao.impl;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.ffee.user.dao.UserDao;
 import com.green.ffee.user.logindto.LoginDTO;
+import com.green.ffee.user.vo.ProfileVo;
 import com.green.ffee.user.vo.UserVo;
 
 @Repository
@@ -49,6 +52,24 @@ public class UserDaoImpl implements UserDao {
 	public void userDelete(String user_id) {
 		sqlSession.delete("User.userDelete", user_id);
 		
+	}
+	
+
+	//첨부파일 업로드
+	@Override
+	public void insertProfile(Map<String, Object> map){
+		System.out.println("profile dao : " + map);
+		sqlSession.insert("User.insertProfile", map);
+	}
+
+	@Override
+	public ProfileVo readProfile(String user_id) {
+		return sqlSession.selectOne("User.readProfile", user_id);
+	}
+
+	@Override
+	public UserVo getUser(String user_id) {
+		return sqlSession.selectOne("User.Login", user_id);
 	}
 
 }

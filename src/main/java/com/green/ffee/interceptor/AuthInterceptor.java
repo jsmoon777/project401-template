@@ -72,7 +72,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 				if(authUser == null) {
 					// 페이지 요청 정보 저장 : 여기서 저장해야 로그인하고 보낼수 있다
 					saveDestination(request);
-					System.out.println("setdesti:" + session.getAttribute("destination"));
 					response.sendRedirect("/login"); 
 					return false; 
 				}
