@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로필 사진</title>
 <style>
-	
+
 </style>
 </head>
 <body>

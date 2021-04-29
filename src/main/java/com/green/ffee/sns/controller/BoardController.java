@@ -41,7 +41,6 @@ import com.green.ffee.sns.vo.boardLikeVO;
 @RequestMapping("/board/*")
 public class BoardController {
 
-	//private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@Autowired
 	private  SnsService  service;
@@ -52,7 +51,6 @@ public class BoardController {
 	// 게시판 목록 조회
 	@RequestMapping(value = "/snslist", method = RequestMethod.GET)
 		public String snslist(FileVo filevo, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
-		//logger.info("snslist");
 		
 		model.addAttribute("scri", scri);
 		model.addAttribute("list", service.list(scri));
@@ -73,7 +71,6 @@ public class BoardController {
 	// 게시판 목록 조회
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-			//logger.info("list");
 			
 			model.addAttribute("list", service.list(scri));
 			
@@ -99,7 +96,6 @@ public class BoardController {
 	// 게시판 글 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
-		//logger.info("write");
 		service.write(boardVO, mpRequest);
 		
 		return "redirect:/board/snslist";
@@ -108,7 +104,6 @@ public class BoardController {
 	// 게시판 조회
 	@RequestMapping(value = "/readView", method = RequestMethod.GET)
 	public String read(BoardVO boardVO,FileVo filevo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
-		//logger.info("read");
 		
 		model.addAttribute("read", service.read(boardVO.getBno()));
 		model.addAttribute("scri", scri);
@@ -116,7 +111,6 @@ public class BoardController {
 		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
 		model.addAttribute("replyList",replyList);
 		
-		//List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
 		List<FileVo> fileList = service.selectFileList(boardVO.getBno());
 		model.addAttribute("file", fileList);
 		
@@ -156,7 +150,6 @@ public class BoardController {
 	// 게시판 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(BoardVO boardVO) throws Exception{
-		//logger.info("delete");
 		
 		service.delete(boardVO.getBno());
 		
@@ -168,7 +161,6 @@ public class BoardController {
 	//댓글 작성
 		@RequestMapping(value="/replyWrite", method = RequestMethod.POST)
 		public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
-			//logger.info("reply Write");
 			
 			replyService.writeReply(vo);
 			
@@ -184,7 +176,6 @@ public class BoardController {
 		//댓글 수정 GET
 		@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
 		public String replyUpdateView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
-			//logger.info("reply Write");
 			
 			model.addAttribute("replyUpdate", replyService.selectReply(vo.getRno()));
 			model.addAttribute("scri", scri);
@@ -195,7 +186,6 @@ public class BoardController {
 		//댓글 수정 POST
 		@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
 		public String replyUpdate(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
-			//logger.info("reply Write");
 			
 			replyService.updateReply(vo);
 			
@@ -223,7 +213,6 @@ public class BoardController {
 		//댓글 삭제
 		@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
 		public String replyDelete(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
-			//logger.info("reply Write");
 			
 			replyService.deleteReply(vo);
 			

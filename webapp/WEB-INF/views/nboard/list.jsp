@@ -61,8 +61,8 @@
     
     
     .listpage{
-    position: absolute;
-    left:800px;
+    position: relative;
+    left:900px;
     list-style:none;
     padding: 6px;
     }
@@ -73,9 +73,9 @@
     }
     
    .search{
-   position: absolute;
-   left:650px;
-   top: 1080px;
+   position: relative;
+   left:800px;
+   
    }
     
    /* 버튼 css */
@@ -88,9 +88,9 @@
       text-decoration: none;
       line-height: 54px;
       outline: none;
-       position: absolute;
-      left:700px;
-      top:1130px;
+       position: relative;
+      left:850px;
+     top:5px;
       
    }
    
@@ -144,18 +144,26 @@
 					<table  class="table">
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th></tr>
 						
-						<c:forEach items="${list}" var = "list">
-							<tr>
-								<td><c:out value="${list.nno}" /></td>
-								<td>
-									<a href="/nboard/readView?nno=${list.nno}"><c:out value="${list.title}" /></a>
-								</td>
-								<td><c:out value="${list.writer}" /></td>
-								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
-							    <td><c:out value="${list.hit }"/></td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${list == null}">
+								<tr>등록된 글이 없습니다.</tr>
+							</c:when>
 						
+							<c:when test="${list != null}">
+							<c:forEach items="${list}" var = "list">
+								<tr>
+									<td><c:out value="${list.nno}" /></td>
+									<td>
+										<a href="/nboard/readView?nno=${list.nno}"><c:out value="${list.title}" /></a>
+									</td>
+									<td><c:out value="${list.writer}" /></td>
+									<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
+								    <td><c:out value="${list.hit }"/></td>
+								</tr>
+							</c:forEach>
+						
+						</c:when>
+						</c:choose>
 						</table>
 						 
 						<div class="listpage">
@@ -176,22 +184,29 @@
 						 
 						   <div class="search">
 						     <select name="searchType">
-						       <option value="n"<c:out value="${scri.searchType == null ?'selected' : '' }"/>>---</option>
-						       <option value="t"<c:out value="${scri.searchType eq 't' ?'selected' : '' }"/>>제목</option>
-						       <option value="c"<c:out value="${scri.searchType eq 'c' ?'selected' : '' }"/>>내용</option>
-						       <option value="w"<c:out value="${scri.searchType eq 'w' ?'selected' : '' }"/>>작성자</option>
-						       <option value="tc"<c:out value="${scri.searchType eq 'tc' ?'selected' : '' }"/>>제목+내용</option>
+						       <option value="n"<c:out value="${cri.searchType == null ?'selected' : '' }"/>>---</option>
+						       <option value="t"<c:out value="${cri.searchType eq 't' ?'selected' : '' }"/>>제목</option>
+						       <option value="c"<c:out value="${cri.searchType eq 'c' ?'selected' : '' }"/>>내용</option>
+						       <option value="w"<c:out value="${cri.searchType eq 'w' ?'selected' : '' }"/>>작성자</option>
+						       <option value="tc"<c:out value="${cri.searchType eq 'tc' ?'selected' : '' }"/>>제목+내용</option>
 						     </select>
 						     
-								<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control" style="width:140px;height:30px;font-size:30px;"/>
+								<input type="text" name="keyword" id="keywordInput" value="${cri.keyword}" class="form-control" style="width:140px;height:30px;font-size:30px;"/>
 								<button id="searchBtn" type="button" class="btn btn-default">검색</button> 	
 						     
 						     <script>
-						        $(function(){
-						        	$('#searchBtn').click(function(){
-						        		self.location = "list" + '${pageMaker.makeQuery(1)}'+"&searchType="+$("select option:selected").val()
-						        	});
-						        });
+						     $(document).ready(function() {
+		                            $('#searchBtn').on("click",function(event) {
+		                                str = "list"
+		                                        + '${pageMaker.makeQuery(1)}'
+		                                        + "&searchType="
+		                                        + $("select option:selected").val()
+		                                        + "&keyword="
+		                                        + encodeURIComponent($('#keywordInput').val());
+		                                alert(str);
+		                                self.location = str;
+		                            });
+		                            });
 						     </script>
 						</div>
 						 
