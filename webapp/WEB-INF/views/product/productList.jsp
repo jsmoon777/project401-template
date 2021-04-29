@@ -22,7 +22,6 @@
 	height:100%;
 	overflow:hidden;
 	padding-bottom:200px;
-	padding-top:200px;
 	margin:0 auto;
 	}
 	
@@ -69,11 +68,98 @@
       letter-spacing: 5px;
    }
    
-</style>
-<style>
-	/* 검색창 디자인 */
+	/* 페이징 */
+	.paging ul {
+	text-align:center;
+	}
+	.paging ul li {
+		display:inline;
+		vertical-align:middle;
+	}
+	.paging ul li a {
+		display:-moz-inline-stack;	/*FF2*/
+		display:inline-block;
+		vertical-align:top;
+		padding:4px;
+		margin-right:3px;
+		width:25px !important;
+		height:25px;
+		color:#000;
+		font:bold 12px tahoma;
+		border:1px solid #eee;
+		text-align:center;
+		text-decoration:none;
+		width /**/:26px;	/*IE 5.5*/
 
-</style>
+	}
+	.paging ul li a.now {
+		color:#fff;
+		background-color:#f40;
+		border:1px solid #f40;
+	}
+	.paging ul li a:hover, .paging ul li a:focus {
+		color:#fff;
+		border:1px solid #f40;
+		background-color:#f40;
+	}
+	</style>
+ <style>
+
+ #p_search_box{
+	  position: relative;
+	  width:905px;
+	  height: 53px;
+	  margin: 0 auto;
+  }
+	#p_search_box > ul{
+		position: relative;
+		border: 1px solid #000;
+		background:#fff;
+		width:902px;
+		height: 52px;
+		overflow:hidden;
+		margin: 0 auto;
+		text-align: center;
+	}
+	#p_search_box > ul >li{
+		position: relative;
+		width:100px;
+		height: 50px;
+		float: left;
+		text-align: center;
+	}
+	  #p_search_box > ul >li:nth-child(2){
+		width:700px;
+	}
+		  .p_boardbox{
+			  border-right:1px solid #fff;
+		  }
+			  
+		  #p_select{
+			  width: 100%;
+			  height: 50px;
+			  background-image: url( "images/bg-house.png" );
+        	  background-repeat: repeat;
+        	  font-size: 12px;
+        	  
+		  }
+		  .p_text{
+		  	  padding-left:20px;
+			  width: 100%;
+			  height: 50px;
+			  border-right: 1px solid #000;
+		  }
+		  #searchBtn{
+			  width: 100%;
+			  height: 50px;
+			  text-align: center;
+			  line-height: 50px;
+			  background: #000;
+			  color: #fff;
+		  }
+		  
+		  
+	  </style>
 
 <!-- 검색이동 -->
 <script type="text/javascript">
@@ -88,26 +174,33 @@
   
   <body>
   <%@include file="/WEB-INF/include/sub_header.jsp" %>
-   
-    <div style="margin-top:200px; margin-bottom:200px;">
-     
-     
-     
-      
-      <!-- 그리드 이미지 갤러리 -->
-	<div style="margin-top:200px; width: 100%; margin-bottom:200px;">
+   <!-- 그리드 이미지 갤러리 -->
+   <div style="margin-top:200px; width: 100%; margin-bottom:200px;">
 		<!-- sns박스 -->
 		<div  id ="sns_box" style="width:1500px;margin:0 auto;">
 			<div id="sns_div">
 			      <h1>FFEE 상품목록</h1>
 			      <p class="lead">케이크</p>
 				<span class="sns_li">
-				<a href="/product/productform" id="snswite_btn">+</a></span>
+				<a href="/product/productform" id="snswite_btn">+</a>
+				</span>
 			</div>
 		</div>	
       <form role = "form" action="get">
       
-		
+	<!-- 검색창 -->
+	  <div id="p_search_box">
+	  <ul>
+	  	<li> 
+		  <select name="searchType" id="p_select" class="p_boardbox">
+		      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체</option>
+		      <option value="pn"<c:out value="${scri.searchType eq 'pn' ? 'selected' : ''}"/>>상품명</option>
+		   </select>
+	    </li>
+	  	<li><input type="text" class="p_boardbox p_text" name="keyword" id="keywordInput"  placeholder="Search..." value="${scri.keyword}"/></li>
+	  	<li><button id="searchBtn" type="button" class="input_btn p_boardbox">검색</button></li>
+	  </ul>
+	  </div> 
     
 	  
       <!-- 이벤트 목록 구현 -->
@@ -127,6 +220,7 @@
           </span>
         </a>
       </div>
+      
       <div id="sns_content">
         <!-- 검색 -->
         
@@ -145,112 +239,12 @@
     	   });
     	 });
        </script>
-	  <style>
-	  	.search{
-	  	width: 1500px;
-	  	height: 50px;
-	  	margin: 0 auto;
-	  	float: left;
-	  	}
-	 .selectbox { 
-		 position: relative; 
-		 width: 200px; 
-		 height: 50px; 
-		 line-height: 50px; 
-		 background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; 
-		 border: 1px solid #999; 
-		 z-index: 1; 
-		 float: left;
-	 } 
-	 .selectbox label { 
-		 position: absolute; 
-		 top: 0px; 
-		 left: 5px; 
-		 height: 50px; 
-		 line-height: 50px; 
-		 color: #999; 
-		 z-index: -1; 
-	 } 
-	 .selectbox select { 
-		 width: 100%; 
-		 height: 40px; 
-		 line-height: 40px; 
-		 font-family: inherit; 
-		 border: 0; 
-		 opacity: 0; 
-		 filter:alpha(opacity=0); 
-		 -webkit-appearance: none; 
-		 
-		 /* 네이티브 외형 감추기 */ 
-		 -moz-appearance: none; appearance: none; 
-		 }
-		.input_txt{
-		 position: relative; 
-		 width: 1095px;
-		 height: 50px;
-		 top:0;
-		 line-height: 50px;
-		}
-		.input_btn{
-		 width:200px;
-		 height: 50px;
-		 line-height: 50px;
-		 position: absolute;
-		 top:-50px;
-		 right:0;
-		 
-		}
-		.selectbox ul{
-			position:relative;
-			width: 1500px;
-		}
-		.selectbox ul li{
-			width: 200px;
-			float: left;
-		}
-		.selectbox ul li:nth-child(2){
-			width: 800px;
-			height:80px;
-			float: left;
-		}
-		
-		.paging ul li{
-		float:left;
-		width:20px;
-		height:20px;
-		line-height:20px;
-		margin-right:5px;
-		background:#000;
-		color:#fff;
-		text-align: center;
-		padding-right:5px;
-		}	
-		
-		.paging ul li a{
-		width:20px;
-		line-height:20px;
-		text-align:center;
-		font-size:9px;
-		color:#fff;
-		}
-	  </style>
+	 
 
-	  <div class="search">
-	  <div class="selectbox">
-	  <ul>
-	  	<li> 
-	  	<label for="ex_select">선택</label>
-		  <select name="searchType" id="ex_select">
-		      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체</option>
-		      <option value="pn"<c:out value="${scri.searchType eq 'pn' ? 'selected' : ''}"/>>상품명</option>
-		   </select>
-	    </li>
-	  	<li><input type="text" class="input_txt" name="keyword" id="keywordInput"  placeholder="Search..." value="${scri.keyword}"/></li>
-	  	<li><button id="searchBtn" type="button" class="button input_btn">검색</button></li>
-	  </ul>
-	  </div> 
-	  </div>
-      	<div class="row">
+	  
+	  
+	  
+     <div class="row">
       <c:choose>
 		<c:when test ="${productlist == null }">
 		
@@ -278,8 +272,8 @@
       </c:choose>
 
       </div>
-      
-    	<!-- 페이징 -->
+    
+    	<!-- 페이징  -->
 		<div class="paging">
 		
 		  <ul>
@@ -295,13 +289,11 @@
 		    	<li><a href="productList${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 		    </c:if> 
 		  </ul>
-		  
 		</div>
-      
+      <!-- 페이징 끝 -->
     </div>
     
     </form>
-    </div>
     </div>
     <!--Scripts needed to run bootstrap-->
     <script
