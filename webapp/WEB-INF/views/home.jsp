@@ -4,11 +4,11 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=1440,initial-scale=1.0" />
-<meta name="Generator" content="미스터피자" />
-<meta name="Author" content="미스터피자" />
-<meta name="Keywords" content="미스터피자" />
-<meta name="Description" content="미스터피자"/>
-<title>온에어 미스터피자</title>
+<meta name="Generator" content="FFEF" />
+<meta name="Author" content="FFEF" />
+<meta name="Keywords" content="FFEF" />
+<meta name="Description" content="FFEF"/>
+<title>FFEF</title>
 <link rel="shortcut icon" type="image/x-icon" href="/img/mrpizza.ico" />
 <link rel="stylesheet" href="/css/import.css">
 <script src="/js/jquery-1.11.3.min.js"></script>
@@ -49,16 +49,16 @@
 	  <div class="swiper-slide">
 		  <div class="title_box">
 		  	<div class="title_1">재료가 좋은 집은</div>
-			<div class="title_2">피자가<span class="strong">맛있다</span></div>
-			<a href="#" class="title_3 hvr-icon-wobble-horizontal">주문하러가기<i class="fa fa-arrow-right hvr-icon"></i></a>
+			<div class="title_2">언제나<span class="strong">맛집으로 통한다</span></div>
+			<a href="/product/productList" class="title_3 hvr-icon-wobble-horizontal">주문하러가기<i class="fa fa-arrow-right hvr-icon"></i></a>
 		  </div>
 		  <div class="black"></div>
 		  <img src="img/slide1.jpg"/>
 		</div>
       <div class="swiper-slide">  <div class="title_box">
-		  	<div class="title_1">재료가 좋은 집은</div>
-			<div class="title_2">피자가<span class="strong">맛있다</span></div>
-			<a href="#" class="title_3 hvr-icon-wobble-horizontal">주문하러가기<i class="fa fa-arrow-right hvr-icon"></i></a>
+		  	<div class="title_1">내가 가고싶은 어디든</div>
+			<div class="title_2">찾아보면<span class="strong">갈수있는 그곳</span></div>
+			<a href="#" class="title_3 hvr-icon-wobble-horizontal">알아보러가기<i class="fa fa-arrow-right hvr-icon"></i></a>
 		  </div><img src="img/slide2.jpg"/></div>
 
     </div>
@@ -82,7 +82,7 @@
  <!--인스타그램 sns 부분-->
   <section class="main_content" id="main_sns_warp">
     <article id="main_sns" class="view">
-      <h2><span class="strong">FFEE 에서</span><br>
+      <h2><span class="strong">FFEF에서</span><br>
         SNS를 만나보세요</h2>
       <ul class="sns_channel">
         <li><a href="main.html#" target="_blank"><img src="img/youtube_icon.png" alt="" class="ico"></a></li>
@@ -161,11 +161,10 @@
       <div class="sale_list">
         <div class="list_slider">
           <ul class="slides" style="width: 1980px;">
-          
           <!-- 인기카페 리스트 -->
+          
             <li tabindex="0">
               <div class="inner">
-            
                 <div class="photo">
                 <img src="img/menu_1_img.png" alt="#"> </div>
                 <div class="desc">
@@ -193,6 +192,7 @@
                 </div>
               </div>
             </li>
+            
             <!-- 끝 -->
             
             
@@ -286,7 +286,7 @@
                       <tbody>
                         <tr>
                           <th scope="row">혜택 : </th>
-                          <td>미스터피자 포인트 적립</td>
+                          <td>FFEF 포인트 적립</td>
                         </tr>
                         <tr>
                           <th scope="row">할인 : </th>
@@ -440,7 +440,7 @@
                       <tbody>
                         <tr>
                           <th scope="row">혜택 : </th>
-                          <td>미스터피자 포인트 적립</td>
+                          <td>FFEF 포인트 적립</td>
                         </tr>
                         <tr>
                           <th scope="row">할인 : </th>
@@ -520,6 +520,7 @@
 	<section id="sub_img_slide">
   <div class="swiper-container2">
     <div class="swiper-wrapper2">
+      <div class="swiper-slide2"><img src="img/sub_slide4.png"/></div>
       <div class="swiper-slide2"><img src="img/sub_slide1.png"/></div>
       <div class="swiper-slide2"><img src="img/sub_slide2.png"/></div>
       <div class="swiper-slide2"><img src="img/sub_slide3.png"/></div>
@@ -555,12 +556,12 @@
 
   <section class="main_content">
     <article id="main_gallery">
-      <h2 class="hidden_cont">할인혜택안내</h2>
+      <h2 class="hidden_cont">FFEF쿠폰안내</h2>
       <ul class="gallery_list">
         <li class="gallery">
           <div class="photo"><img src="img/event_img_1.png" alt="프리미엄 이벤트1"></div>
           <a href="gallery/main/intro.html" class="category_subject">
-          <p class="category">할인혜택안내</p>
+          <p class="category">FFEF쿠폰안내</p>
           <p class="subject">제휴카드 안내 및 할인 가능한 카드<br />
             안내해드립니다.</p>
           </a> <a href="#" class="btn"><img src="img/btn_mg_ask.png" alt="" class="ico" /><span class="txt">할인혜택안내</span></a> </li>
@@ -568,7 +569,7 @@
           <div class="photo"><img src="img/event_img_2.png" alt=""></div>
           <a href="gallery/academy/lecture/list.html" class="category_subject">
           <p class="category">이벤트 안내</p>
-          <p class="subject">미스터 피자에서 이벤트<br/>
+          <p class="subject">FFEF에서 이벤트<br/>
 			  안내드립니다.</p>
           </a> <a href="#" class="btn"><img src="img/btn_mg_ask.png" alt="" class="ico" /><span class="txt">이벤트안내</span></a> </li>
       </ul>
@@ -604,7 +605,7 @@
 	  </li>
         <li> <a href="javascript:void(0)" data-type="thumbnail">
           <p class="category">상 &nbsp;<img src="img/icon_2.png"></p>
-          <p class="subject">미스터피자 연간 매출 1위..</p>
+          <p class="subject">FFEF 연간 매출 1위..</p>
           <p class="cont"> <img src="img/prize.png" alt="#"> </p>
           <p class="date">
             <time datetime="2020-03-16">2020.09.02</time>
@@ -643,18 +644,18 @@
 	</style>
   <section class="main_content" id="main_news_wrap">
     <article id="main_news" class="view">
-      <h2>미스터피자 뉴스</h2>
+      <h2>FFEF 뉴스</h2>
       <div class="news_list_wrap">
         <ul class="news_list" style="margin-top: -168px;"><li><strong class="category">소식</strong><a href="#" title="" class="subject" target="_blank">[눈길 끄는 분양단지]삼성물산 ‘부산 레이카운티’ </a>
             <time datetime="2020-03-31">2020.07.28</time>
           </li>
-          <li><strong class="category">소식</strong><a href="#" title="" class="subject" target="_blank">미스터피자 불닭치즈피자 신메뉴 출</a>
+          <li><strong class="category">소식</strong><a href="#" title="" class="subject" target="_blank">FFEF 불닭치즈피자 신메뉴 출</a>
             <time datetime="2020-03-31">2020.08.06</time>
           </li>
           <li><strong class="category">공지</strong><a href="#" title="" class="subject" target="_blank">브랜드 피자 평판 1위 입</a>
             <time datetime="2020-03-31">2020.08.06</time>
           </li>
-          <li><strong class="category">소식</strong><a href="#" title="" class="subject" target="_blank">미스터피자에서 그동안 인기 있던메뉴 하루만 출</a>
+          <li><strong class="category">소식</strong><a href="#" title="" class="subject" target="_blank">FFEF에서 그동안 인기 있던메뉴 하루만 출</a>
             <time datetime="2020-03-31">2020.08.03</time>
           </li>
           <li><strong class="category">소식</strong><a href="#" title=" " class="subject" target="_blank">1+1 프리미엄 피자 행</a>
@@ -664,7 +665,7 @@
 			<li><strong class="category">공지</strong><a href="#" title="" class="subject" target="_blank">브랜드 피자 평판 1위 입</a>
             <time datetime="2020-03-31">2020.08.06</time>
           </li>
-          <li><strong class="category">소식</strong><a href="#" title="" class="subject" target="_blank">미스터피자에서 그동안 인기 있던메뉴 하루만 출</a>
+          <li><strong class="category">소식</strong><a href="#" title="" class="subject" target="_blank">FFEF에서 그동안 인기 있던메뉴 하루만 출</a>
             <time datetime="2020-03-31">2020.08.03</time>
           </li>
           <li><strong class="category">소식</strong><a href="#" title=" " class="subject" target="_blank">1+1 프리미엄 피자 행</a>
@@ -729,7 +730,7 @@ function goList(pg,idx){
       <li><a href="https://www.youtube.com/user/RAEMIANAPT" target="_blank" title="새 창 열림"><img src="img/btn_foot_youtube.png" alt="유튜브"></a></li>
       <li><a href="https://pf.kakao.com/_xiHlxaT" target="_blank" title="새 창 열림"><img src="img/btn_foot_kakao.png" alt="카카오"></a></li>
     </ul>
-    <p class="company_info"><b>미스터피자 만든 김수빈</b> <b>부상궁 서면싱 어딘구</b> <b>사업자등록번호 000-0000-0000</b></p>
+    <p class="company_info"><b>FFEF 만든 김수빈</b> <b>부상궁 서면싱 어딘구</b> <b>사업자등록번호 000-0000-0000</b></p>
     <p class="warning">※ 본 컨텐츠의 저작권은 빈스빈스에 있으며, 이를 무단 이용하는 경우 저작권법 등에 따라 법적책임을 질 수 있습니다.</p>
     <p class="copyright" lang="en">ⓒ SAMSUNG C&amp;T Corp. All Rights Reserved.</p>
   </footer>
@@ -756,7 +757,7 @@ function goList(pg,idx){
 		<div class="ico">
 			<img src="#" alt="">
 		</div>		
-		<p class="txt">미스터피자에 오신것을 환영합니다 :) </p>
+		<p class="txt">FFEF에 오신것을 환영합니다 :) </p>
 	</div>	
 	<div class="btn_dp_set">	
 		<a href="javascript:closeLayerPopup(&#39;.dialog_popup&#39;)" class="warning">닫기</a>	
