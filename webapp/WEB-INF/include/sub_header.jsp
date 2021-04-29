@@ -202,8 +202,8 @@ $(function(){
 	<c:if test="${login != null}">
 		<li id="loginok_name"><span style="font-weight: 900;">${login.user_id}</span> 님 안녕하세요.</li>
 		<li><a href="/logout">로그아웃</a></li>
+  		<li><a href="${path}/shop/cart/list.do">장바구니</a></li>
 	</c:if>
-  	<li><a href="/">메인페이지</a></li>
   </ul>
 </div>
   <nav class="menu_nav">
