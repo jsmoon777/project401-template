@@ -123,7 +123,7 @@
 	</tr>	
 	<tr>
 		<th for="title">이벤트기간</th>
-		<td colspan="2">${read.eventday}</td>
+		<td colspan="2">${read.eventday} ~ ${read.eventday2}</td>
 	</tr>	
 	<tr>
 		<th for="content">내용</th>

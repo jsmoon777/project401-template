@@ -166,7 +166,7 @@
    
 <body>
    <!-- 헤더 -->
-<%@include file="/WEB-INF/include/sub_header.jsp" %>
+	<%@include file="/WEB-INF/include/sub_header.jsp" %>
    <div style="margin-top:200px; margin-bottom:200px; ">
       <div class="sns_title_box">
             <span class="sns_title">이벤트 등록<span>
@@ -189,8 +189,9 @@
    <tr>
       <th for="title">이벤트기간</th>
       <td colspan="2">
-         <input type="text" id="eventday" name="eventday" class="chk" title="이벤트 명입력하세요" class="sns_txt"/>
-      </td>
+         <input type="date" id="eventday" name="eventday" class="chk" title="이벤트 기간을 입력하세요" class="sns_txt"  min="1977-01-01" max="2022-12-31"/>
+         <input type="date" id="eventday2" name="eventday2" class="chk" title="이벤트 기간을 입력하세요" class="sns_txt"  min="1977-01-01" max="2022-12-31"/>
+   	  </td>
    </tr>   
    <tr>
       <th for="content">내용</th>
@@ -198,6 +199,21 @@
          <textarea id="content" name="content" class="chk" style="width:100%; height: 400px;" title="내용을 입력하세요."></textarea>
       </td>
    </tr>
+
+   <tr>
+      <th for="slide_title">슬라이드 제목</th>
+      <td colspan="2">
+         <input type="text" id="slide_title" name="slide_title" class="chk" title="슬라이드 제목을 입렵해주세요" class="sns_txt"/>
+      </td>
+   </tr>
+   
+   <tr>
+      <th for="hashtag">슬라이드 부제목 및 해시태그</th>
+      <td colspan="2">
+         <input type="text" id="hashtag" name="hashtag" class="chk" title="해시태그를 입력해주세요" class="sns_txt"/>
+      </td>
+   </tr>
+
    <tr>
       <th for="gdsImg">이벤트 썸네일</th>
       <td><input type="file" name="file" id="image" accept="image/*" onchange="setThumbnail(event);" multiple >
