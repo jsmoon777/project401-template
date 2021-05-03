@@ -6,7 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>mypage</title>
-<style></style>
+<style type="text/css">
+   
+    #image_container >img{
+  	width: 100%;
+    
+    }
+   
+    #image_container{
+   width: 200px;
+   height: 200px;
+   }
+   
+   
+   </style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 	$(function(){
@@ -15,18 +28,26 @@
 </script>
 </head>
 <body>
-	<h2>mypage22</h2>
+	<h2>mypage</h2>
 	<table>
 		<tr>
-	      <td class="tdfile">파일</td>
-	      <td style="width:100%;" colspan="3">      
-	       <c:forEach var="file" items="${ profile }" >
-	      <%--     <a href="<c:out value="/download/external/${ file.sfilename}" />"> --%>
-	      <img src="/image6/${file.sfilename}" width="100%"/>
-	            ${ file.filename }
-	       </c:forEach>      
+	      <td>
+	      <div id="image_container" class="form-group" >
+	      <c:choose>
+				<c:when test="${profile.sfilename == null}">
+					<img src="/img/no_profile_img.gif" width="100%">
+				</c:when>
+				<c:otherwise>
+					<img src="/image6/${profile.sfilename}" width="100%"/>
+				</c:otherwise>
+			</c:choose>
+	      
+	       </div>     
 	      </td>
 	    </tr>
+	    <tr>
+         <td class="profile_image">프로필 사진</td>
+        </tr>
 		<tr>
 	      <td>프로필사진 변경</td>
 	      <td>

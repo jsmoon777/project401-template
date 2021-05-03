@@ -28,4 +28,6 @@ public interface UserService {
 
 	UserVo getUser(String user_id);
 
+	void deleteProfile(HashMap<String, Object> map);
+
 }

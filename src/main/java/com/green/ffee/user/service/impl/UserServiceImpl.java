@@ -84,5 +84,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUser(user_id);
 	}
 
+	@Override
+	public void deleteProfile(HashMap<String, Object> map) {
+		userDao.deleteProfile(map);
+	}
+
 
 }

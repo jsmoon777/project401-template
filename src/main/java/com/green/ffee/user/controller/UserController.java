@@ -166,12 +166,12 @@ public class UserController {
 	@Auth
 	@RequestMapping(value="/mypage")
 	public String myPage(HttpSession session, Model model, ProfileVo profileVo) {
-		if(profileVo.getUser_id() != null){
-		 model.addAttribute("profile",userService.readProfile(profileVo.getUser_id()));
-		}
 		UserVo userVo = (UserVo)session.getAttribute("login");
-		userVo = userService.getUser(userVo.getUser_id());
+		String user_id = userVo.getUser_id();
+		userVo = userService.getUser(user_id);
+		profileVo = userService.readProfile(user_id);
 		
+		model.addAttribute("profile",profileVo);
 		model.addAttribute("userVo", userVo);
 		if( userVo == null ) {
 			return "redirect:/login";
@@ -179,42 +179,50 @@ public class UserController {
 		
 		return "/user/myPage";
 	}
-	
+	@Auth
 	@RequestMapping(value="/profilePhoto")
-	public String profilePhoto( Model model, ProfileVo profileVo) {
-		if(profileVo.getUser_id() != null){
-			 model.addAttribute("profile",userService.readProfile(profileVo.getUser_id()));
-			}
+	public String profilePhoto(HttpSession session, Model model, ProfileVo profileVo) {
+		UserVo userVo = (UserVo)session.getAttribute("login");
+		String user_id = userVo.getUser_id();
+		userVo = userService.getUser(user_id);
+		profileVo = userService.readProfile(user_id);
+		
+		model.addAttribute("profile",profileVo);
 		return "user/profilePhoto"; 
 	}
-	
+	@Auth
 	@RequestMapping("/uploadProfile")
-	public  ModelAndView   uploadProfile(
+	public  ModelAndView   uploadProfile(HttpSession session,
 			@RequestParam HashMap<String, Object> map,
 			HttpServletRequest request) {
 		    // MultipartHttpServletRequest request
 		// map : form 안의 모든 정보
-		System.out.println("write():" + map);
+//		System.out.println("write():" + map);
 		
 		String   filePath  = "C:\\ffee\\user\\";
 		
 		// 새글 저장 : MBoard        - 게시글 저장   - Dao
 		//             Files         - 첨부파일 목록 - Dao  
 		//             c:\\upload\\  - 첨부파일 저장 
-		String user_id = (String) map.get("user_id");
+//		String user_id = (String) map.get("user_id");
+		UserVo userVo = (UserVo)session.getAttribute("login");
+		String user_id = userVo.getUser_id();
 		ProfileVo profileVo =  userService.readProfile(user_id);
-		if (profileVo.getSfilename() != null) { // 이미 프로필 사진이 있을경우
-			File file = new File(filePath + profileVo.getSfilename()); // 경로 + 유저 프로필사진 이름을 가져와서
-			file.delete(); // 원래파일 삭제
+		if(profileVo != null) {
+			if (profileVo.getSfilename() != null) { // 이미 프로필 사진이 있을경우
+				File file = new File(filePath + profileVo.getSfilename()); // 경로 + 유저 프로필사진 이름을 가져와서
+				file.delete(); // 원래파일 삭제
+				userService.deleteProfile(map);
+				
+			}
 		}
 		
 		userService.insertProfile(map, request);
 				
-		System.out.println("write() map:" + map);
 		
-		ModelAndView  mv = new ModelAndView();		
+		ModelAndView  mv = new ModelAndView();
 		mv.addObject("map",  map);
-		mv.setViewName("/user/myPage");
+		mv.setViewName("redirect:/mypage");
 				
 		return   mv;
 	}

@@ -29,6 +29,11 @@
       height: 100vh;
       background: #fff;
    }
+   
+   .form-group{
+   		width:600px;
+   		text-align: center;
+   }
       
    .table {
       border-collapse: collapse;
@@ -62,10 +67,10 @@
     }
     .table caption{caption-side: bottom; display: none;}
     
-    textarea{
+    /* textarea{
        width:100%;
        height: 200px;
-    }
+    } */
     input[type="text"]{
        width:100%;
     }
@@ -626,7 +631,7 @@
             </div> 
             
             <div class="form-group text-center"> 
-               <button type="submit" class="btn btn-primary">회원가입</button> 
+               <button type="submit" class="btn btn-primary">가입</button> 
             </div> 
          </form> 
       </div> 

@@ -74,7 +74,9 @@
     
     <!-- 프로필 사진 읽기 -->
     <select id="readProfile"
-      resultType="int" >
+      parameterType="hashmap" 
+      resultType="com.green.ffee.user.vo.ProfileVo"
+      >
     SELECT    USER_IMG_NUM,
 			USER_ID,
 			FILENAME,
@@ -83,6 +85,13 @@
      FROM     USER_FILE
      WHERE	  USER_ID = #{user_id}
   </select>
+    
+    <!-- 프로필 사진 삭제 -->
+    <delete id="deleteProfile" parameterType="hashMap">
+    	DELETE 
+		  FROM USER_FILE
+		 WHERE USER_ID = #{user_id}
+	</delete>
     
 </mapper>
 

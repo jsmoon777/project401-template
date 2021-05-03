@@ -25,5 +25,7 @@ public interface UserDao {
 	ProfileVo readProfile(String user_id);
 
 	UserVo getUser(String user_id);
+
+	void deleteProfile(Map<String, Object> map);
 	
 }

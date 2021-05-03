@@ -1,5 +1,6 @@
 package com.green.ffee.user.dao.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -58,7 +59,6 @@ public class UserDaoImpl implements UserDao {
 	//첨부파일 업로드
 	@Override
 	public void insertProfile(Map<String, Object> map){
-		System.out.println("profile dao : " + map);
 		sqlSession.insert("User.insertProfile", map);
 	}
 
@@ -70,6 +70,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public UserVo getUser(String user_id) {
 		return sqlSession.selectOne("User.Login", user_id);
+	}
+
+	@Override
+	public void deleteProfile(Map<String, Object> map) {
+		sqlSession.delete("User.deleteProfile", map);
+		
 	}
 
 }
