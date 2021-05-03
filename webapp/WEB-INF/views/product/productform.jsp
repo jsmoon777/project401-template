@@ -181,15 +181,28 @@
    <tr>
 
    <tr>
-      <th for="title">단가</th>
+      <th for="title">*원래 판매단가</th>
       <td colspan="2">
-         <input type="text" id="product_price" name="product_price" class="chk" title="단가를 입력하세요" class="sns_txt"/>
+         <input type="text" id="product_price2" name="product_price" class="chk" title="할인되기전 단가를 입력하세요" class="sns_txt"/>
+      </td>
+   </tr>   
+
+   <tr>
+      <th for="title">*판매단가</th>
+      <td colspan="2">
+         <input type="text" id="product_price" name="product_price2" class="chk" title="단가를 입력하세요" class="sns_txt"/>
       </td>
    </tr>   
    <tr>
       <th for="title">상품설명</th>
       <td colspan="2">
          <input type="text" id="product_desc" name="product_desc" class="chk" title="상품설명을 적어주세요" class="sns_txt"/>
+      </td>
+   </tr>   
+   <tr>
+      <th for="title">해시태그</th>
+      <td colspan="2">
+         <input type="text" id="product_desc" name="product_tag" class="chk" title="해시태그 적어주세요" class="sns_txt"/>
       </td>
    </tr>   
    <tr>

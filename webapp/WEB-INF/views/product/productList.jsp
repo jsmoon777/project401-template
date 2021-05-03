@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!doctype html>
 <html>
 <head>
@@ -8,65 +10,89 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.0/materia/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> <!-- 아이콘 -->
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>FFEE 상품목록 </title>
+<script src="/js/jssor.slider.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jssor_1_slider_init = function() {
+
+        var jssor_1_options = {
+          $AutoPlay: 1,
+          $Idle: 2000,
+          $ArrowNavigatorOptions: {
+            $Class: $JssorArrowNavigator$
+          },
+          $BulletNavigatorOptions: {
+            $Class: $JssorBulletNavigator$
+          }
+        };
+
+        var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+        /*#region responsive code begin*/
+
+        var MAX_WIDTH = 1300;
+
+        function ScaleSlider() {
+            var containerElement = jssor_1_slider.$Elmt.parentNode;
+            var containerWidth = containerElement.clientWidth;
+
+            if (containerWidth) {
+
+                var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                jssor_1_slider.$ScaleWidth(expectedWidth);
+            }
+            else {
+                window.setTimeout(ScaleSlider, 30);
+            }
+        }
+
+        ScaleSlider();
+
+        $Jssor$.$AddEvent(window, "load", ScaleSlider);
+        $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+        $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+        /*#endregion responsive code end*/
+    };
+</script>
 <style>
+    /* jssor slider loading skin spin css */
+    .jssorl-009-spin img {
+        animation-name: jssorl-009-spin;
+        animation-duration: 1.6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    @keyframes jssorl-009-spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+
+    .jssorb052 .i {position:absolute;cursor:pointer;}
+    .jssorb052 .i .b {fill:#fff;fill-opacity:0.3;}
+    .jssorb052 .i:hover .b {fill-opacity:.7;}
+    .jssorb052 .iav .b {fill-opacity: 1;}
+    .jssorb052 .i.idn {opacity:.3;}
+
+    .jssora053 {display:block;position:absolute;cursor:pointer;}
+    .jssora053 .a {fill:none;stroke:#fff;stroke-width:640;stroke-miterlimit:10;}
+    .jssora053:hover {opacity:.8;}
+    .jssora053.jssora053dn {opacity:.5;}
+    .jssora053.jssora053ds {opacity:.3;pointer-events:none;}
+
 	a{
 	list-style: none;
 	text-decoration: none;
 	}
-	#sns_content{
-	width:1500px;
-	height:100%;
-	overflow:hidden;
-	padding-bottom:200px;
-	margin:0 auto;
-	}
-	
-	.p_money{
-	
-		font-size: 25px;
-		font-weight: 900;
-		color:red;
-	}
-	/* 버튼 css */
-   
-   .button {
-  	 margin-top:50px;
-      display: inline-block;
-      width: 200px;
-      height: 54px;
-      text-align: center;
-      text-decoration: none;
-      line-height: 54px;
-      outline: none;
-   }
-   .button::before,
-   .button::after {
-      position: absolute;
-      z-index: -1;
-      display: block;
-      content: '';
-   }
-   .button,
-   .button::before,
-   .button::after {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      -webkit-transition: all .3s;
-      transition: all .3s;
-   }
-   
-   .button {
-   background-color: #000;
-   color: #fff;
-   }
-   .button:hover {
-      letter-spacing: 5px;
-   }
    
 	/* 페이징 */
 	.paging ul {
@@ -102,64 +128,207 @@
 		border:1px solid #f40;
 		background-color:#f40;
 	}
-	</style>
- <style>
-
- #p_search_box{
-	  position: relative;
-	  width:905px;
-	  height: 53px;
-	  margin: 0 auto;
+	
+	/* 검색창 */
+	#big_search_box{
+		position: relative;
+		width: 100%;
+		height: 50px;
+		margin-bottom: 50px;
+	}
+	#p_search_box{
+		  position: relative;
+		  margin:0 auto;
+		  border: 1px solid #C7C7C7;
+		  width:500px;
+		  height: 50px;
+		  right: 0;
   }
 	#p_search_box > ul{
 		position: relative;
-		border: 1px solid #000;
+		border: 0px solid #000;
 		background:#fff;
-		width:902px;
-		height: 52px;
-		overflow:hidden;
-		margin: 0 auto;
+		width:500px;
+		height: 50px;
+		right:0;
 		text-align: center;
 	}
 	#p_search_box > ul >li{
 		position: relative;
+		background:#fff;
 		width:100px;
 		height: 50px;
 		float: left;
 		text-align: center;
 	}
 	  #p_search_box > ul >li:nth-child(2){
-		width:700px;
+		width:300px;
 	}
-		  .p_boardbox{
-			  border-right:1px solid #fff;
-		  }
-			  
-		  #p_select{
-			  width: 100%;
-			  height: 50px;
-			  background-image: url( "images/bg-house.png" );
-        	  background-repeat: repeat;
-        	  font-size: 12px;
-        	  
-		  }
-		  .p_text{
-		  	  padding-left:20px;
-			  width: 100%;
-			  height: 50px;
-			  border-right: 1px solid #000;
-		  }
-		  #searchBtn{
-			  width: 100%;
-			  height: 50px;
-			  text-align: center;
-			  line-height: 50px;
-			  background: #000;
-			  color: #fff;
-		  }
+	  .p_boardbox{
+		  border: 0px;
 		  
+	  }
 		  
-	  </style>
+	  #p_select{
+		  width: 100%;
+		  height: 50px;
+		  background-repeat: no-repeat;
+		  
+	  }
+	  .p_text{
+		  width: 100%;
+		  height: 50px;
+		  border: 0px;
+	  }
+	  #searchBtn{
+		  width: 100%;
+		  height: 50px;
+		  text-align: center;
+		  line-height: 50px;
+		  background: #fff;
+		  color: #000;
+	  }
+	  
+	   #searchBtn > img{
+	   	width: 20px;
+	   	height: 20px;
+	   	line-height:20px;
+	   	margin: 0 auto;
+	   }
+	input[type="text"],
+	input[type="email"],
+	input[type="password"],
+	input[type="email"],
+	input[type="tel"],
+	textarea {
+		border: 0px;
+	}
+
+	/* 타이틀 박스 */
+	#product_title_box{
+		width: 1300px;
+		height:200px;
+		padding-top:100px;
+		background:#fff;
+		text-align: center;
+		margin: 0 auto;	
+	
+	}
+	#product_title{
+		font-weight:600;
+		width: 1000px;
+		font-size:38px;
+		height: 100px; 
+		margin: 0 auto;
+	}
+	
+	/* 상품주문하기 */
+	*,bocy,ul,li{
+		list-style: none;
+		padding: 0;
+		margin:0;
+	}
+	#product_box{
+		margin-bottom:100px;
+		width: 100%;
+		height: 1296px;
+		background: #fff;
+	}
+	#product_ul{
+		width: 1340px;
+		height:auto;
+		background: #fff;
+		margin: 0 auto;
+	}
+
+	.product_li{
+		padding-right: 20px;
+		width: 315px;
+		height: 648px;
+		background: #fff;
+		float: left;
+	}
+	#product_box > ul > li:nth-of-type(4){
+		padding-right: 0px;
+	}
+	
+	#product_box > #product_ul > .product_li:nth-child(8){
+		padding-right: 0px;
+	}
+	
+	.product_img_box{
+		position:relative;
+		margin: 0 auto;
+		width: 315px;
+		height: 400px;
+		background: #f7f5f5;
+		float: left;
+	}
+	
+		.product_img_box > .img{
+			width: 90%;
+			padding:5%;
+			height: 400px;
+			overflow:hidden;
+			background: #f7f5f5;
+			line-height: 400px;
+			margin: 0 auto;
+		}
+		
+			.product_img_box > .img > img{
+				width: 100%;
+			}
+	
+	.product_txt_box{
+		position: relative;
+		padding : 24px 10px 24px 10px;
+		width: 295px;
+		height: 200px;
+		background: #fff;
+		float: left;
+		
+	}
+	
+	.p_title{
+		position: relative;
+		font-size: 25px;
+		color: #000;
+		
+	}
+	
+	.p_s_title{
+		top:10px;
+		position: relative;
+		font-size: 20px;
+		color: #a0a0a0;
+	}
+	
+	.o_price{
+		top:10px;
+		left:0px;
+		position: relative;
+		font-size: 15px;
+		color: #a0a0a0;
+	}
+	
+	.s_price{
+		margin-left:10px;
+		top:-15px;
+		left:60px;
+		position: relative;
+		font-size: 20px;
+		color: #000;
+	}
+	.cart_btn{
+		right:10px;
+		bottom: 10px;
+		width: 30px; height: 30px;
+		background: url(/img/cart_icon.png);
+		position: absolute;
+		font-size: 20px;
+		color: #a0a0a0;`
+	}
+	</style>
 
 <!-- 검색이동 -->
 <script type="text/javascript">
@@ -174,174 +343,132 @@
   
   <body>
   <%@include file="/WEB-INF/include/sub_header.jsp" %>
-   <!-- 그리드 이미지 갤러리 -->
-   <div style="margin-top:200px; width: 100%; margin-bottom:200px;">
-		<!-- sns박스 -->
-		<div  id ="sns_box" style="width:1500px;margin:0 auto;">
-			<div id="sns_div">
-			      <h1>FFEE 상품목록</h1>
-			      <p class="lead">케이크</p>
-				<span class="sns_li">
-				<a href="/product/productform" id="snswite_btn">+</a>
-				</span>
-			</div>
-		</div>	
-      <form role = "form" action="get">
-      
-	<!-- 검색창 -->
-	  <div id="p_search_box">
-	  <ul>
-	  	<li> 
-		  <select name="searchType" id="p_select" class="p_boardbox">
-		      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체</option>
-		      <option value="pn"<c:out value="${scri.searchType eq 'pn' ? 'selected' : ''}"/>>상품명</option>
-		   </select>
-	    </li>
-	  	<li><input type="text" class="p_boardbox p_text" name="keyword" id="keywordInput"  placeholder="Search..." value="${scri.keyword}"/></li>
-	  	<li><button id="searchBtn" type="button" class="input_btn p_boardbox">검색</button></li>
-	  </ul>
-	  </div> 
+	<div style="margin-top:200px; margin-bottom: 200px;"> 
+	<!-- 상품 이미지 슬라이드 -->
+	<div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1300px;height:325px;overflow:hidden;visibility:hidden;">
+	    	<!-- Loading Screen -->
+	    	<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+	        	<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+	    	</div>
+	     <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1300px;height:325px;overflow:hidden;">
+	         
+	         <div data-p="170.00">
+	             <img data-u="image" src="/img/product_slide2.png" />
+	         </div>
+	         <div data-p="170.00">
+	             <img data-u="image" src="/img/product_slide2.png" />
+	         </div>
+	         
+	     </div>
+	     <!-- Bullet Navigator -->
+	     <div data-u="navigator" class="jssorb052" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+	         <div data-u="prototype" class="i" style="width:16px;height:16px;">
+	             <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+	                 <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+	             </svg>
+	         </div>
+	     </div>
+	     <!-- Arrow Navigator -->
+	     <div data-u="arrowleft" class="jssora053" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+	         <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+	             <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+	         </svg>
+	     </div>
+	     <div data-u="arrowright" class="jssora053" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+	         <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+	             <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+	         </svg>
+	     </div>
+	</div>
     
-	  
-      <!-- 이벤트 목록 구현 -->
-      <div class="container text-right mt-3">
-        <a type="button" class="no-outline p-0 grid-3x3" title="Spaced">
-          <span class="material-icons">
-            apps
-          </span>
-        </a>
-
-        <a
-          type="button"
-          class="no-outline p-0 mx-2 grid-4x3"
-          title="Compact">
-          <span class="material-icons">
-            view_comfy
-          </span>
-        </a>
-      </div>
-      
-      <div id="sns_content">
-        <!-- 검색 -->
-        
-       <script type="text/javascript">
-       $(document).ready(function(){
-    	   var selectTarget = $('.selectbox select');
-
-    	  selectTarget.on('blur', function(){
-    	    $(this).parent().removeClass('focus');
-    	  });
-
-    	   selectTarget.change(function(){
-    	     var select_name = $(this).children('option:selected').text();
-
-    	   $(this).siblings('label').text(select_name);
-    	   });
-    	 });
-       </script>
-	 
-
-	  
-	  
-	  
-     <div class="row">
-      <c:choose>
-		<c:when test ="${productlist == null }">
+    <script type="text/javascript">jssor_1_slider_init();</script>
+    <!-- 상품 이미지 슬라이드#endregion Jssor Slider End -->
 		
-			<p>등록된 글이 없습니다.</p>
+	<div id="product_title_box">
+		<h1 id="product_title">주문하기</h1>
+		<a href="/product/productform">관리자 권한 글쓰기</a>
+	</div>
+		
+    <form role = "form" action="get">
+		<!-- 검색창 -->
+		<div id="big_search_box">
+			<div id="p_search_box">
+			 <ul>
+			 	<li> 
+			  <select name="searchType" id="p_select" class="p_boardbox">
+			      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체</option>
+			   		  <option value="pn"<c:out value="${scri.searchType eq 'pn' ? 'selected' : ''}"/>>상품명</option>
+			  </select>
+			  </li>
+				<li><input type="text" class="p_boardbox p_text" name="keyword" id="keywordInput"  placeholder="검색해주세요" value="${scri.keyword}" style="border: 0px;"/></li>
+			  	<li>
+			  		<button id="searchBtn" type="button" class="input_btn p_boardbox">
+			  		<img src="/img/search_icon.png"/>
+			  		</button>
+			  	</li>
+			  </ul>
+			 </div> 
+		</div>
+	
+	<!-- 상품 -->
+	<div id="product_box">
+		<ul id="product_ul">
+		<c:choose>
+			<c:when test ="${productlist == null }">
 			
-		</c:when>
-
-		<c:when test="${productlist != null}">
-			<c:forEach items="${productlist}" var="productlist">
-				
-				 <div class="gv-card col-4 my-4">
-					<div class="card">
-					  <img class="product_img" src="/productimg/${productlist.stored_file_name}"/>
-					  <div class="card-body">
-					    <h3 class="card-title">${productlist.product_name}</h3>
-					    <p class="card-text p_money"  ><fmt:formatNumber pattern="###,###,###" value="${productlist.product_price}"/></p>
-					    
-					    <a href="/product/productview?product_id=${productlist.product_id}" class="button">보러가기</a>
-					  </div>
-					</div>
-				</div>
-				
-			</c:forEach>
-		</c:when>
-      </c:choose>
-
-      </div>
-    
-    	<!-- 페이징  -->
+			<li>등록된 글이 없습니다.</li>
+			
+			</c:when>
+			<c:when test="${productlist != null}">
+				<c:forEach items="${productlist}" var="productlist">
+					<a href="/product/productview?product_id=${productlist.product_id}" class="button">
+						<li class="product_li">
+								<div class="product_img_box">
+									<div class="img">
+										<img src="/productimg/${productlist.stored_file_name}">
+									</div>
+								</div>
+								
+								<div class="product_txt_box">
+									<span class="p_title">${productlist.product_name}</span><br>
+									<span class="p_s_title">${productlist.product_tag}</span><br>
+									<span class="o_price"><del>₩<fmt:formatNumber pattern="###,###,###" value="${productlist.product_price}"/></del></span><br>
+									<span class="s_price"><b>₩<fmt:formatNumber pattern="###,###,###" value="${productlist.product_price2}"/></b></span><br>
+									<span class="cart_btn"></span>
+								</div>
+						</li>
+						
+					</a>
+				</c:forEach>
+			</c:when>
+			</c:choose>
+		</ul>
+	</div>
+	
+	
+	
+	<!-- 페이징  -->
 		<div class="paging">
 		
 		  <ul>
 		    <c:if test="${pageMaker.prev}">
-		    	<li><a href="productList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-		    </c:if> 
+		 	<li><a href="productList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+		 </c:if> 
 		
-		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-		    	<li><a href="productList${pageMaker.makeSearch(idx)}">${idx}</a></li>
-		    </c:forEach>
+		 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+		 	<li><a href="productList${pageMaker.makeSearch(idx)}">${idx}</a></li>
+		 </c:forEach>
 		
-		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-		    	<li><a href="productList${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-		    </c:if> 
+		 <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+		 	<li><a href="productList${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+		 </c:if> 
 		  </ul>
 		</div>
-      <!-- 페이징 끝 -->
-    </div>
-    
-    </form>
-    </div>
-    <!--Scripts needed to run bootstrap-->
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-      crossorigin="anonymous"
-    ></script>
-    <!--Grid View JS-->
-    <script src="/js/grid-view.js"></script>
-    <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-<script>
-try {
-  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
-    return true;
-  }).catch(function(e) {
-    var carbonScript = document.createElement("script");
-    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-    carbonScript.id = "_carbonads_js";
-    document.getElementById("carbon-block").appendChild(carbonScript);
-  });
-} catch (error) {
-  console.log(error);
-}
-</script>
-
-<%@include file="/WEB-INF/include/footer.jsp" %>
+    <!-- 페이징 끝 -->
+	  
+	
+	</form>
+	</div>  
+	<%@include file="/WEB-INF/include/footer.jsp" %>
   </body>
 </html>

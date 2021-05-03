@@ -7,123 +7,144 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 보기</title>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <!-- 상품 주문 테이블 -->
-<style type="text/css">
-	.table2 {
-      border-collapse: collapse;
-      border:0px;
-      width:1200px;
-      text-align: left;
-      margin: 0 auto;
-      margin-bottom:50px;
-    }  
-   
-    .table2 th, .table2 td {
-	
-      padding-left:50px;
-      height:50px;
-      border: 0px solid #f0f0f0;
-    }
-    .table2 th:first-child, .table2 td:first-child {
-      border-left: 0;
-    }
-    .table2 th:last-child, .table2 td:last-child {
-      border-right: 0;
-    }
-    .table2 tr td:first-child{
-      text-align: center;
-    }
-    .table2 caption{caption-side: bottom; display: none;}
-    
-</style>
-<style type="text/css">
+<style>
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+@import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+
+	*,html,body,div,span,p{
+		font-family: 'NanumSquare', sans-serif !important;
 		
-	.table {
-      border-collapse: collapse;
-      border-top: 3px solid #000;
-      border-left:1px;
-      border-right:1px;
-      width:1200px;
-      text-align: left;
-      margin: 0 auto;
-    }  
-    .table th {
-      width:100px;
-      font-size:13px;
-      color: #333;
-      background: #ffffff;
-      text-align: center;
-    }
-    .table th, .table td {
-      padding: 10px;
-      height:50px;
-      border: 1px solid #f0f0f0;
-    }
-    .table th:first-child, .table td:first-child {
-      border-left: 0;
-    }
-    .table th:last-child, .table td:last-child {
-      border-right: 0;
-    }
-    .table tr td:first-child{
-      text-align: center;
-    }
-    .table caption{caption-side: bottom; display: none;}
-    
-    input[type="text"]{
-    	width:100%;
-    }
-    /* 타이틀 */
-    .sns_title_box{
-    	width:1200px;
-    	height: 60px;
-    	background:#fff;
-    	margin: 0 auto;
-    }
-    
-    .sns_title{
-    	float: left;
-    	line-height: 60px;
-    	font-size: 20px;
-    	font-weight: 900;
-    }
-	/* 버튼 css */
+	    }
 	
-	.button {
-		display: inline-block;
-		width: 200px;
-		height: 54px;
+	#product_view_box{
+		width: 100%;	
+		height: 100vh;
+		background: #cbcbcb;
+	}	
+	
+	
+	#product_view_ul{
+		width: 1500px;
+		height: 100%;
+		background: #cbcbcb;
+		margin: 0 auto;
+	}
+		#product_view_ul > li{
+		padding-top:40vh; 
+		width: 500px;
 		text-align: center;
-		text-decoration: none;
-		line-height: 54px;
-		outline: none;
+		background: #cbcbcb;
+		float: left;
 	}
-	.button::before,
-	.button::after {
-		position: absolute;
-		z-index: -1;
-		display: block;
-		content: '';
+	#product_view_ul > li:nth-child(2){
+		padding-top:20vh; 
+		width: 500px;
+		text-align: center;
+		background: #cbcbcb;
+		float: left;
 	}
-	.button,
-	.button::before,
-	.button::after {
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		-webkit-transition: all .3s;
-		transition: all .3s;
+	#product_tag{
+		color: #000;
+		font-size: 20px;
+	}
+	#product_title{
+		color:#000;
+		padding-: 50px 100px;
+		font-size: 30px;
 	}
 	
-	.button {
-	background-color: #000;
-	color: #fff;
+	/*텍스트 */
+	#ptoduct_con{
+		width: 100%;
+		font-size: 12px;
+		font-weight: 700;
+		margin-bottom: 20px; 
 	}
-	.button:hover {
-		letter-spacing: 5px;
+	#ptoduct_select_box{
+		width: 40%;
+		margin : 0 30%;
+		padding-bottom: 5%;
+		height: 50px;
+		border-bottom: 1px solid #000;
 	}
-	</style>
+	#ptoduct_select_box select{
+		width: 100%;
+		height: 50px;
+		background: rgba(255,255,255,0.00);
+		border: 1px solid #a0a0a0;
+	}
+	#ptoduct_select_box select > option{
+		width: 100%;
+		height: 100px;
+		border: 1px solid #888;
+		background: #fff;
+		
+	}
+	#product_btn{
+		width: 40%;
+		height: 50px;
+		padding: 0 30%;
+		
+	}
+	#product_btn > .button{
+		width: 100%;
+		height: 50px;
+		padding: 0 10%;
+		background: #000;
+		border: 1px solid #888;
+		color: #fff;
+	}
+	#product_price{
+		color: #a0a0a0;
+	}
+	#product_price2{
+		font-size: 30px;
+		font-weight: 900;
+		margin-left:20px;
+	}
+	
+	#product_cont_box{
+		width: 100%;
+		height: auto;
+		background: #fff;
+	}
+	#product_cont_box > ul{
+		width: 400px;
+		height: 80px;
+		background: #fff;
+		margin: 0 auto;
+	}
+	#product_cont_box > ul > li{
+		width: 200px;
+		height: 80px;
+		background: #fff;
+		float: left;
+		text-align: center;
+		line-height: 80px;
+		font-weight: 900;
+	}
+	#product_cont_box > ul > li:nth-child(1){
+		border-bottom: 2px solid #000;
+	}
+	#product_cont_box > ul > li:hover{
+		border-bottom: 2px solid #000;
+	}
+	#product_con_div{
+		width: 100%;
+		height: 100%;
+		background: #fff;
+	}
+	#product_body_img{
+		width: 1300px;
+		height: 100%;
+		background: #fff;
+		margin: 0 auto;
+	}
+</style>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -137,121 +158,68 @@
 	<form name="readForm" role="form" method="post">
 		  <input type="hidden" id="product_id" name="product_id" value="${read.product_id}" />
 	</form>
-	
-  <%--  <div class="sns_title_box">
-   		<span class="sns_title">상품주문<br>${read.product_name}<span>
-      </div> --%>
-	<div style="margin-top:200px; margin-bottom:200px; ">
-       
-      
-       
-	<table border="1" class="table2">
-       <tr>
-           <td style="width:50%; height:500px; overflow: hidden;">
-	             <c:forEach var="thumnailfile" items="${thumnailfile}">
+
+
+	<div style="margin-top:150px; margin-bottom:200px; ">
+       <div id="product_view_box">
+		<ul id="product_view_ul">
+			<li class="view_box">
+				<div class="view_title_box">
+					<span id="product_tag">${read.product_tag}</span><br>
+					<span id="product_title">${read.product_name}</span><br>
+					<span id="product_price"><del><fmt:formatNumber value="${read.product_price}" pattern="###,###,###"/></del></span>
+					<span id="product_price2"><fmt:formatNumber value="${read.product_price2}" pattern="###,###,###"/></span>
+				</div>
+		
+			</li>
+			<li style="text-align: center;">
+				  <c:forEach var="thumnailfile" items="${thumnailfile}">
 					<img src="/productimg/${thumnailfile.stored_file_name}" width="100%" />
 				</c:forEach>
-           </td>
-           <td>
-               <table border="0" style="width:100%; height: 500px;">
-                   <tr>
-                       <td 
-                       style="
-                       width:100%;
-                       font-size: 25px; 
-                       font-weight: 500; 
-                       text-align: left; 
-                       ">${read.product_name}</td>
-                   </tr>
-                   <tr>
-                       <td 
-                       style="
-                       font-size: 20px; 
-                       font-weight: 500;
-                       text-align: left;
-                       color:red;
-                        ">
-                       		<fmt:formatNumber value="${read.product_price}" pattern="###,###,###"/>원
-                       </td>
-                   </tr>
-                   <tr>
-                       <td
-                       style="
-                       font-size: 15px; 
-                       font-weight: 900;
-                       text-align: left;
-                       
-                        "
-                       >${read.product_desc}</td>
-                   </tr>
-                   <tr>
-                       <td colspan="2" 
-                       style="
-                       font-size: 20px; 
-                       font-weight: 900;
-                       text-align: left;
-                        ">
-                           <form name="form1" method="post" action="${path}/shop/cart/insert.do">
+			</li>
+			
+			<li class="view_box" style="padding-left:0;">
+				<div id="product_cart_text">
+					<div id="ptoduct_con">${read.product_desc}</div>
+					<form name="form1" method="post" action="${path}/shop/cart/insert.do">
+					<div id="ptoduct_select_box">
                            
-                               <input type="hidden" name="productId" value="${read.product_id}">
-                               <select name="amount"
-                               style="
-                               width:20%;
-                               height:25px;
-                              
-		                       font-size: 25px; 
-		                       text-align: left;
-		                        ">
-                                   <c:forEach begin="1" end="10" var="i">
-                                       <option value="${i}">${i}</option>
-                                   </c:forEach>
-                               </select>&nbsp;개<br><br>
-                               <input type="submit" class="button" value="장바구니에 담기" style="margin-top:25px;width:100%;">
+                         <input type="hidden" name="productId" value="${read.product_id}">
+                         <select name="amount">
+                             <c:forEach begin="1" end="10" var="i">
+                                 <option value="${i}">${i}</option>
+                             </c:forEach>
+                         </select>
                                
-                           </form>
-                          <br>
-                           <a href="${path}/shop/product/list.do"  class="button">상품목록</a>
-                       </td>
-                   </tr>
-               </table>
-           </td>
-       </tr>
-   </table>
-   
-	<table  class="table">
-	<tr>
-		<th for="writer">상품명</th>
-		<td colspan="2">${read.product_name}</td>
-	<tr>
-
-	<tr>
-		<th for="title">가격</th>
-		<td colspan="2">${read.product_price}</td>
-	</tr>	
-	<tr>
-		<th for="title">상품내용</th>
-		<td colspan="2">${read.product_desc}</td>
-	</tr>	
-	<tr>
-		<th for="gdsImg" ></th>
-		<td style="width:100%;" colspan="2">
-		
-			<c:forEach var="productlist" items="${productlist}">
-				<img src="/productimg/${productlist.stored_file_name}" width="100%"/>
-			</c:forEach>
-		
-		</td>
-	<tr>
-		<td colspan="3">						
-			<p style="font-size: 12px;"><a href="/product/productlist">목록으로 돌아가기</a></p>	
-		</td>
-	</tr>	
-	</table>
-	</form>
-	
+					</div>
+					
+					<div id="product_btn">
+						<input type="submit" class="button" value="장바구니에 담기" style="margin-top:25px;width:100%;">
+					</div>
+                    </form>
+                        <a href="${path}/shop/product/list.do"  class="button">상품목록</a>
+				</div>
+			
+			</li>
+		</ul>
+	</div>
+                   
+	<!-- 바디 -->
+	<div id="product_cont_box">
+		<ul>
+			<li>WHAT IS IT</li>
+			<li>REVIEW</li>
+		</ul>
+		<div id="product_con_div">
+			<div id="product_body_img">
+				<c:forEach var="productlist" items="${productlist}">
+					<img src="/productimg/${productlist.stored_file_name}" width="100%"/>
+				</c:forEach>
+			</div>
 		</div>
-	
-	
+		<p style="font-size: 12px; margin: 0 auto;"><a href="/product/productlist">목록으로 돌아가기</a></p>	
+	</div>	
+	</div>
  <%@include file="/WEB-INF/include/footer.jsp" %>	
 </body>
 </html>
