@@ -227,5 +227,8 @@ public class UserController {
 		return   mv;
 	}
 	
-	
+	@RequestMapping(value="/adminPost")
+	public	String adminPost() {
+		return "user/adminPost"; 
+	}
 }
