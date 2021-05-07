@@ -21,7 +21,6 @@ import com.green.ffee.nboard.vo.SearchCriteria;
 
 
 @Controller
-
 @RequestMapping("/nboard/*")
 public class NBoradController {
 
@@ -32,7 +31,6 @@ public class NBoradController {
 	private NBoardService nboardService;
 	
 	//게시판 목록 조회
-	@Auth(role=Role.ADMIN)
 		@RequestMapping(value="/list", method = RequestMethod.GET)
 		public String list(Model model, SearchCriteria scri) throws Exception{
 			
