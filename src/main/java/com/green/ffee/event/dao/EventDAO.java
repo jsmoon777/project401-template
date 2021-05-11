@@ -14,8 +14,13 @@ public interface EventDAO {
 	void write(EventVO eventvo, MultipartHttpServletRequest mpRequest);
 	//이벤트 작성 및 파일 업로드
 	void insertFile(Map<String, Object> map);
+	
 	//이벤트 이미지 리스트
 	List<EventFileVO> selectEventList(EventFileVO eventvo);
+	
+	//종료된 이벤트 파일 리스트
+	List<EventFileVO> selectEventEndList(EventFileVO eventvo);
+
 	//이벤트 리스트
 	List<EventVO> eventlist(EventVO vo);
 	
@@ -23,5 +28,6 @@ public interface EventDAO {
 	EventVO read(int eno);
 	// 이벤트 첨부파일 조회
 	List<EventFileVO> selectFileList(int eno);
+	
 
 }

@@ -17,7 +17,7 @@
 <script type="text/javascript">
     jssor_1_slider_init = function() {
 
-        var jssor_1_options = {
+        var jssor_1_options = {ㅁ
           $AutoPlay: 1,
           $Idle: 2000,
           $ArrowNavigatorOptions: {
@@ -383,6 +383,9 @@
     
     <script type="text/javascript">jssor_1_slider_init();</script>
     <!-- 상품 이미지 슬라이드#endregion Jssor Slider End -->
+		
+		
+		
 		
 	<div id="product_title_box">
 		<h1 id="product_title">주문하기</h1>

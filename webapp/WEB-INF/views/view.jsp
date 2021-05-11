@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=1440,initial-scale=1.0" />
@@ -127,6 +125,7 @@
 	}
 	  .menu_ul_ch {
 	  color:#333;
+	 
 	  background: #fff;
 	  -webkit-transition-duration:0.4s;
 	  -webkit-transition-timing-function:ease;
@@ -158,113 +157,117 @@
 		line-height: 50px;
 		text-align: center;
 	}
-  #writeTable  input[type=text] { width:660px; } 
-  #writeTable  textarea         { width:660px;  height:300px;} 
-  /* #writeTable  { text-align: center;} */
-  
-  .pdsWrite{height:300px; margin-bottom:400px; position:relative; }
-  #menulist{position:relative; margin:50px auto;}
-  #pdsTitle2{text-align:center; margin-bottom:30px; font-size: 30px;}
-  #td1, td2, td3, td4{width:100px;}
+
+<style>
+   .td1 {  width:178px; text-align:center; }
+   .td2 {  width:178px; text-align:left; }
+   .td3 {  width:178px; text-align:center; }
+   .td4 {  width:178px; text-align:left; }
+   .td5 {  width:578px; text-align:left; }
+   
+   #cont {  height:300px; text-align:left; }
+   
+   [type=text] { width : 570px; }
+   textarea    { width : 570px; height:400px;}
+   
+   .mboard{height:300px; margin-bottom:400px; position:relative; }
+    #menulist{position:relative; margin:50px auto;}
+    #mboardTitle{text-align:center; font-size: 30px; margin-bottom:30px;}
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
+<script type="text/javascript">
    $(function() {
-	   
-	   // btnAdd Click 	
-	   var  num = 1;
-	   $('#btnAddFile').on('click', function() {
-    	   //alert('Click');    	   
-    	   var html  = '<input type="file"';
-    	   html     += ' name = "upfile' + num + '"';
-    	   html     += ' id   = "upfile' + num + '"';
-    	   html     += ' /><br>';
-    	   $('#tdfile').append( html );
-    	   num      += 1;
-       });
-       
-       // submit click
-       $('#form1').on('submit', function() {
-    	   // 작성자 입력? db writer : not null
-    	   if ( $('#writer').val() == '') {
-    		   alert('작성자를 입력하세요');
-    		   $('#writer').focus();
-    		   return false;   // submit 이벤트를 중지
-    	   } 		   
-    	   // 제목   입력? db title : not null
-    	   if ( $('#title').val() == '') {
-    		   alert('제목을 입력하세요');
-    		   $('#title').focus();
-    		   return false;   // submit 이벤트를 중지
-    	   } 			   
-    	   // 내용   입력? db cont  : not null
-    	    if ( $('#cont').val() == '') {
-    		   alert('내용을 입력하세요');
-    		   $('#cont').focus();
-    		   return false;   // submit 이벤트를 중지
-    	   } 	
-    	   
- 	       return true;
-       });
+	  $('input[type=button]').on('click', function(event) {
+		  var btn = event.target;
+		  var href = '';
+		  switch( btn.id ) {
+		  case 'btnWrite':
+			  href  = '/MBoard/WriteForm?menu_id=${menu_id}';
+			  href += '&bnum=0';
+			  href += '&lvl=0';
+			  href += '&step=0';			  
+			  href += '&nref=0';
+			  break;
+		 
+		  case 'btnReplyWrite':
+			  href  = '/MBoard/WriteForm?menu_id=${menu_id}';
+			  href += '&bnum=${ board.bnum }';
+			  href += '&lvl=${ board.lvl }';
+			  href += '&step=${ board.step }';			  
+			  href += '&nref=${ board.nref }';			  
+			  break;		
+		  
+		  case 'btnList':
+			  href  = '/MBoard/List?menu_id=${menu_id}';
+			  break;
+		  case 'btnUpdate':
+			  var  idx =  '${ board.idx }';
+			  href     = '/MBoard/UpdateForm?menu_id=${menu_id}&idx=' + idx;
+		  	  break;
+		  case 'btnDelete':
+			  var  idx =  '${ board.idx }';
+			  href = '/MBoard/Delete?menu_id=${menu_id}&idx=' + idx;
+			  break;
+		  }
+	
+		  
+	  })
    });
 </script>
 </head>
 <body>
-   <!-- 메뉴목록 (menuList) -->
+
+   <!-- 메뉴 목록  menuList -->
    <%@include file="/WEB-INF/include/sub_header2.jsp" %>
    <%@include file="/WEB-INF/include/menus.jsp" %>
-   
-   
-   <section class="pdsWrite">
-   <!-- 새글 쓰기 -->
-   <form action="/PDS/Write"  method="POST" id="form1"
-        enctype="multipart/form-data">
-   <input type="hidden" name="menu_id"     value="${ map.menu_id }" />     
-   <input type="hidden" name="bnum"        value="${ map.bnum }" />     
-   <input type="hidden" name="lvl"         value="${ map.lvl }" />     
-   <input type="hidden" name="step"        value="${ map.step }" />     
-   <input type="hidden" name="nref"        value="${ map.nref }" />     
-   <input type="hidden" name="nowpage"     value="${ map.nowpage }" />     
-   <input type="hidden" name="pagegrpnum"  value="${ map.pagegrpnum }" />     
-
-   <table id="writeTable">
-    <div id="pdsTitle2" ><h2>등   록</h2></div>
-    <tr> 
-      <td id="td1">작성자</td>
-      <td><input type="text" name="writer"  id="writer"
-        value="${ map.user_id }"  /> <!-- 로그인된 유저아이디  -->
-      </td>
-    </tr> 
+  <!-- 게시물 조회 -->
+  <section class="mboard">
+  <table>
+    <div id="mboardTitle"><h2>게시물 조회</h2></div>
+    <tr>  
+      <td class="td1">메뉴아이디</td>
+      <td class="td5" colspan="3">${ board.menu_id }</td>
+    </tr>    
     <tr>
-      <td id="td2">글제목</td>
-      <td><input type="text" name="title" id="title" /></td>
-    </tr> 
+      <td class="td1">번호</td>
+      <td class="td2">${ board.idx }</td>
+      <td class="td3">날짜</td>
+      <td class="td4">${ board.regdate }</td>
+    </tr>    
     <tr>
-      <td id="td3">글내용</td>
-      <td><textarea name="cont" id="cont"></textarea></td>
-    </tr> 
+      <td class="td1">글쓴이</td>
+      <td class="td2">${ board.writer }</td>   
+      <td class="td3">조회수 / 좋아요수</td>
+      <td class="td4">${ board.readcount } / ${ board.likeNum }</td>
+    </tr>    
     <tr>
-      <td id="td4">파일</td>
-      <td id="tdfile">
-        <input type="button" id="btnAddFile" value="Add file" /><br>
-        <input type="file" name="upfile" id="upfile" /><br>        
+      <td class="td1">제목</td>
+      <td class="td5" colspan="3">${ board.title }</td>
+    </tr>
+    <tr>
+      <td class="td1">내용</td>
+      <td class="td5" id="cont" colspan="3">${ board.cont }</td>
+    </tr>  
+    <tr>
+      <td colspan="4">
+       <input type="button" value="새글쓰기"  id="btnWrite"/>
+       <input type="button" value="답글쓰기"  id="btnReplyWrite"/>
+       <input type="button" value="글목록"    id="btnList"/>
+       <button id="like">좋아요</button>
+       <c:choose>
+       <c:when test="${login.user_id  == 'admin'}">
+       <input type="button" value="글수정"    id="btnUpdate"/>
+       <input type="button" value="글삭제"    id="btnDelete"/>
+       </c:when>
+       </c:choose>
       </td>
-    </tr> 
-    <tr>      
-      <td colspan="2">
-        <a href="/MBoard/List?menu_id="><input type="submit" value="확인" /></a>
-      </td>
-    </tr> 
-   </table>   
-   </form>
-   </section>
-    <%@include file="/WEB-INF/include/footer.jsp" %>
+    </tr>
+  </table>
+  </form>
+  </section>
+  <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>
-
-
-
-
 
 
 

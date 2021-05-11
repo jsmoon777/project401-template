@@ -28,7 +28,7 @@ public class EventController {
 	
 	 @Inject EventService service;
 	 
-	 // 이벤트리스트 이동
+	 // 이벤트 진행중인 리스트 이동
 	 @RequestMapping(value = "/eventlist", method = RequestMethod.GET)
 	 public String eventlist(EventVO vo, EventFileVO eventvo,Model model) throws Exception {
 		
@@ -39,6 +39,19 @@ public class EventController {
 		 model.addAttribute("eventfile",eventfile);
 		 
 		 return "event/eventlist";
+		 
+	 }
+
+	 // 이벤트 종료된 리스트 이동
+	 @RequestMapping(value = "/eventendlist", method = RequestMethod.GET)
+	 public String eventendlist(EventVO vo, EventFileVO eventvo,Model model) throws Exception {
+		 
+		 
+		 List<EventFileVO> eventendlist = service.selectEventEndList(eventvo);
+		 model.addAttribute("eventendlist",eventendlist);
+		 
+		 
+		 return "event/eventendlist";
 		 
 	 }
 

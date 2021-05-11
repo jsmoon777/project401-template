@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.green.ffee.pds.vo.RFilesVo;
 import com.green.ffee.pds.vo.RPdsVo;
+import com.green.ffee.reg.vo.RBoardFileVo;
 
 public interface RPdsService {
 
@@ -23,5 +24,7 @@ public interface RPdsService {
 	void setUpdate(HashMap<String, Object> map, HttpServletRequest request);
 
 	void deleteUploadedFile(HashMap<String, Object> map);
+
+
 
 }
