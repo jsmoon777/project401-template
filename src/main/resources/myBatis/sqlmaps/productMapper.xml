@@ -24,7 +24,7 @@
 		WHERE CNT=1
         ORDER BY PRODUCT_ID DESC -->
         
-        SELECT  
+        <!-- SELECT  
            PRODUCT_ID,
            STORED_FILE_NAME,
            PRODUCT_NAME,
@@ -49,8 +49,40 @@
             )
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
         AND CNT =1
-        ORDER BY PRODUCT_ID
+        ORDER BY PRODUCT_ID -->
 		
+		
+		<!-- 상품 페이징 수정 -->
+		 SELECT * FROM( SELECT  
+               PRODUCT_ID,
+               STORED_FILE_NAME,
+               PRODUCT_NAME,
+               PRODUCT_PRICE,
+               PRODUCT_PRICE2,
+               PRODUCT_TAG,
+               CNT,
+               ROW_NUMBER() OVER(ORDER BY PRODUCT_ID DESC) AS RNUM 
+           FROM (
+		
+               SELECT 
+                    F.FILE_NO,
+                    P.PRODUCT_ID,
+                    F.ORG_FILE_NAME,
+                    F.STORED_FILE_NAME,
+                    P.PRODUCT_NAME,
+                    P.PRODUCT_PRICE,
+                    P.PRODUCT_PRICE2,
+                    P.PRODUCT_TAG,
+                    ROW_NUMBER() OVER ( PARTITION BY F.PRODUCT_ID ORDER BY F.FILE_NO) CNT
+                    
+                FROM PRODUCT_FILE F,TBL_PRODUCT P
+                WHERE P.PRODUCT_ID = F.PRODUCT_ID
+              	<include refid="pdsearch"></include>
+            )T
+		
+        WHERE T.CNT =1
+        )TT
+        WHERE TT.RNUM BETWEEN #{rowStart} AND #{rowEnd}
 	</select>
 	<!-- snslist 페이징 넘버링 -->
 	<select id="listCount" parameterType="com.green.ffee.vo.SearchCriteria" resultType="int">
@@ -82,11 +114,15 @@
 						     PRODUCT_ID
 						    ,PRODUCT_NAME
 						    ,PRODUCT_PRICE
+						    ,PRODUCT_PRICE2
+						    ,PRODUCT_TAG
 						    ,PRODUCT_DESC )
 						    
 				     VALUES(   #{product_id}
 				    		 , #{product_name}
 				             , #{product_price}
+				             , #{product_price2}
+				             , #{product_tag}
 				    		 , #{product_desc} 
 				   		 )
 
@@ -116,6 +152,8 @@
     	SELECT   PRODUCT_ID
 		        ,PRODUCT_NAME
 		        ,PRODUCT_PRICE
+		        ,PRODUCT_PRICE2
+		        ,PRODUCT_TAG
 		        ,PRODUCT_DESC
 	  	 FROM TBL_PRODUCT
 		 WHERE PRODUCT_ID = #{product_id}
