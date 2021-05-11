@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.green.ffee.pds.vo.RFilesVo;
 import com.green.ffee.pds.vo.RPdsVo;
+import com.green.ffee.reg.vo.RBoardFileVo;
 
 public interface RPdsDao {
 
@@ -21,5 +22,7 @@ public interface RPdsDao {
 	void setDelete(HashMap<String, Object> map);
 
 	void deleteUploadedFile(HashMap<String, Object> map);
+	
+	 
 
 }
