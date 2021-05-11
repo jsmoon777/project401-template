@@ -5,7 +5,70 @@
 <head>
 <meta charset="UTF-8">
 <title>ffee 회원탈퇴 본인확인</title>
-<style></style>
+<style>
+#login{
+      margin:0 auto;
+      padding-top:250px;
+      padding-bottom:250px;
+      text-align: center;
+      width:400px;
+      height: 100vh;
+      background: #fff;
+   }
+   
+   .form-group{
+   		width:400px;
+   		text-align: left;
+   }
+ 	input[type="text"]{
+       width:100%;
+    }
+    input[type="password"]{
+       width:100%;
+    }
+    #capslock{
+    	color:blue;
+    }
+    .caps{
+    	height:40px;
+    }
+    
+    /* 버튼 css */
+   .button {
+      display: inline-block;
+      width: 200px;
+      height: 54px;
+      margin:0 auto;
+      text-align: center;
+      text-decoration: none;
+      line-height: 54px;
+      outline: none;
+   }
+   .button::before,
+   .button::after {
+      position: absolute;
+      z-index: -1;
+      display: block;
+      content: '';
+   }
+   .button,
+   .button::before,
+   .button::after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+   }
+   
+   .button {
+   background-color: #000;
+   color: #fff;
+   }
+   .button:hover {
+      letter-spacing: 5px;
+   }
+</style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	   function caps_lock(e) {
@@ -45,22 +108,28 @@
 			})
   	});
 </script>
+<%@include file="/WEB-INF/include/sub_header.jsp" %>
 </head>
 <body>
 	<h2>회원탈퇴 본인확인</h2>
 	<form action="/selfcheckD" method="POST">
-		<div>
-			아이디:<input type="text" name="user_id" value="${login.user_id}" readonly/>
+		<div id="login">
+		<div class="form-group">
+			<input type="text" name="user_id"  value="${login.user_id}" readonly/>
 		</div>
-		<div>
-			암호:<input type="password" name="user_pw" onkeypress="caps_lock(event)" />
-			<p id="capslock" style="position:relative; border:2px solid #003b83; width:300px; bottom:0px; display:none"> 
+		<div class="form-group">
+			<input type="password" name="user_pw" onkeypress="caps_lock(event)"  placeholder="PASSWORD"/>
+		</div>	
+		<div class="caps">
+			<p id="capslock" style="position:relative; width:300px; bottom:0px; display:none"> 
     			&nbsp;<b>CapsLock</b> 키가 눌려있습니다.&nbsp;
 			</p>
 		</div>
 		<div>
-			<input class="delete_btn" type="submit" name="확인" />
+			<input class="button" type="submit" value="확인" />
 		</div>
+	</div>
 	</form>
+	<%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

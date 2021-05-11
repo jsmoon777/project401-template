@@ -23,16 +23,16 @@
    #register{
       margin:0 auto;
       padding-top:250px;
-      padding-bottom:250px;
+      padding-bottom:600px;
       text-align: center;
-      width:1200px;
-      height: 100vh;
+      width:500px;
+      height: 900px;
       background: #fff;
    }
    
    .form-group{
-   		width:600px;
-   		text-align: center;
+   		width:500px;
+   		text-align: left;
    }
       
    .table {
@@ -74,6 +74,15 @@
     input[type="text"]{
        width:100%;
     }
+    input[type="password"]{
+       width:100%;
+    }
+    input[type="email"]{
+       width:100%;
+    }
+    input[type="tel"]{
+       width:100%;
+    }
     /* 타이틀 */
     .sns_title_box{
        width:1200px;
@@ -89,11 +98,11 @@
        font-weight: 900;
     }
    /* 버튼 css */
-   
    .button {
       display: inline-block;
       width: 200px;
       height: 54px;
+      margin:0 auto;
       text-align: center;
       text-decoration: none;
       line-height: 54px;
@@ -570,6 +579,7 @@
             <h3>회원가입</h3> 
          </div> 
       </div> 
+      <br><br>
       <div class="col-sm-6 col-md-offset-3"> 
          <form action="/register" method="post" role="form" id="usercheck" name="member"> 
             
@@ -577,62 +587,62 @@
                <input type="hidden" id="loca_prov" name="loca_prov" value="${vo.loca_prov}"> 
             
             <div class="form-group"> 
-               <label for="id">아이디</label> 
+               <label for="id">아이디</label><br>
                <input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID"> 
                <div class="check_font" id="id_check"></div> 
             </div> 
             <div class="form-group"> 
-               <label for="pw">비밀번호</label> 
+               <label for="pw">비밀번호</label><br>
                <input type="password" class="form-control" id="user_pw" name="user_pw" placeholder="PASSWORD"> 
                <div class="eheck_font" id="pw_check"></div> 
             </div> 
             <div class="form-group"> 
-               <label for="pw2">비밀번호 확인</label> 
+               <label for="pw2">비밀번호 확인</label><br>
                <input type="password" class="form-control" id="user_pw2" name="user_pw2" placeholder="Confirm Password"> 
                <div class="eheck_font" id="pw2_check"></div> 
             </div> 
             <div class="form-group"> 
-               <label for="nickname">닉네임</label> 
+               <label for="nickname">닉네임</label><br>
                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="NickName"> 
                <div class="eheck_font" id="nickname_check"></div> 
             </div> 
             <div class="form-group"> 
-               <label for="user_name">이름</label> 
+               <label for="user_name">이름</label> <br>
                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Name"> 
                <div class="eheck_font" id="name_check"></div> 
             </div> 
             <div class="form-group"> 
-               <label for="user_birth">생년월일</label> 
+               <label for="user_birth">생년월일</label> <br>
                <input type="tel" class="form-control" id="user_birth" name="user_birth" placeholder="ex) 19990101"> 
                <div class="eheck_font" id="birth_check"></div> 
             </div> 
             <div class="form-group"> 
-               <label for="user_email">이메일 주소</label> 
+               <label for="user_email">이메일 주소</label> <br>
                <input type="email" class="form-control" id="user_email" name="user_email" placeholder="E-mail"> 
                <div class="eheck_font" id="email_check"></div> 
             </div> 
             <div class="form-group"> 
-               <label for="user_phone">휴대폰 번호('-'없이 번호만 입력해주세요)</label> 
+               <label for="user_phone">휴대폰 번호('-'없이 번호만 입력해주세요)</label> <br>
                <input type="tel" class="form-control" id="user_phone" name="user_phone" placeholder="Phone Number"> 
                <div class="eheck_font" id="phone_check"></div> 
             </div> 
             <div class="form-group"> 
-               <label for="gender">성별 </label> 
+               <label for="gender">성별 </label> <br>
                <input type="checkbox" id="gender" name="gender" value="남">남 
                <input type="checkbox" id="gender" name="gender" value="여">여 
             </div> 
             
             <div class="form-group"> 
                <input type="text" id="user_oaddress" name="user_oaddress" placeholder="우편번호">
-               <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+               <input type="button" class="button" style="pading-top:50px; width: 150px; height: 40px; line-height:40px;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                <input type="text" id="user_address" name="user_address" placeholder="주소"><br>
                <input type="text" id="user_dtaddress" name="user_dtaddress" placeholder="상세주소">
                <input type="text" id="user_extraAddress" placeholder="참고항목">
             </div> 
             
-            <div class="form-group text-center"> 
-               <button type="submit" class="btn btn-primary">가입</button> 
-            </div> 
+             <div class="form-group text-center" style="pading-top:50px; width: 500px; height: 150px; line-height:150px; text-align:center; margin: 0 auto;"> 
+               <button type="submit" class="btn btn-primary button">가입</button>
+            </div>
          </form> 
       </div> 
    </article>

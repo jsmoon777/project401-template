@@ -5,51 +5,196 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로필 사진</title>
+   
+   <style type="text/css">
+   /* 마이페이지 */
+    #image_container >img{
+  	width: 100%;
+    
+    }
+   
+    #image_container{
+   width: 200px;
+   height: 200px;
+   margin: auto;
+   }
+    #image_container2{
+   width: 200px;
+   height: 200px;
+   margin: auto;
+   }
+   
+    
+    .title{
+    width:500px;
+    height:54px;
+    line-height:54px;
+       font-size: 50px;
+       font-weight: 900;
+       
+    }
+    .table{
+    	width:1000px;
+    	border: 1px solid #f0f0f0;
+    	margin: auto;
+    	text-align:center;
+    	margin-bottom: 100px;
+    }
+    
+    #main{
+    	width: 1000px;
+    	height: 900px;
+    	margin: 0 auto;
+    	margin-top:250px;
+    }
+    .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+  /*  테이블 */
+
+   body {
+      margin:0;
+      padding:0;
+      width:100%;
+      font-size: small; 
+      font-family: Arial, '맑은 고딕';
+   }
+   
+   .form-group{
+   		width:500px;
+   		text-align: left;
+   }
+      
+   .table {
+      border-collapse: collapse;
+      border-top: 3px solid #000;
+      border-left:1px;
+      border-right:1px;
+      width:1200px;
+      text-align: center;
+      margin: 0 auto;
+    }  
+    .table th {
+      width:100px;
+      font-size:13px;
+      color: #333;
+      background: #ffffff;
+      text-align: left;
+    }
+    .table th, .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+    .table th:first-child, .table td:first-child {
+      border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+      border-right: 0;
+    }
+    .table tr td:first-child{
+      text-align: left;
+    }
+    .table caption{caption-side: bottom; display: none;}
+    
+    /* textarea{
+       width:100%;
+       height: 200px;
+    } */
+    input[type="text"]{
+       width:100%;
+    }
+    input[type="password"]{
+       width:100%;
+    }
+    input[type="email"]{
+       width:100%;
+    }
+    input[type="tel"]{
+       width:100%;
+    }
+    /* 타이틀 */
+    .sns_title_box{
+       width:1200px;
+       height: 60px;
+       background:#fff;
+       margin: 0 auto;
+    }
+    
+    .sns_title{
+       float: left;
+       line-height: 60px;
+       font-size: 20px;
+       font-weight: 900;
+    }
+   /* 버튼 css */
+   .button {
+      display: inline-block;
+      width: 200px;
+      height: 54px;
+      margin:0 auto;
+      text-align: center;
+      text-decoration: none;
+      line-height: 54px;
+      outline: none;
+   }
+   .button::before,
+   .button::after {
+      position: absolute;
+      z-index: -1;
+      display: block;
+      content: '';
+   }
+   .button,
+   .button::before,
+   .button::after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+   }
+   
+   .button {
+   background-color: #000;
+   color: #fff;
+   }
+   .button:hover {
+      letter-spacing: 5px;
+   }
+   </style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+   
+   <!-- onload 는 시작할때 같이 시작되는 이벤트 -->
    <!-- 이미지 미리보기 -->
    <script> 
 	   function setProfile(event) {
-		   
 	      for (var image of event.target.files) {
-	    	  document.getElementById("prev_img").style.display = "none";
-	    	  document.getElementById("prev_img").style.visibility = 'hidden';
-	    	  document.getElementById("image_container").style.display = "block";
-	    	  document.getElementById("image_container").style.visibility = 'visible';
 	         var reader = new FileReader(); 
 	         reader.onload = function(event) { 
+		   		document.getElementById('no_image').style.display = 'none';
 	            var img = document.createElement("img"); 
 	            img.setAttribute("src", event.target.result); 
-	            document.querySelector("div#image_container").appendChild(img); };
+	            document.querySelector("div#image_container2").appendChild(img); };
 	            console.log(image); 
 	            reader.readAsDataURL(image); 
 	       } 
 	    };
 
    </script>
-   
-   <style type="text/css">
-   	#prev_img >img{
-   	width: 100%;
-   	}
-   
-    #image_container >img{
-  	width: 100%;
-    
-    }
-   
-   #prev_img, #image_container{
-   width: 200px;
-   height: 200px;
-   }
-   
-   
-   </style>
+	<%@include file="/WEB-INF/include/sub_header.jsp" %>
 </head>
 <body>
+<div id="main">
    <table>
       <tr>
+      	<th>프로필 사진</th>
          <td>
-         <div id="prev_img" class="form-group">     
+         
+         <div id="image_container" class="form-group">
+         <div>기존 프로필 </div>  
          <c:choose>
 				<c:when test="${profile.sfilename == null}">
 					<img src="/img/no_profile_img.gif" width="100%">
@@ -58,25 +203,28 @@
 					<img src="/image6/${profile.sfilename}" width="100%"/>
 				</c:otherwise>
 			</c:choose>
-          </div>     
-         <div id="image_container" style="display:none;"></div>
+          </div>
+         <div id="image_container2" >
+         <div>업로드 프로필</div>
+         	<img src="/img/no_profile_img.gif" id="no_image" width="100%">
+         </div>
          </td>
        </tr>
 		<tr>
-         <td class="profile_image">프로필 사진</td>
         </tr>
-       <tr>
-         <td id="tdfile">
-          <form action="/uploadProfile" method="post" enctype="multipart/form-data">
-      
-
-         
-              <input type="hidden" name="user_id" value="${login.user_id}"  >
-              <input type="file" name="upfile" id="upfile" onchange="setProfile(event);" multiple>
-              <input type="submit" value="업로드">    
-          </form>      
-         </td>
-       </tr>
    </table> 
+   	<div style="width: 400px; height: 54px;  margin: 0 auto;">
+          <form action="/uploadProfile" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="user_id" value="${login.user_id}"  >
+              <div style="float: left;"> 
+              <input type="file" name="upfile" id="upfile" onchange="setProfile(event);" multiple>
+              </div>
+              <div style="float: right;">
+              <input type="submit" class="button" value="업로드">
+              </div> 
+          </form>
+      </div>
+  </div>
+  <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

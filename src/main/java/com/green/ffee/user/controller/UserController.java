@@ -155,7 +155,7 @@ public class UserController {
 		System.out.println("delete-------------" + userVo);
 		userService.userDelete(userVo.getUser_id());
 		
-		return "redirect:/";
+		return "user/userdelete";
 	}
 	
 	@RequestMapping(value="/idsearch", method=RequestMethod.GET)

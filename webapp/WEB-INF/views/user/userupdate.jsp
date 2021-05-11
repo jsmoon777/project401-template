@@ -11,8 +11,128 @@
 <!-- daum 도로명주소 찾기 api --> 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style type="text/css"> 
-	td{ border:1px solid #000000; border-collapse:collapse; } 
-</style> 
+
+   body {
+      margin:0;
+      padding:0;
+      width:100%;
+      font-size: small; 
+      font-family: Arial, '맑은 고딕';
+   }
+   
+   #register{
+      margin:0 auto;
+      padding-top:250px;
+      padding-bottom:250px;
+      text-align: center;
+      width:500px;
+      height: 900px;
+      background: #fff;
+   }
+   
+   .form-group{
+   		width:500px;
+   		text-align: left;
+   }
+      
+   .table {
+      border-collapse: collapse;
+      border-top: 3px solid #000;
+      border-left:1px;
+      border-right:1px;
+      width:1200px;
+      text-align: center;
+      margin: 0 auto;
+    }  
+    .table th {
+      width:100px;
+      font-size:13px;
+      color: #333;
+      background: #ffffff;
+      text-align: left;
+    }
+    .table th, .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+    .table th:first-child, .table td:first-child {
+      border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+      border-right: 0;
+    }
+    .table tr td:first-child{
+      text-align: left;
+    }
+    .table caption{caption-side: bottom; display: none;}
+    
+    /* textarea{
+       width:100%;
+       height: 200px;
+    } */
+    input[type="text"]{
+       width:100%;
+    }
+    input[type="password"]{
+       width:100%;
+    }
+    input[type="email"]{
+       width:100%;
+    }
+    input[type="tel"]{
+       width:100%;
+    }
+    /* 타이틀 */
+    .sns_title_box{
+       width:1200px;
+       height: 60px;
+       background:#fff;
+       margin: 0 auto;
+    }
+    
+    .sns_title{
+       float: left;
+       line-height: 60px;
+       font-size: 20px;
+       font-weight: 900;
+    }
+   /* 버튼 css */
+   .button {
+      display: inline-block;
+      width: 200px;
+      height: 54px;
+      margin:0 auto;
+      text-align: center;
+      text-decoration: none;
+      line-height: 54px;
+      outline: none;
+   }
+   .button::before,
+   .button::after {
+      position: absolute;
+      z-index: -1;
+      display: block;
+      content: '';
+   }
+   .button,
+   .button::before,
+   .button::after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+   }
+   
+   .button {
+   background-color: #000;
+   color: #fff;
+   }
+   .button:hover {
+      letter-spacing: 5px;
+   }
+   </style> 
 <script type="text/javascript"> 
 	//모든 공백 체크 정규식 
 	var empJ = /\s/g; 
@@ -224,10 +344,13 @@
 
 </head>
 <body>
+<%@include file="/WEB-INF/include/sub_header.jsp" %>
+
+<div id="register">
 	<article class="container"> 
 		<div class="page-header"> 
 			<div class="col-md-6 col-md-offset-3"> 
-				<h3>회원가입</h3> 
+				<h3>회원정보 수정</h3> 
 			</div> 
 		</div> 
 		<div class="col-sm-6 col-md-offset-3"> 
@@ -278,12 +401,13 @@
 					<input type="text" id="user_extraAddress" placeholder="참고항목">
 				</div> 
 				
-				<div class="form-group text-center"> 
-					<button type="submit" class="btn btn-primary">수정</button> 
-				</div> 
+				<div class="form-group text-center" style="pading-top:50px; width: 500px; height: 150px; line-height:150px; text-align:center; margin: 0 auto;"> 
+               <button type="submit" class="btn btn-primary button">수정</button> 
+            </div>
 			</form> 
 		</div> 
 	</article>
-
+</div>
+<%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

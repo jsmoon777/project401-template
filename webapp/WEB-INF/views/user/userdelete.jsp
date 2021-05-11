@@ -4,16 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보 수정</title>
+<title>회원정보 삭제</title>
 <style></style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-   $(function() {
-
-   });
-</script>
 </head>
 <body>
-	<h2>회원정보 수정</h2>
+<script>
+alert("탈퇴되었습니다.");
+self.location = "/logout";
+</script>
 </body>
 </html>
