@@ -16,12 +16,17 @@ public class ProductFileVO {
 	private String product_price;
 	private int cnt;
 	
+	//원가
+	private int product_price2;
+	private String product_tag;
+	
 	public ProductFileVO() {
 		
 	}
 
 	public ProductFileVO(int file_no, int product_id, String org_file_name, String stored_file_name, int file_size,
-			Date regdate, String del_gb, String product_name, String product_price, int cnt) {
+			Date regdate, String del_gb, String product_name, String product_price, int cnt, int product_price2,
+			String product_tag) {
 		super();
 		this.file_no = file_no;
 		this.product_id = product_id;
@@ -33,6 +38,8 @@ public class ProductFileVO {
 		this.product_name = product_name;
 		this.product_price = product_price;
 		this.cnt = cnt;
+		this.product_price2 = product_price2;
+		this.product_tag = product_tag;
 	}
 
 	public int getFile_no() {
@@ -115,12 +122,28 @@ public class ProductFileVO {
 		this.cnt = cnt;
 	}
 
+	public int getProduct_price2() {
+		return product_price2;
+	}
+
+	public void setProduct_price2(int product_price2) {
+		this.product_price2 = product_price2;
+	}
+
+	public String getProduct_tag() {
+		return product_tag;
+	}
+
+	public void setProduct_tag(String product_tag) {
+		this.product_tag = product_tag;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductFileVO [file_no=" + file_no + ", product_id=" + product_id + ", org_file_name=" + org_file_name
 				+ ", stored_file_name=" + stored_file_name + ", file_size=" + file_size + ", regdate=" + regdate
 				+ ", del_gb=" + del_gb + ", product_name=" + product_name + ", product_price=" + product_price
-				+ ", cnt=" + cnt + "]";
+				+ ", cnt=" + cnt + ", product_price2=" + product_price2 + ", product_tag=" + product_tag + "]";
 	}
 	
 }
