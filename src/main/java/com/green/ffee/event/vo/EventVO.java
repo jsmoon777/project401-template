@@ -5,26 +5,35 @@ import java.sql.Date;
 public class EventVO {
 	private int eno;
 	private String title;
-	private String eventday;
+	private Date eventday;
+	private Date eventday2;
 	private String content;
 	private String writer;
 	private Date regdate;
 
+	
+	//슬라이드 이미지 컬럼 추가 (타이틀 / 해시태그)
+	private String hashtag;
+	private String slide_title;
+	
 	public EventVO() {
 		
 	}
 
-	public EventVO(int eno, String title, String eventday, String content, String writer, Date regdate) {
+	public EventVO(int eno, String title, Date eventday, Date eventday2, String content, String writer, Date regdate,
+			String hashtag, String slide_title) {
 		super();
 		this.eno = eno;
 		this.title = title;
 		this.eventday = eventday;
+		this.eventday2 = eventday2;
 		this.content = content;
 		this.writer = writer;
 		this.regdate = regdate;
+		this.hashtag = hashtag;
+		this.slide_title = slide_title;
 	}
 
-	
 	public int getEno() {
 		return eno;
 	}
@@ -41,12 +50,20 @@ public class EventVO {
 		this.title = title;
 	}
 
-	public String getEventday() {
+	public Date getEventday() {
 		return eventday;
 	}
 
-	public void setEventday(String eventday) {
+	public void setEventday(Date eventday) {
 		this.eventday = eventday;
+	}
+
+	public Date getEventday2() {
+		return eventday2;
+	}
+
+	public void setEventday2(Date eventday2) {
+		this.eventday2 = eventday2;
 	}
 
 	public String getContent() {
@@ -73,10 +90,27 @@ public class EventVO {
 		this.regdate = regdate;
 	}
 
+	public String getHashtag() {
+		return hashtag;
+	}
+
+	public void setHashtag(String hashtag) {
+		this.hashtag = hashtag;
+	}
+
+	public String getSlide_title() {
+		return slide_title;
+	}
+
+	public void setSlide_title(String slide_title) {
+		this.slide_title = slide_title;
+	}
+
 	@Override
 	public String toString() {
-		return "EventVO [eno=" + eno + ", title=" + title + ", eventday=" + eventday + ", content=" + content
-				+ ", writer=" + writer + ", regdate=" + regdate + "]";
+		return "EventVO [eno=" + eno + ", title=" + title + ", eventday=" + eventday + ", eventday2=" + eventday2
+				+ ", content=" + content + ", writer=" + writer + ", regdate=" + regdate + ", hashtag=" + hashtag
+				+ ", slide_title=" + slide_title + "]";
 	}
 	
 	

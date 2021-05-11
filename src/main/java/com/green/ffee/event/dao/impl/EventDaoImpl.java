@@ -41,6 +41,12 @@ public class EventDaoImpl implements EventDAO {
 	}
 
 	@Override
+	public List<EventFileVO> selectEventEndList(EventFileVO eventvo) {
+		List<EventFileVO> eventendlist = sqlsession.selectList("eventMapper.selectEventEndList",eventvo);
+		return eventendlist;
+	}
+	
+	@Override
 	public List<EventVO> eventlist(EventVO vo) {
 		List<EventVO> list = sqlsession.selectList("eventMapper.selectlist",vo);
 		System.out.println("list===============>"+vo);
@@ -60,6 +66,8 @@ public class EventDaoImpl implements EventDAO {
 		System.out.println("selectFileList() fileList:" + filelist);
 		return filelist;
 	}
+
+
 	
 	
 }

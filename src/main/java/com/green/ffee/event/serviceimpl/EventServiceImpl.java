@@ -19,8 +19,10 @@ import com.green.ffee.sns.utils.FileUtils;
 
 @Service("service")
 public class EventServiceImpl implements EventService {
+	
 	@Resource(name="eventfile")
 	private EventFile eventfile;
+	
 	@Inject
 	EventDAO dao;
 	
@@ -37,12 +39,20 @@ public class EventServiceImpl implements EventService {
 		}
 	}
 
-	//이벤트 리스트
+	//진행중인 이벤트 리스트
 	@Override
 	public List<EventFileVO> selectEventList(EventFileVO eventvo) {
 		return dao.selectEventList(eventvo);
 	}
 
+	
+	//종료된 이벤트 파일리스트
+	@Override
+	public List<EventFileVO> selectEventEndList(EventFileVO eventvo) {
+		return dao.selectEventEndList(eventvo);
+	}
+		
+	
 	@Override
 	public List<EventVO> eventlist(EventVO vo) {
 		
@@ -61,6 +71,7 @@ public class EventServiceImpl implements EventService {
 	public List<EventFileVO> selectFileList(int eno) {
 		return dao.selectFileList(eno);
 	}
+
 	
 	
 
