@@ -26,7 +26,7 @@
 </head>
 <body>
    <!-- 메뉴 목록 -->\
-   <%@include file="/WEB-INF/include/menus.jsp" %>
+   
    
    <table id="pdsView">
     <caption><h2>내용 보기</h2></caption>
@@ -60,7 +60,7 @@
        <c:forEach var="file" items="${ filesList }" >
           <div>
           <%-- <a href="<c:out value="/download/external/${ file.sfilename}" />"> --%>
-          <div style="width:500px; height: 500px; overflow: hidden;"><img src="/image3/${ file.sfilename}" width="100%"/>${ file.sfilename}</div>
+          <div style="width:500px; height: 500px; overflow: hidden;"><img src="/image7/${ file.sfilename}" width="100%"/>${ file.sfilename}</div>
           
           </a>
           </div> 
@@ -73,9 +73,13 @@
           <a href="/PDS/List?menu_id=${ pdsVo.menu_id }">목록</a>&nbsp;&nbsp;
           <a href="/PDS/WriteForm?menu_id=${ pdsVo.menu_id }&bnum=0&lvl=0&step=0&nref=0">새글 쓰기</a>&nbsp;&nbsp;
           <a href="/PDS/WriteForm?menu_id=${pdsVo.menu_id}&bnum=${pdsVo.bnum}&lvl=${pdsVo.lvl}&step=${pdsVo.step}&nref=${pdsVo.nref}">답글 쓰기</a>&nbsp;&nbsp;
+         
+          <c:choose>
+          <c:when test="${login.user_id  == 'admin'}">
           <a href="/PDS/UpdateForm?menu_id=${pdsVo.menu_id}&idx=${pdsVo.idx}">수정</a>&nbsp;&nbsp;
           <a href="/PDS/Delete?menu_id=${pdsVo.menu_id}&idx=${pdsVo.idx}&nref=${pdsVo.nref}&lvl=${pdsVo.lvl}&step=${pdsVo.step}">삭제</a>
-       
+       	  </c:when>
+       	  </c:choose>
        </td>
     </tr>
     
@@ -83,16 +87,3 @@
       
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
