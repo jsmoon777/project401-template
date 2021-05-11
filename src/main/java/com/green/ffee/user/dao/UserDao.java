@@ -1,6 +1,9 @@
 package com.green.ffee.user.dao;
 
+import java.util.Map;
+
 import com.green.ffee.user.logindto.LoginDTO;
+import com.green.ffee.user.vo.ProfileVo;
 import com.green.ffee.user.vo.UserVo;
 
 public interface UserDao {
@@ -16,5 +19,13 @@ public interface UserDao {
 	void userUpdate(UserVo vo);
 
 	void userDelete(String user_id);
+
+	void insertProfile(Map<String, Object> map);
+
+	ProfileVo readProfile(String user_id);
+
+	UserVo getUser(String user_id);
+
+	void deleteProfile(Map<String, Object> map);
 	
 }

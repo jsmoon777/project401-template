@@ -5,8 +5,8 @@
 </head>
 <body>
     <script>
-        alert("아이디와 비밀번호를 확인해주세요.");
-        self.location = "/selfcheckDForm";
+        alert("관리자만 접속할 수 있습니다. 홈으로 이동합니다.");
+        self.location = "/";
     </script>
 </body>
 </html>

@@ -21,7 +21,7 @@
        <result property="lvl"        column="LVL"       javaType="int" />   
        <result property="step"       column="STEP"      javaType="int" />   
        <result property="nref"       column="NREF"      javaType="int" />   
-       <result property="likeNum"       column="LIKENUM"      javaType="int" />   
+       <result property="likeNum"    column="LIKENUM"   javaType="int" />   
     </resultMap>
 
     <select id="BoardList"
@@ -38,7 +38,7 @@
     <select id="BoardDateList"
            statementType="CALLABLE" 
            parameterType="hashmap"
-           resultType="com.green.ffee.reg.vo.RBoardVo"   >
+           resultType="com.green.ffee.reg.vo.RBoardVo">
       {CALL PKG_MBOARD.PROC_MBOARD_DATE_LIST(
           #{menu_id, mode=IN,  jdbcType=VARCHAR, javaType=string }
         , #{result,  mode=OUT, jdbcType=CURSOR,
@@ -102,18 +102,80 @@
     </delete>
     
     <update id="LikeUpdateBoard"
-    		parameterType="hashmap">
-    		
-    	UPDATE MBOARD
+    		parameterType="int">
+    	UPDATE REGBOARD
     		SET
     			LIKENUM = LIKENUM + 1
     	WHERE
-    		MENU_ID=#{menu_id} AND idx=#{idx}
+    		MENU_ID=#{menu_id} AND IDX=#{idx}
     </update>
+    
+    <!-- 사진파일 불러오기 -->
+    <select id = "CallFile"    
+          parameterType = "int"
+          resultType="String">
+   		 SELECT FILENAME FROM FILES
+   		 WHERE IDX=#{idx}  
+    </select>
+    
+    <!-- 게시글 하나 조회 -->
+    <select id = "getBoardOne"    
+          parameterType = "int"
+          resultType="com.green.ffee.reg.vo.RBoardVo">
+   		 SELECT * FROM REGBOARD
+   		 WHERE IDX=#{idx}  
+    </select>
 
+    <!-- 신상카페 목록 조회 -->
+    <select id = "getNewCafe"    	
+          parameterType = "String"
+          resultType="com.green.ffee.reg.vo.RBoardFileVo">
+   		SELECT r.idx, r.menu_id, r.cont, r.regdate, f.sfilename, r.title, f.idx fileidx 
+		FROM REGBOARD R 
+		LEFT OUTER JOIN FILES F
+		 on R.IDX=F.IDX  
+		where R.MENU_ID = 'MENU01'
+		order by R.REGDATE desc
+    </select>
+    
+    <!-- 인기카페 목록 조회 -->
+    <select id = "getPopCafe"    	
+          parameterType = "String"
+          resultType="com.green.ffee.reg.vo.RBoardFileVo2">
+   		SELECT r.idx, r.menu_id, r.cont, r.readcount, f.sfilename, r.title, f.idx fileidx 
+		FROM REGBOARD R 
+		LEFT OUTER JOIN FILES F
+		 on R.IDX=F.IDX  
+		where R.MENU_ID = 'MENU01'
+		order by R.READCOUNT desc
+    </select>
+   
+    <!-- 신상레스토랑 목록 조회 -->
+    <select id = "getNewRes"    	
+          parameterType = "String"
+          resultType="com.green.ffee.reg.vo.RBoardFileVo3">
+   		SELECT r.idx, r.menu_id, r.cont, r.regdate, f.sfilename, r.title, f.idx fileidx 
+		FROM REGBOARD R 
+		LEFT OUTER JOIN FILES F
+		 on R.IDX=F.IDX  
+		where R.MENU_ID = 'MENU02'
+		order by R.REGDATE desc
+    </select>
+    
+     <!-- 인기레스토랑 목록 조회 -->
+    <select id = "getPopRes"    	
+          parameterType = "String"
+          resultType="com.green.ffee.reg.vo.RBoardFileVo4">
+   		SELECT r.idx, r.menu_id, r.cont, r.readcount, f.sfilename, r.title, f.idx fileidx 
+		FROM REGBOARD R 
+		LEFT OUTER JOIN FILES F
+		 on R.IDX=F.IDX  
+		where R.MENU_ID = 'MENU02'
+		order by R.READCOUNT desc
+    </select>
+    
     
 </mapper>
-
 
 
 

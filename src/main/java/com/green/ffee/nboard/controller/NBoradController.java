@@ -6,17 +6,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.green.ffee.interceptor.Auth;
+import com.green.ffee.interceptor.Auth.Role;
 import com.green.ffee.nboard.service.NBoardService;
 import com.green.ffee.nboard.vo.BoardVo;
-import com.green.ffee.nboard.vo.NFileVo;
 import com.green.ffee.nboard.vo.PageMaker;
 import com.green.ffee.nboard.vo.SearchCriteria;
-import com.green.ffee.nboard.vo.Criteria;
 
 
 

@@ -54,6 +54,45 @@
 		  FROM USER_TBL
 		 WHERE USER_ID = #{user_id}
 	</delete>
+	
+	<!-- 프로필 사진 업로드 -->
+    <insert id="insertProfile" parameterType="hashMap">
+		INSERT INTO USER_FILE(
+			USER_IMG_NUM,
+			USER_ID,
+			FILENAME,
+			FILEEXT,
+			SFILENAME
+		)VALUES(
+			SEQ_USER_IMG_NUM.NEXTVAL,
+			#{user_id},
+			#{filename},
+			#{fileext},
+			#{sfilename}
+		)
+    </insert>
+    
+    <!-- 프로필 사진 읽기 -->
+    <select id="readProfile"
+      parameterType="hashmap" 
+      resultType="com.green.ffee.user.vo.ProfileVo"
+      >
+    SELECT    USER_IMG_NUM,
+			USER_ID,
+			FILENAME,
+			FILEEXT,
+			SFILENAME
+     FROM     USER_FILE
+     WHERE	  USER_ID = #{user_id}
+  </select>
+    
+    <!-- 프로필 사진 삭제 -->
+    <delete id="deleteProfile" parameterType="hashMap">
+    	DELETE 
+		  FROM USER_FILE
+		 WHERE USER_ID = #{user_id}
+	</delete>
+    
 </mapper>
 
 

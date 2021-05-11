@@ -34,7 +34,10 @@
 	<mvc:resources mapping="/image3/**" location="file:///C:/mp/newone/" />	
 	<mvc:resources mapping="/image4/**" location="file:///C:/mp/hotone/" />	
 	<mvc:resources mapping="/image5/**" location="file:///C:/ffee/notice/" />
+	<mvc:resources mapping="/image6/**" location="file:///C:/ffee/user/" />
+	<mvc:resources mapping="/image7/**" location="file:///C:/upload/" /> 
 	<mvc:resources mapping="/productimg/**" location="file:///C:/ffee/product/" />   
+
 	
 													
     <bean id="viewResolver" 

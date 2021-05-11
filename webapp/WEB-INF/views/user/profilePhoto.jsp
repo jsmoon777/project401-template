@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>mypage</title>
-<style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>프로필 사진</title>
+   
+   <style type="text/css">
    /* 마이페이지 */
     #image_container >img{
   	width: 100%;
@@ -14,6 +14,11 @@
     }
    
     #image_container{
+   width: 200px;
+   height: 200px;
+   margin: auto;
+   }
+    #image_container2{
    width: 200px;
    height: 200px;
    margin: auto;
@@ -161,26 +166,36 @@
    }
    </style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-	$(function(){
-		
-   });
-</script>
+   
+   <!-- onload 는 시작할때 같이 시작되는 이벤트 -->
+   <!-- 이미지 미리보기 -->
+   <script> 
+	   function setProfile(event) {
+	      for (var image of event.target.files) {
+	         var reader = new FileReader(); 
+	         reader.onload = function(event) { 
+		   		document.getElementById('no_image').style.display = 'none';
+	            var img = document.createElement("img"); 
+	            img.setAttribute("src", event.target.result); 
+	            document.querySelector("div#image_container2").appendChild(img); };
+	            console.log(image); 
+	            reader.readAsDataURL(image); 
+	       } 
+	    };
+
+   </script>
 	<%@include file="/WEB-INF/include/sub_header.jsp" %>
 </head>
 <body>
-	
-	
-	<div id="main">
-	<div class="title">
-	<h3>mypage</h3>
-	</div>
-	<table class="table">
-		<tr>
-			<th>프로필사진</th>
-	      <td>
-	      <div id="image_container" class="form-group" >
-	      <c:choose>
+<div id="main">
+   <table>
+      <tr>
+      	<th>프로필 사진</th>
+         <td>
+         
+         <div id="image_container" class="form-group">
+         <div>기존 프로필 </div>  
+         <c:choose>
 				<c:when test="${profile.sfilename == null}">
 					<img src="/img/no_profile_img.gif" width="100%">
 				</c:when>
@@ -188,45 +203,28 @@
 					<img src="/image6/${profile.sfilename}" width="100%"/>
 				</c:otherwise>
 			</c:choose>
-	      
-	       </div>     
-	      </td>
-	      
-	    </tr>
-	   <!--  <tr>
-	    
-         <td class="profile_image">프로필 사진</td>
-        </tr> -->
-        
+          </div>
+         <div id="image_container2" >
+         <div>업로드 프로필</div>
+         	<img src="/img/no_profile_img.gif" id="no_image" width="100%">
+         </div>
+         </td>
+       </tr>
 		<tr>
-		
-		<th>프로필사진</th>
-		
-	      <td >
-		    <form action="/profilePhoto" method="post" enctype="multipart/form-data">
-		        <input type="submit" class="button" value="프로필사진 변경">    
-		    </form>      
-	      </td>
-	      
-	    </tr> 
-</table>
-<br>
-	<div style="width: 400px; height: 54px;  margin: 0 auto;">
-		<div style="float: left;"> 
-			<form action="/selfcheckUForm" method="post" >        
-		      <input class="update_btn button" type="submit" value="회원수정"/> 
-		     </form>
-		     </div>
-			<div>
-			   <form action="/selfcheckDForm" method="post" > 
-			    <input class="delete_btn button" type="submit" value="회원탈퇴"/>
-			    </form> 
-		</div>
-	</div>
-	    
-	 
-	   
-	 </div>
-	 
+        </tr>
+   </table> 
+   	<div style="width: 400px; height: 54px;  margin: 0 auto;">
+          <form action="/uploadProfile" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="user_id" value="${login.user_id}"  >
+              <div style="float: left;"> 
+              <input type="file" name="upfile" id="upfile" onchange="setProfile(event);" multiple>
+              </div>
+              <div style="float: right;">
+              <input type="submit" class="button" value="업로드">
+              </div> 
+          </form>
+      </div>
+  </div>
+  <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>
