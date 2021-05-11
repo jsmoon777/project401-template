@@ -26,6 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.green.ffee.pds.service.RPdsService;
 import com.green.ffee.pds.vo.RFilesVo;
 import com.green.ffee.pds.vo.RPdsVo;
+import com.green.ffee.reg.service.RBoardService;
+import com.green.ffee.reg.vo.RBoardVo;
 import com.green.ffee.regmenu.service.RMenuService;
 import com.green.ffee.regmenu.vo.RMenuVo;
 
@@ -33,10 +35,34 @@ import com.green.ffee.regmenu.vo.RMenuVo;
 public class RPdsController {
 	
 	@Autowired
+	private  RBoardService  boardService;
+	
+	@Autowired
 	private RMenuService  menuService;
 	
 	@Autowired
 	private RPdsService   pdsService;
+	
+	/*
+	 * @RequestMapping("/") public ModelAndView home() { HashMap<String, Object> map
+	 * = new HashMap<String, Object>();
+	 * 
+	 * map.put("menu_id", "MENU01");
+	 * 
+	 * List<RBoardVo> boardDateList = boardService.getBoardDateList( map );
+	 * List<RBoardVo> boardLikeList = boardService.getBoardLikeList( map );
+	 * List<RFilesVo> filesList = pdsService.getFileList( map );
+	 * 
+	 * 
+	 * ModelAndView mv = new ModelAndView();
+	 * 
+	 * mv.addObject("boardLikeList", boardLikeList ); mv.addObject("boardDateList",
+	 * boardDateList ); System.out.println(boardDateList); mv.addObject("filesList",
+	 * filesList ); mv.setViewName("home"); // home.jsp
+	 * System.out.println(filesList);
+	 * 
+	 * return mv; // 이동할 jsp 이름 }
+	 */
 	
 	@RequestMapping("/PDS/List")	
 	public ModelAndView pdsList(
@@ -54,7 +80,7 @@ public class RPdsController {
 		mv.addObject("menuList",   menuList);
 		mv.addObject("pdsList",    pdsList);
 		mv.addObject("menu_id",    menu_id);
-		mv.addObject("menu_name",  "자바");
+		mv.addObject("menu_name",  "");
 		
 		mv.setViewName("pds/list");
 		return mv;

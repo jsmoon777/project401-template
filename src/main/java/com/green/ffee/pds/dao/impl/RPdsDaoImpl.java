@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.green.ffee.pds.dao.RPdsDao;
 import com.green.ffee.pds.vo.RFilesVo;
 import com.green.ffee.pds.vo.RPdsVo;
+import com.green.ffee.reg.vo.RBoardFileVo;
 
 @Repository("pdsDao")
 public class RPdsDaoImpl  implements RPdsDao {
@@ -57,7 +58,7 @@ public class RPdsDaoImpl  implements RPdsDao {
 		sqlSession.selectList("PDS.FileList", map);
 		
 		List<RFilesVo>  filesList = (List<RFilesVo>) map.get("result");
-		
+		System.out.println("dao" + filesList);
 		return      filesList;
 	}
 
@@ -82,6 +83,7 @@ public class RPdsDaoImpl  implements RPdsDao {
 		sqlSession.delete("PDS.PdsUpFileDelete", map);
 		
 	}
+
 
 }
 
