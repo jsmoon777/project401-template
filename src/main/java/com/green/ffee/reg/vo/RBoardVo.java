@@ -14,11 +14,13 @@ public class RBoardVo {
 	private  int     step;
 	private  int     nref;
 	private	 int	 likeNum;
+	
+	
 	//Constructor
 	public RBoardVo() {}
 	
 	public RBoardVo(int idx, String menu_id, String title, String cont, String writer, String regdate, int readcount,
-			int bnum, int lvl, int step, int nref) {
+			int bnum, int lvl, int step, int nref, int likeNum) {
 		this.idx = idx;
 		this.menu_id = menu_id;
 		this.title = title;
