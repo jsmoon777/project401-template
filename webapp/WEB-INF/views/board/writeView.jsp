@@ -169,7 +169,7 @@
 	<table  class="table">
 	<tr>
 		<th for="writer">작성자</th>
-		<td colspan="2"><input type="text" id="writer" name="writer" class="chk" title="작성자를 입력하세요." value="${member.userId}" class="sns_txt"/></td>
+		<td colspan="2"><input type="text" id="writer" name="writer" class="chk" title="작성자를 입력하세요." value="${login.user_id}" class="sns_txt"/></td>
 	<tr>
 
 	<tr>
