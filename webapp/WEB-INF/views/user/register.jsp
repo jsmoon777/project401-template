@@ -641,7 +641,7 @@
             </div> 
             
              <div class="form-group text-center" style="pading-top:50px; width: 500px; height: 150px; line-height:150px; text-align:center; margin: 0 auto;"> 
-               <button type="submit" class="btn btn-primary button">가입</button>
+               <button type="submit" class="btn btn-primary button">가입</button> 
             </div>
          </form> 
       </div> 
