@@ -178,26 +178,14 @@
    </div>
    <div id="header">
       <ul class="menu">
-         <li><a href="#">회원관리</a></li>
+         <li><a href="/admin/adminUserList">회원관리</a></li>
          <li><a href="/admin/eventlist">이벤트관리</a>
-         	<ul class="tip">
-         		<li>이벤트글쓰기</li>
-         	</ul>
          </li>
          <li class="main_menu"><a href="/admin/snslist">sns 관리</a>
-         	<ul class="tip">
-         		<li>sns글쓰기</li>
-         	</ul>
          </li>
          <li class="main_menu"><a href="/admin/productList">상품관리</a>
-         	<ul class="tip">
-         		<li>상품글쓰기</li>
-         	</ul>
          </li>
          <li class="main_menu"><a href="/admin/list">공지관리</a>
-         	<ul class="tip">
-         		<li>공지글쓰기</li>
-         	</ul>
          </li>
          
       </ul>

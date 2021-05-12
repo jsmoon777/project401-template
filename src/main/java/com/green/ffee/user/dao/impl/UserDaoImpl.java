@@ -1,5 +1,7 @@
 package com.green.ffee.user.dao.impl;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -74,6 +76,17 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void deleteProfile(Map<String, Object> map) {
 		sqlSession.delete("User.deleteProfile", map);
+		
+	}
+
+	@Override
+	public List<UserVo> getUserList(HashMap<String, Object> map) {
+		return sqlSession.selectList("User.UserList", map);
+	}
+
+	@Override
+	public void adminDelete(String user_id) {
+		sqlSession.delete("User.userDelete", user_id);
 		
 	}
 

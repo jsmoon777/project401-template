@@ -20,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.ffee.event.vo.EventFileVO;
 import com.green.ffee.interceptor.Auth;
+import com.green.ffee.pds.vo.RPdsVo;
+import com.green.ffee.regmenu.vo.RMenuVo;
 import com.green.ffee.user.logindto.LoginDTO;
 import com.green.ffee.user.service.UserService;
 import com.green.ffee.user.vo.ProfileVo;
@@ -231,4 +233,6 @@ public class UserController {
 	public	String adminPost() {
 		return "user/adminPost"; 
 	}
+	
+	
 }

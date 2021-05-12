@@ -3,7 +3,6 @@ package com.green.ffee.reg.service;
 import java.util.HashMap;
 import java.util.List;
 
-import com.green.ffee.reg.vo.CallFileVo;
 import com.green.ffee.reg.vo.RBoardFileVo;
 import com.green.ffee.reg.vo.RBoardFileVo2;
 import com.green.ffee.reg.vo.RBoardFileVo3;

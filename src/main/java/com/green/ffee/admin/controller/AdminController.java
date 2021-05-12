@@ -1,5 +1,6 @@
 package com.green.ffee.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.green.ffee.event.service.EventService;
@@ -35,6 +37,8 @@ import com.green.ffee.sns.vo.FileVo;
 import com.green.ffee.sns.vo.PageMaker;
 import com.green.ffee.sns.vo.ReplyVO;
 import com.green.ffee.sns.vo.SearchCriteria;
+import com.green.ffee.user.service.UserService;
+import com.green.ffee.user.vo.UserVo;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -45,6 +49,7 @@ public class AdminController {
 	@Inject SnsService     snsservice;
 	@Inject ReplyService   replyService;
 	@Inject NBoardService  nboardService;
+	@Inject UserService  userService;
 	
 	//관리자 메인페이지
 	@Auth(role=Role.ADMIN)
@@ -488,6 +493,27 @@ public class AdminController {
             
             return "redirect:/admin/list";
          }
+         
+        @RequestMapping("/admin/adminUserList")	
+     	public ModelAndView adminUserList(
+     		@RequestParam  HashMap<String, Object> map) {
+     		List<UserVo>  userList   = userService.getUserList( map ); 
+     		System.out.println("userList" + userList);
+     		
+     		ModelAndView mv = new ModelAndView();
+     		mv.addObject("userList",   userList);
+     		
+     		mv.setViewName("admin/adminUserList");
+     		return mv;
+     	}
+     	
+     	@RequestMapping(value = "/admin/adminDelete")
+     	public String adminDelete(UserVo userVo, HttpSession session) throws Exception{
+     		
+     		userService.adminDelete(userVo.getUser_id());
+     		
+     		return "redirect:/admin/adminUserList";
+     	}
 
 }
 

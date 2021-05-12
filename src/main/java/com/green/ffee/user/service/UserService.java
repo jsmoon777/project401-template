@@ -1,6 +1,7 @@
 package com.green.ffee.user.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,5 +30,9 @@ public interface UserService {
 	UserVo getUser(String user_id);
 
 	void deleteProfile(HashMap<String, Object> map);
+
+	List<UserVo> getUserList(HashMap<String, Object> map);
+
+	void adminDelete(String user_id);
 
 }

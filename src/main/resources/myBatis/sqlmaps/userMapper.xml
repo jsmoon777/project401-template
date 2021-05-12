@@ -93,6 +93,13 @@
 		 WHERE USER_ID = #{user_id}
 	</delete>
     
+    <select id="UserList"
+  		parameterType = "hashmap"
+      resultType="com.green.ffee.user.vo.UserVo" >
+    SELECT    USER_ID, USER_PW, USER_NAME, USER_BIRTH, USER_EMAIL, USER_PHONE, GENDER
+    	, USER_OADDRESS, USER_ADDRESS, USER_DTADDRESS, REGDATE, NICKNAME, LOCA_PROV
+     FROM     USER_TBL
+  </select>
     <!-- target 에 있는 usermapper랑 다르면 다른부분이 작동하지 않는다 -->
 </mapper>
 

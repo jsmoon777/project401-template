@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.green.ffee.interceptor.Auth;
 import com.green.ffee.pds.service.RPdsService;
 import com.green.ffee.reg.service.RBoardService;
 import com.green.ffee.reg.vo.RBoardFileVo;

@@ -1,12 +1,14 @@
 package com.green.ffee.user.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.green.ffee.pds.vo.RPdsVo;
 import com.green.ffee.user.dao.UserDao;
 import com.green.ffee.user.logindto.LoginDTO;
 import com.green.ffee.user.service.UserService;
@@ -84,6 +86,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteProfile(HashMap<String, Object> map) {
 		userDao.deleteProfile(map);
+	}
+
+	@Override
+	public List<UserVo> getUserList(HashMap<String, Object> map) {
+		List<UserVo> userList = userDao.getUserList( map );
+		return userList;
+	}
+
+	@Override
+	public void adminDelete(String user_id) {
+		userDao.adminDelete(user_id);
+		
 	}
 
 

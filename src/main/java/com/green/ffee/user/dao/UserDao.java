@@ -1,5 +1,7 @@
 package com.green.ffee.user.dao;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.green.ffee.user.logindto.LoginDTO;
@@ -27,5 +29,9 @@ public interface UserDao {
 	UserVo getUser(String user_id);
 
 	void deleteProfile(Map<String, Object> map);
+
+	List<UserVo> getUserList(HashMap<String, Object> map);
+
+	void adminDelete(String user_id);
 	
 }
