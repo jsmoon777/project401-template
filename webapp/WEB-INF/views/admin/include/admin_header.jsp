@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="jquery-1.7.2.min.js"></script>
 
 
 
@@ -18,23 +19,37 @@
       margin:0;
       padding: 0;
    }
+    #admin_body{
+	  z-index:-1;
+      position:absolute;
+      width:75%;
+      margin-left:5%;
+      margin-right:5%;
+      background:#fff;
+      float: left;
+      top:150px;
+      left: 250px;
+      
+   }
    #header_all_box{
-   width: 100%;
-   height: 100vh;
-   background: #fff;
+	   width: 100%;
+	   background: #fff;
+	   z-index: 1;
    }
    #header{
+      position:fixed;
+      top:10vh;
       width: 15%;
-      height: 100vh;
+      height: 90vh;
       background: #f5f5f5;
       float: left;
    }
    #header >ul{
-   width: 100%;
-   height: 700px;
-   background: #f5f5f5;
-   top:0;
-   left: 0;
+	   width: 100%;
+	   height: 700px;
+	   background: #f5f5f5;
+	   top:0;
+	   left: 0;
    }
    
    #header >ul > li{
@@ -65,8 +80,9 @@
    /* 탑헤더 */
 
    #top_header{
+      position:fixed;
       width: 100%;
-      height: 80px;
+      height: 10vh;
       background:#383838;
       top:0;
       left: 0;
@@ -129,30 +145,49 @@
    }
    
    /* 슬라이드 다운 업 */
-	.tip > li{
-	top:0;
-	position:absolute;
-	z-index:9999;
-	width: 250px;
-	height:100px;
-	margin-left: 100%;
-	background: red;
-	padding-left:10%;
-	text-align: left;
-	line-height: 100px;
-	}
-
-</style>
-<script type="text/javascript">
-	$(".tip").hide();
-	$(".menu li")
-	.mouseenter(function(){ $(this).children(".tip").stop().slideDown(300);})
-	.mouseleave(function(){ $(this).children(".tip").stop().slideUp(300);})
 	
-	$(".menu2 li")
-	.click(function(){ $(this).children(".tip").slideToggle(300);})
-	//click or hover
-</script>
+   #submenu{
+    position:absolute;
+    width: 100%;
+    background: #fff;
+    z-index:9999;
+    top:0;
+    left:100%;
+   	display: none;
+   }
+    #submenu >ul{
+   width: 100%;
+   top:0;
+   left: 0;
+   }
+   
+   #submenu >ul > li{
+   position:relative;
+   width: 90%;
+   height: 100px;
+   padding-left:10%;
+   line-height:100px;
+   text-align:left;
+   background: #fbfafa;
+   border-bottom:1px solid #e6e3e3;
+   top:0;
+   left: 0;
+   color:#383838;
+   font-size: 14px;
+   }
+   
+   
+   
+   #submenu >ul > li >a{
+   color:#383838;
+   }
+   
+   #submenu >ul > li >a:hover{
+   font-weight:900;
+   color:#4a90e2;
+   }
+   
+</style>
 <script>
    function logout(){
       alert('관리자님 로그아웃 되었습니다.');
@@ -164,6 +199,48 @@
    }
 </script>
 
+	<!-- 메뉴슬라이드 -->
+<style>
+/* 패널디자인 */
+.siteMapBtn p {
+   position: absolute;
+   top: -20px;
+   left: 20px;
+   z-index: 1;
+   display: block;
+   font-size:80px;
+   color: #fff;
+   cursor: pointer;
+   transform: translate3d(0, 0, 0);
+   transition: transform .4s;
+}
+
+</style>
+<script src="jquery-1.7.2.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("#header").show();
+    $(".siteMapBtn").click(function(){
+       $(".siteMapBtn p").toggle();
+    $('#header').animate({width:'toggle'});
+    });
+
+    $(document).on('mouseover', '#header>ul>li>a', function() {
+    	$('#submenu').slideDown(300);
+    });
+    
+    $(document).on('mouseover', '#admin_body', function () {
+       $('#submenu').slideUp(300);
+    	
+    });
+
+    
+})
+</script>
+
+
+
 </head>
 <body>
    <c:if test="${login.user_id == 'admin' || login.user_pw == '1234'}">
@@ -173,24 +250,45 @@
          <li><a href="/admin/adminmainpage"><b>FFEE</b></a></li>
          <li><b>관리자님</b> 환영합니다.</li>
          <li><a href="/logout">로그아웃</a></li>
-         <li>홈페이지 이동</li>
+         <li><a href="/">홈페이지 이동</a></li>
       </ul>
    </div>
+   
+   <div class="siteMapBtn">
+	<p style="margin:0;">&equiv;</p>
+	<p style="display:none;margin:0;">&equiv;</p>
+   </div>
+
+   
    <div id="header">
-      <ul class="menu">
-         <li><a href="/admin/adminUserList">회원관리</a></li>
+      <ul >
+         <li><a href="">회원관리</a></li>
          <li><a href="/admin/eventlist">이벤트관리</a>
          </li>
-         <li class="main_menu"><a href="/admin/snslist">sns 관리</a>
+         <li><a href="/admin/snslist">sns 관리</a>
          </li>
-         <li class="main_menu"><a href="/admin/productList">상품관리</a>
+         <li><a href="/admin/productList">상품관리</a>
          </li>
-         <li class="main_menu"><a href="/admin/list">공지관리</a>
-         </li>
+         <li><a href="/admin/list">공지관리</a>
+      </li>
          
       </ul>
+       <div id="submenu">
+	   	<ul>
+	         <li><a href="/admin/eventform">이벤트글쓰기</a>
+	         </li>
+	         <li><a href="/admin/writeView">sns 글쓰기</a>
+	         </li>
+	         <li><a href="/admin/productform">상품올리기</a>
+	         </li>
+	         <li><a href="/admin/nwriteView">공지글쓰기</a>
+	         </li>
+	      </ul>
+   </div>
    </div>
    </div>
    </c:if>
+   
+
 </body>
 </html>

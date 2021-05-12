@@ -152,7 +152,7 @@ public class AdminController {
 		 model.addAttribute("eventendlist",eventendlist);
 		 
 		 
-		 return "event/eventendlist";
+		 return "admin/eventendlist";
 		 
 	 }
 
@@ -167,7 +167,7 @@ public class AdminController {
 		 model.addAttribute("eventlist",eventlist);
 		 
 		 
-		 return "event/eventview";
+		 return "admin/eventview";
 		 
 	 }     
 
@@ -184,7 +184,7 @@ public class AdminController {
 		
 		eventservice.write(eventvo,mpRequest);
 		System.out.println("이벤트 추가 완료");
-		return "redirect:/event/eventlist";
+		return "redirect:/admin/eventlist";
 		
 	}
 	
@@ -515,5 +515,7 @@ public class AdminController {
      		return "redirect:/admin/adminUserList";
      	}
 
+     	
+     	
 }
 
