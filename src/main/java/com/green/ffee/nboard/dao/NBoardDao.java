@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.green.ffee.nboard.vo.BoardVo;
-import com.green.ffee.nboard.vo.SearchCriteria;
 
+import com.green.ffee.sns.vo.SearchCriteria;
 public interface NBoardDao {
 
 	// 게시글 작성

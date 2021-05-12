@@ -6,8 +6,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.green.ffee.nboard.vo.BoardVo;
-import com.green.ffee.nboard.vo.Criteria;
-import com.green.ffee.nboard.vo.SearchCriteria;
+import com.green.ffee.sns.vo.SearchCriteria;
 
 public interface NBoardService { 
 
@@ -31,6 +30,8 @@ public interface NBoardService {
     
     // 첨부파일 조회
  	public List<Map<String, Object>> selectFileList(int nno) throws Exception;
+
+	public int listCount();
 
 	
 

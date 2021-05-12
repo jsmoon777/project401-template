@@ -14,8 +14,9 @@ import com.green.ffee.interceptor.Auth;
 import com.green.ffee.interceptor.Auth.Role;
 import com.green.ffee.nboard.service.NBoardService;
 import com.green.ffee.nboard.vo.BoardVo;
-import com.green.ffee.nboard.vo.PageMaker;
-import com.green.ffee.nboard.vo.SearchCriteria;
+import com.green.ffee.sns.vo.PageMaker;
+import com.green.ffee.sns.vo.SearchCriteria;
+ 
 
 
 
