@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <style type="text/css">
       
    .table {
@@ -60,18 +61,18 @@
     }
     
     
-    .listpage{
-    position: relative;
-    left:900px;
-    list-style:none;
-    padding: 6px;
-    }
     
     .td{
     float:left; 
     
     }
     
+    .listpage{
+    position: relative;
+    left:900px;
+    list-style:none;
+    padding: 6px;
+    }
    .search{
    position: relative;
    left:800px;
@@ -167,20 +168,20 @@
 						</table>
 						 
 						<div class="listpage">
-						  <th>
-						     <c:if test="${pageMaker.prev }">
-						        <td><a href="list${pageMaker.makeSearch(pageMaker.startPage -1) }">이전</a></td>
-						     </c:if>
-						     
-						     <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						       <td><a href="list${pageMaker.makeSearch(idx) }">${idx }</a></td>
-						     </c:forEach>
-						     
-						     <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-						      <td><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></td>
-						     </c:if>
-						  </th>
-						</div>
+		                    <th>
+		                       <c:if test="${pageMaker.prev }">
+		                          <td><a href="list${pageMaker.makeSearch(pageMaker.startPage -1) }">이전</a></td>
+		                       </c:if>
+		                       
+		                       <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+		                         <td><a href="list${pageMaker.makeSearch(idx) }">${idx }</a></td>
+		                       </c:forEach>
+		                       
+		                       <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+		                        <td><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></td>
+		                       </c:if>
+		                    </th>
+		                  </div>
 						 
 						   <div class="search">
 						     <select name="searchType">
