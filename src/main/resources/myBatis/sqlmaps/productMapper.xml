@@ -5,7 +5,7 @@
 <mapper namespace="productMapper">
 
 	<!-- 게시판 리스트 -->
-	<select id="selectproductlist" resultType="com.green.ffee.product.vo.ProductFileVO" parameterType="com.green.ffee.vo.SearchCriteria">
+	<select id="selectproductlist" resultType="com.green.ffee.product.vo.ProductFileVO" parameterType="com.green.ffee.sns.vo.SearchCriteria">
 	
 		<!-- SELECT  PRODUCT_ID,STORED_FILE_NAME,PRODUCT_NAME,PRODUCT_PRICE,CNT FROM (
 		
