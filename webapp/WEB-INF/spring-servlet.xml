@@ -30,7 +30,7 @@
 	<mvc:resources location="/WEB-INF/resources/js/"   mapping="/js/**" />
 	<mvc:resources location="/WEB-INF/resources/img/"  mapping="/img/**" />
 	<mvc:resources mapping="/image/**" location="file:///C:/mp/file/" />  
-	<mvc:resources mapping="/image2/**" location="file:///C:/mp/event/" />  
+	<mvc:resources mapping="/image2/**" location="file:///C:/ffee/event/" />  
 	<mvc:resources mapping="/image3/**" location="file:///C:/mp/newone/" />	
 	<mvc:resources mapping="/image4/**" location="file:///C:/mp/hotone/" />	
 	<mvc:resources mapping="/image5/**" location="file:///C:/ffee/notice/" />
