@@ -10,7 +10,7 @@
        <c:forEach var="menu" items="${ menuList }" >
         <td>
           <a href="/PDS/List?menu_id=${ menu.menu_id }">
-           ${ menu.menu_name }
+           신규${ menu.menu_name } 등록
           </a>
         </td>     
        </c:forEach>       

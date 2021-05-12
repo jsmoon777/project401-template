@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ㅇ<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
@@ -7,15 +7,52 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/commons.css" />
-<style>
-   #board tr:first-child    { text-align:right;  }
-   #board tr:nth-of-type(2) { text-align:center;  }
-   #board td:nth-of-type(1) { width:78px; text-align:center;  }
-   #board td:nth-of-type(2) { width:378px;  text-align:center; }
-   #board td:nth-of-type(3) { width:67px; text-align:center;  }
-   #board td:nth-of-type(4) { width:100px; text-align:center;  }
-   #board td:nth-of-type(5) { width:67px; text-align:center;  }
+<style> 
+   #board1 tr:first-child    { text-align:right;  }
+   #board1 tr:nth-of-type(2) { text-align:center;  }
+   #board1 td:nth-of-type(1) { width:78px; text-align:center;  }
+   #board1 td:nth-of-type(2) { width:378px;  text-align:center; }
+   #board1 td:nth-of-type(3) { width:67px; text-align:center;  }
+   #board1 td:nth-of-type(4) { width:100px; text-align:center;  }
+   #board1 td:nth-of-type(5) { width:67px; text-align:center;  }
       
+      
+   .table {
+      border-collapse: collapse;
+      border-top: 3px solid #000;
+      border-left:1px;
+      border-right:1px;
+      width:1200px;
+      text-align: center;
+      margin: 0 auto;
+    }  
+    .table th {
+      width:100px;
+      font-size:13px;
+      color: #333;
+      background: #ffffff;
+      text-align: center;
+    }
+    .table th, .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+    .table th:first-child, .table td:first-child {
+      border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+      border-right: 0;
+    }
+    .table tr td:first-child{
+      text-align: center;
+    }
+    .table caption{caption-side: bottom; display: none;}
+    
+    input[type="text"]{
+       width:100%;
+    }
+    
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
@@ -29,7 +66,7 @@
    <%@ include file="/WEB-INF/include/menus.jsp" %>
 
    <!--  게시판 -->
-   <table id="board">
+   <table id="board1" class="board">
      <caption><h1>게시판</h1></caption>
      <tr>
        <td>번호</td> 

@@ -157,8 +157,44 @@
 		line-height: 50px;
 		text-align: center;
 	}
-
-<style>
+	
+	   
+   .table {
+      border-collapse: collapse;
+      border-top: 3px solid #000;
+      border-left:1px;
+      border-right:1px;
+      width:1200px;
+      text-align: center;
+      margin: 0 auto;
+    }  
+    .table th {
+      width:100px;
+      font-size:13px;
+      color: #333;
+      background: #ffffff;
+      text-align: center;
+    }
+    .table th, .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+    .table th:first-child, .table td:first-child {
+      border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+      border-right: 0;
+    }
+    .table tr td:first-child{
+      text-align: center;
+    }
+    .table caption{caption-side: bottom; display: none;}
+    
+    input[type="text"]{
+       width:100%;
+    }
+ 
    .td1 {  width:178px; text-align:center; }
    .td2 {  width:178px; text-align:left; }
    .td3 {  width:178px; text-align:center; }
@@ -222,7 +258,7 @@
    <%@include file="/WEB-INF/include/menus.jsp" %>
   <!-- 게시물 조회 -->
   <section class="mboard">
-  <table>
+  <table class="table">
     <div id="mboardTitle"><h2>게시물 조회</h2></div>
     <tr>  
       <td class="td1">메뉴아이디</td>

@@ -169,8 +169,45 @@
   #pdsList td:nth-of-type(6) { width:88px; text-align:center;}
   
   .pdsBoard{height:300px; margin-bottom:500px; position:relative; }
-  #menulist{position:relative; margin:50px auto;}
+  #menulist{position:relative; margin: 150px; }
   #pdsTitle{text-align:center; font-size: 30px;}
+  
+     
+   .table {
+      border-collapse: collapse;
+      border-top: 3px solid #000;
+      border-left:1px;
+      border-right:1px;
+      width:1200px;
+      text-align: center;
+      margin: 0 auto;
+    }  
+    .table th {
+      width:100px;
+      font-size:13px;
+      color: #333;
+      background: #ffffff;
+      text-align: center;
+    }
+    .table th, .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+    .table th:first-child, .table td:first-child {
+      border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+      border-right: 0;
+    }
+    .table tr td:first-child{
+      text-align: center;
+    }
+    .table caption{caption-side: bottom; display: none;}
+    
+    input[type="text"]{
+       width:100%;
+    }
 </style>
   
 <script>
@@ -216,7 +253,7 @@ $(function(){
    
 	<section class="pdsBoard">   
    <!-- 자료실 pdsList -->
-   <table id="pdsList">
+   <table id="pdsList" class="table">
     <div id="pdsTitle"><h2>신  규  등  록</h2></div>>
     <tr>
      <td>번호</td> 

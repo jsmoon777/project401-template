@@ -26,6 +26,44 @@
 <link rel="stylesheet" href="/css/commons.css" />
 	
 <style>
+
+   
+   .table {
+      border-collapse: collapse;
+      border-top: 3px solid #000;
+      border-left:1px;
+      border-right:1px;
+      width:1200px;
+      text-align: center;
+      margin: 0 auto;
+    }  
+    .table th {
+      width:100px;
+      font-size:13px;
+      color: #333;
+      background: #ffffff;
+      text-align: center;
+    }
+    .table th, .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+    .table th:first-child, .table td:first-child {
+      border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+      border-right: 0;
+    }
+    .table tr td:first-child{
+      text-align: center;
+    }
+    .table caption{caption-side: bottom; display: none;}
+    
+    input[type="text"]{
+       width:100%;
+    }
+ 
 	.hvr-underline-from-left:before {
 	  content: "";
 	  position: absolute;
@@ -163,7 +201,7 @@
   /* #writeTable  { text-align: center;} */
   
   .pdsWrite{height:300px; margin-bottom:400px; position:relative; }
-  #menulist{position:relative; margin:50px auto;}
+  #menulist{position:relative; margin: 150px;}
   #pdsTitle2{text-align:center; margin-bottom:30px; font-size: 30px;}
   #td1, td2, td3, td4{width:100px;}
 </style>
@@ -227,7 +265,7 @@
    <input type="hidden" name="nowpage"     value="${ map.nowpage }" />     
    <input type="hidden" name="pagegrpnum"  value="${ map.pagegrpnum }" />     
 
-   <table id="writeTable">
+   <table id="writeTable" class="table">
     <div id="pdsTitle2" ><h2>등   록</h2></div>
     <tr> 
       <td id="td1">작성자</td>

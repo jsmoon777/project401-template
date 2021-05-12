@@ -18,6 +18,44 @@
    
    [type=text] { width : 570px; }
    textarea    { width : 570px; height:400px;}
+   
+      
+   .table {
+      border-collapse: collapse;
+      border-top: 3px solid #000;
+      border-left:1px;
+      border-right:1px;
+      width:1200px;
+      text-align: center;
+      margin: 0 auto;
+    }  
+    .table th {
+      width:100px;
+      font-size:13px;
+      color: #333;
+      background: #ffffff;
+      text-align: center;
+    }
+    .table th, .table td {
+      padding: 10px;
+      height:50px;
+      border: 1px solid #f0f0f0;
+    }
+    .table th:first-child, .table td:first-child {
+      border-left: 0;
+    }
+    .table th:last-child, .table td:last-child {
+      border-right: 0;
+    }
+    .table tr td:first-child{
+      text-align: center;
+    }
+    .table caption{caption-side: bottom; display: none;}
+    
+    input[type="text"]{
+       width:100%;
+    }
+ 
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
@@ -46,7 +84,7 @@
   <form action="/MBoard/Update" method="POST"> 
   <input type="hidden" name="menu_id" value="${ menu_id }" />
   <input type="hidden" name="idx"     value="${ board.idx }" />
-  <table>
+  <table class="table">
     <caption><h2>게시물 수정</h2></caption>
     <tr>  
       <td class="td1">메뉴아이디</td>
