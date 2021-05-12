@@ -395,7 +395,7 @@
 				<!-- login.을 쓰는 이유는 session에서 로그인 정보를 들고 오기 때문 -->
 				<div class="form-group"> 
 					<input type="text" id="user_oaddress" name="user_oaddress" value="${login.user_oaddress}">
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="button" class="button" style="pading-top:50px; width: 150px; height: 40px; line-height:40px;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 					<input type="text" id="user_address" name="user_address" value="${login.user_address}"><br>
 					<input type="text" id="user_dtaddress" name="user_dtaddress" value="${login.user_dtaddress}">
 					<input type="text" id="user_extraAddress" placeholder="참고항목">

@@ -31,13 +31,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession();
         ModelMap modelMap = modelAndView.getModelMap();
         Object userVO =  modelMap.get("user");
-         
+        UserVo uservo = (UserVo) userVO;
+         String userid = uservo.getUser_id();
         if (userVO != null) {
             session.setAttribute(LOGIN, userVO);
             //response.sendRedirect("/");
             // 로그인 하기전 가려고 했던 장소로 이동
+            if(userid.equals("admin")) {
+            	response.sendRedirect("/admin/adminmainpage");
+            }else {
             Object destination = session.getAttribute("destination");
             response.sendRedirect(destination != null ? (String) destination : "/");
+            }
         }
 
     }

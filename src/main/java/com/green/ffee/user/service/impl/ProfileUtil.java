@@ -72,7 +72,6 @@ public class ProfileUtil {
 				
 				// 파일 저장 : C:\\ffee\\user\\
 				File file = new File(filePath + sFileName);	
-				System.out.println("file : " + file);
 				try {
 					multipartFile.transferTo(file);   // 실제파일 저장
 					System.out.println("multipartFile : " + multipartFile);
