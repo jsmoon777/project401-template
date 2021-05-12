@@ -17,7 +17,7 @@ import com.green.ffee.sns.vo.BoardVO;
 
 @Component("eventfile")
 public class EventFile {
-	private static final String filePath = "C:\\mp\\event\\"; // 파일이 저장될 위치
+	private static final String filePath = "C:\\ffee\\event\\"; // 파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(EventVO eventvo, 
 			MultipartHttpServletRequest mpRequest) throws Exception{

@@ -22,7 +22,7 @@ public class EventVO {
 
 	public EventVO(int eno, String title, Date eventday, Date eventday2, String content, String writer, Date regdate,
 			String hashtag, String slide_title) {
-		super();
+
 		this.eno = eno;
 		this.title = title;
 		this.eventday = eventday;
