@@ -14,7 +14,7 @@ import com.green.ffee.event.vo.EventFileVO;
 import com.green.ffee.event.vo.EventVO;
 import com.green.ffee.sns.vo.FileVo;
 
-@Repository("dao")
+@Repository("eventdao")
 public class EventDaoImpl implements EventDAO {
 
 	@Autowired
@@ -29,6 +29,7 @@ public class EventDaoImpl implements EventDAO {
 	public void insertFile(Map<String, Object> map) {
 		System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzz ::::" + map);
 		sqlsession.insert("eventMapper.insertFile", map);
+		System.out.println("db 저장하기" + map);
 	
 	}
 
@@ -63,7 +64,7 @@ public class EventDaoImpl implements EventDAO {
 	@Override
 	public List<EventFileVO> selectFileList(int eno) {
 		List<EventFileVO> filelist =  sqlsession.selectList("eventMapper.selectFileList", eno);
-		System.out.println("selectFileList() fileList:" + filelist);
+		System.out.println("파일 리스트 읽어오기selectFileList() fileList:" + filelist);
 		return filelist;
 	}
 

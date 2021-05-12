@@ -20,34 +20,40 @@ import com.green.ffee.event.vo.EventFileVO;
 import com.green.ffee.event.vo.EventVO;
 import com.green.ffee.member.service.MemberService;
 import com.green.ffee.member.vo.MemberVO;
+import com.green.ffee.product.vo.ProductVO;
 
 @Controller
 @RequestMapping("/event/*")
 public class EventController {
 
 	
-	 @Inject EventService service;
+	 @Inject EventService eventservice;
 	 
 	 // 이벤트 진행중인 리스트 이동
 	 @RequestMapping(value = "/eventlist", method = RequestMethod.GET)
 	 public String eventlist(EventVO vo, EventFileVO eventvo,Model model) throws Exception {
 		
-		 List<EventVO> eventlist = service.eventlist(vo);
-		 model.addAttribute("eventlist",eventlist);
+		
+		  List<EventVO> eventlist = eventservice.eventlist(vo);
+		  model.addAttribute("eventlist",eventlist);
 		 
-		 List<EventFileVO>  eventfile = service.selectEventList(eventvo);
+		 
+		 List<EventFileVO>  eventfile = eventservice.selectEventList(eventvo);
 		 model.addAttribute("eventfile",eventfile);
+		 
+		 System.out.println("진행중인이벤트읽음");
 		 
 		 return "event/eventlist";
 		 
 	 }
 
+	 
 	 // 이벤트 종료된 리스트 이동
 	 @RequestMapping(value = "/eventendlist", method = RequestMethod.GET)
 	 public String eventendlist(EventVO vo, EventFileVO eventvo,Model model) throws Exception {
 		 
 		 
-		 List<EventFileVO> eventendlist = service.selectEventEndList(eventvo);
+		 List<EventFileVO> eventendlist = eventservice.selectEventEndList(eventvo);
 		 model.addAttribute("eventendlist",eventendlist);
 		 
 		 
@@ -60,9 +66,9 @@ public class EventController {
 	 @RequestMapping(value = "/eventview", method = RequestMethod.GET)
 	 public String eventview(EventVO eventvo,EventFileVO filevo,Model model) throws Exception {
 		
-		 model.addAttribute("read",service.read(eventvo.getEno()));
+		 model.addAttribute("read",eventservice.read(eventvo.getEno()));
 		 
-		 List<EventFileVO> eventlist = service.selectFileList(filevo.getEno());
+		 List<EventFileVO> eventlist = eventservice.selectFileList(filevo.getEno());
 		 model.addAttribute("eventlist",eventlist);
 		 
 		 
@@ -74,17 +80,16 @@ public class EventController {
 	 // 이벤트폼 이동
 	@RequestMapping(value = "/eventform", method = RequestMethod.GET)
 	public void eventform() throws Exception {
-
+		
 	} 
-
+		
 	// 이벤트폼 이동
 	@RequestMapping(value = "/eventwrite", method = RequestMethod.POST)
 	public String write(EventVO eventvo,MultipartHttpServletRequest mpRequest) throws Exception {
 		
-		service.write(eventvo,mpRequest);
+		eventservice.write(eventvo,mpRequest);
+		System.out.println("이벤트 추가 완료");
 		return "redirect:/event/eventlist";
 		
 	}
-
-
 }

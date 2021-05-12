@@ -12,6 +12,7 @@ public interface EventDAO {
 	
 	//이벤트 작성
 	void write(EventVO eventvo, MultipartHttpServletRequest mpRequest);
+	
 	//이벤트 작성 및 파일 업로드
 	void insertFile(Map<String, Object> map);
 	
