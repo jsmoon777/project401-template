@@ -172,7 +172,7 @@ $(function(){
 											  <a href="/PDS/View?idx=${ BoardFileList.idx }&menu_id=${menu_id}">
 												<img src="/image7/${ BoardFileList.sfilename}" width="150" height="150" />
 												  <p >${ BoardFileList.title }</p>
-													</a>
+													</a> 
 												</div>
 										</c:forEach>
 									</div>
