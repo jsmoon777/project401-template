@@ -62,28 +62,8 @@
 	
 	<!-- snslist 조회 -->
 	<select id="selectSnsList" resultType="com.green.ffee.sns.vo.FileVo" parameterType="com.green.ffee.sns.vo.SearchCriteria">
-		<!-- 다중업로드 중복제거 --> 
-		<!--  SELECT   
 		
-			STORED_FILE_NAME, BNO FROM (
-		    SELECT 
-		        BNO,
-		        ORG_FILE_NAME,
-		        STORED_FILE_NAME,
-		        ROW_NUMBER() OVER ( PARTITION BY BNO ORDER BY FILE_NO ) CNT
-		        FROM MP_FILE
-			)
-			
-		WHERE 
-			CNT=1
-		ORDER BY 
-			BNO DESC  -->
-		
-		
-		
-		
-		<!--  리스트 수정  -->
-		select * from (
+	select * from (
     SELECT  BNO, 
 		        TITLE, 
 		        CONTENT,
@@ -115,12 +95,14 @@
 	
 	<!-- snslist 페이징 넘버링 -->
 	<select id="snslistCount" parameterType="com.green.ffee.sns.vo.SearchCriteria" resultType="int">
+	
 		SELECT COUNT(mp.BNO)      
 		FROM MP_FILE mp,mp_board mb      
 		WHERE mp.BNO = mb.BNO 
 		AND 1=1
 		<include refid="snslistsearch"></include>	
 	    AND mb.BNO > 0
+	    
 	</select>
 	
 	<!-- snslist 검색어창 -->
