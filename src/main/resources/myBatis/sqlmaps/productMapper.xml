@@ -84,6 +84,7 @@
         )TT
         WHERE TT.RNUM BETWEEN #{rowStart} AND #{rowEnd}
 	</select>
+	
 	<!-- snslist 페이징 넘버링 -->
 	<select id="listCount" parameterType="com.green.ffee.vo.SearchCriteria" resultType="int">
 		SELECT COUNT(P.PRODUCT_ID)      
@@ -188,4 +189,10 @@
 		 ORDER BY PRODUCT_ID DESC
     </select>
 
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM PRODUCT_FILE
+		 WHERE PRODUCT_ID = #{product_id}
+	</delete>
 </mapper>
