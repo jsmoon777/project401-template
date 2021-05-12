@@ -86,12 +86,6 @@ public class NBoardServiceImpl implements NBoardService{
 	}
 
 
-		@Override
-		public int listCount() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
 	
 	
 	

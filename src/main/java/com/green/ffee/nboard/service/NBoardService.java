@@ -15,7 +15,7 @@ public interface NBoardService {
 	public List<BoardVo> list(SearchCriteria scri) throws Exception;
 
 	//게시글 총 개수
-	public int listCount();
+	public int listCount(SearchCriteria scri);
 	
 	// 게시글 작성
 	public void write(BoardVo boardVo, MultipartHttpServletRequest mpRequest) throws Exception;
@@ -32,7 +32,7 @@ public interface NBoardService {
     // 첨부파일 조회
  	public List<Map<String, Object>> selectFileList(int nno) throws Exception;
 
-	public int listCount(SearchCriteria scri);
+	
 
 
 }
