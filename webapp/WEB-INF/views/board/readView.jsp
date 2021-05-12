@@ -248,7 +248,8 @@
 		
 		/*글내용*/
 		#sns_container{
-			position: relative;
+			position: absolute;
+			right:0;
 			width: 400px;
 			height: 100vh;
 			float: left;
@@ -470,7 +471,13 @@
 			<div id="readview_con">
 			<!-- 추천하기 -->
 				<input type="hidden" id="bno" name="bno" value="${read.bno}" />
-				
+			
+			<!-- 장바구니 즐켜찾기 -->
+			 <form name="cart" method="post" action="cart/insert">
+                   <input type="hidden" name="productId" value="${read.bno}">
+                   <input type="submit" value="★">
+               </form>
+
 			<!-- 메인페널 -->
 			    <div id="button"></div>
 				<span id="user_id">${read.writer}</span><br><!-- 작성자 -->
@@ -528,7 +535,7 @@
 				  <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 				  <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 			<div id="reply_form">
-				<input type="text" class="reply_id_form" value="${member.userId}" id="writer" name="writer" style="border:0px; font-size:13px;"/>
+				<input type="text" class="reply_id_form" value="${login.user_id}" id="writer" name="writer" style="border:0px; font-size:13px;"/>
 				<input type="text" class="reply_title_form" placeholder="내용" id="content" name="content" style="border:0px; font-size:13px;"/>
 				<button type="button" id="reply_btn" class="replyWriteBtn" >게시</button>
 			</div>

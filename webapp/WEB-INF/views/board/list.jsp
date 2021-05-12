@@ -13,7 +13,7 @@
 <meta name="Keywords" content="FFEE" />
 <meta name="Description" content="FFEE"/>
 <title>sns 자유계시판</title>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 
 #sns_div{
@@ -125,30 +125,38 @@ font-size: 50px;
 	.button:hover {
 		letter-spacing: 5px;
 	}
-	</style>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#btnRecommend").on("click", function(){
-			    if(confirm("해당 글을 추천하시겠습니까?")){
-			        alert("해당 글을 추천하였습니다.")
-			        document.form1.action="/board/recommend";
-			        document.form1.submit();
-			        } 
-			})
-		})
+	.search{
+		width:1000px;
+		height: 50px;
+		margin:0 auto;
+	}
+	.paging{
+	width: 1200px;
+		height: 50px;
+		margin:0 auto;
+		background: pink;
+		}
+	.paging ul li{
+	float: left;
+	list-style: none;
+	width:50px;
+	}
 	
-	</script>
+	</style>
+	 <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          	alert('클릭');
+        	self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
 	</head>
 	
 	<body>
 	<div style="margin-top:200px; width: 100%;">
-	<!-- 글쓰기 목록 구현 내비 -->			
-	<div>
-		<%@include file="nav.jsp" %>
-	</div>
-			
-			
 	<section id="container">
+		
 		<form role="form" method="get">
 			<table  class="table">
 				<tr>
@@ -156,8 +164,6 @@ font-size: 50px;
 				<th>제목</th>
 				<th>작성자</th>
 				<th>등록일</th>
-				<th>추천</th>
-			
 				</tr>
 				
 				<c:forEach items="${list}" var = "list">
@@ -171,22 +177,33 @@ font-size: 50px;
 						</td>
 						<td><c:out value="${list.writer}" /></td>
 						<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
-						<td><button type = "button" id = "btnRecommend">추천하기</button></td>
-						
 					</tr>
 				</c:forEach>
-				
 			</table>
-			
-			
-			
-			
-			
-			
+			<style>
+				.search{
+					width: 1200px;
+					margin: 0 auto;
+				}
+				.search select {
+				width: 100px;
+				}
+				#keywordInput{
+				width: 800px;
+				}
+				#searchBtn{
+				width: 200px;
+				}
+				.paging{
+					width:500px;
+					margin: 0 auto;
+				}
+				
+			</style>
 			<!-- 검색 -->
-			 <div class="search">
+			  <div class="search">
 			    <select name="searchType">
-			      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+			      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택</option>
 			      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 			      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 			      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
@@ -195,18 +212,13 @@ font-size: 50px;
 			
 			    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
 			
-			    <button id="searchBtn" type="button">검색</button>
-			    <script>
-			      $(function(){
-			        $('#searchBtn').click(function() {
-			          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-			        });
-			      });   
-			    </script>
+			    <button id="searchBtn" type="button" class="button">검색</button>
+			   
 			  </div>
-			  
+		 
+		  
 		    <!-- 페이징 -->
-			<div>
+			<div class="paging">
 			  <ul>
 			    <c:if test="${pageMaker.prev}">
 			    	<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
@@ -223,7 +235,7 @@ font-size: 50px;
 			</div>
 			
 		</form>
-	</section>
+		</section>
 		</div>
 	</body>
 </html>
