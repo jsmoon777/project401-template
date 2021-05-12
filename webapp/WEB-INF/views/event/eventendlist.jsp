@@ -310,7 +310,9 @@
 						<div class="event_img">
 							<p class="endevent">이벤트가 종료되었습니다.</p>
 							<div class="black"></div>
-							<img src="/image2/${eventendlist.stored_file_name}"/>
+							<%-- <img src="/image2/${eventendlist.stored_file_name}"/>
+							 --%>
+							 <img src="/image2/13d680236cc541fd9e8546b7d75b797e.png"/>
 						</div>
 						<div class="event_text_box">
 							<h2 class="event_h2">${eventendlist.title}</h2>

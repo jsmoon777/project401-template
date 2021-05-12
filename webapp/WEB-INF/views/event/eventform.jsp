@@ -177,7 +177,7 @@
    <table  class="table">
    <tr>
       <th for="writer">작성자</th>
-      <td colspan="2"><input type="text" id="writer" name="writer" class="chk" title="관리자" value="관리자" class="sns_txt"/></td>
+      <td colspan="2"><input type="text" id="writer" name="writer" class="chk" title="관리자" value="${login.user_id}" class="sns_txt"/></td>
    <tr>
 
    <tr>
