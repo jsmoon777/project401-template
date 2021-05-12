@@ -36,7 +36,7 @@ public interface SnsDao {
 	public List<FileVo> selectFileList(int bno) throws Exception;
 
 	// snslist 이미지 조회
-	public List<FileVo> selectSnsList(FileVo filevo);
+	public List<FileVo> selectSnsList(SearchCriteria scri);
 
 	// 추천버튼 
 	public void recommend(int bno);
@@ -46,6 +46,10 @@ public interface SnsDao {
 
 	//조회수구하기
 	public void hit(int bno);
+
+	//snslist카운트
+	public int snslistCount(SearchCriteria scri);
+
 
 	
 }

@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.green.ffee.event.vo.EventVO;
-import com.green.ffee.sns.vo.BoardVO;
 
 @Component("eventfile")
 public class EventFile {

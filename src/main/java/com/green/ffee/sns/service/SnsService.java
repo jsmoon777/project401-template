@@ -19,6 +19,12 @@ public interface SnsService {
 	//게시물 총 갯수 
 	public int listCount(SearchCriteria scri) throws Exception;
 	
+	// snslist 조회
+	public List<FileVo> selectSnsList(SearchCriteria scri);
+
+	//snslist게시물 총 갯수 
+	public int snslistCount(SearchCriteria scri) throws Exception;
+	
 	// 게시글 작성
 	public void write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception;
 
@@ -34,9 +40,7 @@ public interface SnsService {
 	// 첨부파일 조회
 	public List<FileVo> selectFileList(int bno) throws Exception;
 
-	// snslist 조회
-	public List<FileVo> selectSnsList(FileVo filevo);
-
+	
 	// 추천 체크
 	public void recommend(int bno);
 
@@ -45,6 +49,8 @@ public interface SnsService {
 
 	// 조회수
 	public void hit(int bno);
+
+	
 
 
 

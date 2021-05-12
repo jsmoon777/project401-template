@@ -2,45 +2,33 @@ package com.green.ffee.sns.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.green.ffee.member.vo.MemberVO;
+import com.green.ffee.interceptor.Auth;
 import com.green.ffee.sns.service.ReplyService;
 import com.green.ffee.sns.service.SnsService;
 import com.green.ffee.sns.vo.BoardVO;
-import com.green.ffee.sns.vo.Criteria;
 import com.green.ffee.sns.vo.FileVo;
-import com.green.ffee.sns.vo.LiketoVO;
 import com.green.ffee.sns.vo.PageMaker;
 import com.green.ffee.sns.vo.ReplyVO;
 import com.green.ffee.sns.vo.SearchCriteria;
-import com.green.ffee.sns.vo.boardLikeVO;
 
 
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
 
+	//private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@Autowired
 	private  SnsService  service;
@@ -51,18 +39,18 @@ public class BoardController {
 	// 게시판 목록 조회
 	@RequestMapping(value = "/snslist", method = RequestMethod.GET)
 		public String snslist(FileVo filevo, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
+		//logger.info("snslist");
 		
-		model.addAttribute("scri", scri);
+		
+		model.addAttribute("snsfile", service.selectSnsList(scri));
 		model.addAttribute("list", service.list(scri));
 		
-		List<FileVo> snsfile = service.selectSnsList(filevo);
-		model.addAttribute("snsfile", snsfile);
-		
+		//페이징 및 검색
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(service.listCount(scri));
-		model.addAttribute("pageMaker", pageMaker);
+		pageMaker.setTotalCount(service.snslistCount(scri));
 		
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "board/snslist";
 		
@@ -71,19 +59,22 @@ public class BoardController {
 	// 게시판 목록 조회
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-			
-			model.addAttribute("list", service.list(scri));
-			
-			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(service.listCount(scri));
-			model.addAttribute("pageMaker", pageMaker);
-			
-			return "board/list";
-			
-		}
+		
+		model.addAttribute("list", service.list(scri));
+		
+		//페이징 및 검색
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.listCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "board/list";
+		
+	}
 	
 	// 게시판 글 작성 화면
+	@Auth
 	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
 	public void writeView() throws Exception{
 	}
@@ -96,6 +87,7 @@ public class BoardController {
 	// 게시판 글 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
+		//logger.info("write");
 		service.write(boardVO, mpRequest);
 		
 		return "redirect:/board/snslist";
@@ -104,6 +96,7 @@ public class BoardController {
 	// 게시판 조회
 	@RequestMapping(value = "/readView", method = RequestMethod.GET)
 	public String read(BoardVO boardVO,FileVo filevo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
+		//logger.info("read");
 		
 		model.addAttribute("read", service.read(boardVO.getBno()));
 		model.addAttribute("scri", scri);
@@ -111,10 +104,11 @@ public class BoardController {
 		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
 		model.addAttribute("replyList",replyList);
 		
+		//List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
 		List<FileVo> fileList = service.selectFileList(boardVO.getBno());
 		model.addAttribute("file", fileList);
 		
-		List<FileVo> snsfile = service.selectSnsList(filevo);
+		List<FileVo> snsfile = service.selectSnsList(scri);
 		model.addAttribute("snsfile", snsfile);
 		
 		//조회수
@@ -150,6 +144,7 @@ public class BoardController {
 	// 게시판 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(BoardVO boardVO) throws Exception{
+		//logger.info("delete");
 		
 		service.delete(boardVO.getBno());
 		
@@ -161,6 +156,7 @@ public class BoardController {
 	//댓글 작성
 		@RequestMapping(value="/replyWrite", method = RequestMethod.POST)
 		public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+			//logger.info("reply Write");
 			
 			replyService.writeReply(vo);
 			
@@ -176,6 +172,7 @@ public class BoardController {
 		//댓글 수정 GET
 		@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
 		public String replyUpdateView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
+			//logger.info("reply Write");
 			
 			model.addAttribute("replyUpdate", replyService.selectReply(vo.getRno()));
 			model.addAttribute("scri", scri);
@@ -186,6 +183,7 @@ public class BoardController {
 		//댓글 수정 POST
 		@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
 		public String replyUpdate(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+			//logger.info("reply Write");
 			
 			replyService.updateReply(vo);
 			
@@ -213,6 +211,7 @@ public class BoardController {
 		//댓글 삭제
 		@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
 		public String replyDelete(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+			//logger.info("reply Write");
 			
 			replyService.deleteReply(vo);
 			

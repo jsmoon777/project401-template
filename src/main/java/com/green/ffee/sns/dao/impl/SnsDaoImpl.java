@@ -21,6 +21,12 @@ public class SnsDaoImpl implements SnsDao {
 	@Autowired
 	private  SqlSession sqlSession;
 
+	//snslist 이미지 조회
+	@Override
+	public List<FileVo> selectSnsList(SearchCriteria scri) {
+		return sqlSession.selectList("boardMapper.selectSnsList",scri);
+	}
+
 	// 게시물 목록 조회
 	@Override
 	public List<BoardVO> list(SearchCriteria scri) throws Exception {
@@ -76,14 +82,7 @@ public class SnsDaoImpl implements SnsDao {
 	}
 
 	
-	//snslist 이미지 조회
-	@Override
-	public List<FileVo> selectSnsList(FileVo filevo) {
-		List<FileVo> fileList = sqlSession.selectList("boardMapper.selectSnsList",filevo);
-		System.out.println("fileList ====>" + fileList);
-		return fileList; 
-	}
-
+	
 	//추천버튼
 	@Override
 	public void recommend(int bno) {
@@ -101,6 +100,12 @@ public class SnsDaoImpl implements SnsDao {
 	@Override
 	public void hit(int bno) {
 		sqlSession.update("boardMapper.hit",bno);
+	}
+
+	//snslist게시물 총 갯수
+	@Override
+	public int snslistCount(SearchCriteria scri) {
+		return sqlSession.selectOne("boardMapper.snslistCount",scri);
 	}
 
 	

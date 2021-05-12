@@ -90,8 +90,8 @@ public class SnsServiceImpl implements SnsService {
 
 	//snslsit 이미지 조회
 	@Override
-	public List<FileVo> selectSnsList(FileVo filevo) {
-		return dao.selectSnsList(filevo);
+	public List<FileVo> selectSnsList(SearchCriteria scri) {
+		return dao.selectSnsList(scri);
 	}
 
 	//추천하기
@@ -112,7 +112,11 @@ public class SnsServiceImpl implements SnsService {
 		dao.hit(bno);
 	}
 
-		
+	//snslist 총 게시글
+	@Override
+	public int snslistCount(SearchCriteria scri) {
+		return dao.snslistCount(scri);
+	}
 	
 }
 
