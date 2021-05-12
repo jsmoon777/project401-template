@@ -7,26 +7,29 @@
 <meta charset="UTF-8">
 <title>유저 리스트</title>
 <style type="text/css">
-     #admin_body{
+     
+	  #admin_body{
+	  z-index:1;
       position:absolute;
-      width:25%;
+      width:75%;
       margin-left:5%;
       margin-right:5%;
-      height:800px;
       background:#fff;
       float: left;
       top:150px;
       left: 250px;
+      
    }
    #admin_body>h2{
-   margin-bottom:50px;
-   }   
+      margin-bottom:50px;
+   }
+   
    .table {
       border-collapse: collapse;
       border-top: 3px solid #000;
       border-left:1px;
       border-right:1px;
-      width:1000px;
+      width:100%;
       text-align: center;
       margin: 0 auto;
     }  
