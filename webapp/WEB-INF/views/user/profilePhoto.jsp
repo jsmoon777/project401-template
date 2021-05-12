@@ -12,6 +12,10 @@
   	width: 100%;
     
     }
+    #image_container2 >img{
+  	width: 100%;
+    
+    }
    
     #image_container{
    width: 200px;
@@ -72,7 +76,7 @@
       border-top: 3px solid #000;
       border-left:1px;
       border-right:1px;
-      width:1200px;
+      width:1000px;
       text-align: center;
       margin: 0 auto;
     }  
@@ -188,12 +192,13 @@
 </head>
 <body>
 <div id="main">
-   <table>
+  <form action="/uploadProfile" method="post" enctype="multipart/form-data">
+   <table class="table">
       <tr>
       	<th>프로필 사진</th>
          <td>
          
-         <div id="image_container" class="form-group">
+         <div id="image_container" class="form-group" style="overflow:hidden">
          <div>기존 프로필 </div>  
          <c:choose>
 				<c:when test="${profile.sfilename == null}">
@@ -204,26 +209,31 @@
 				</c:otherwise>
 			</c:choose>
           </div>
-         <div id="image_container2" >
+          </td>
+          <td>
+         <br>
+         <div id="image_container2" class="form-group" style="overflow:hidden">
          <div>업로드 프로필</div>
          	<img src="/img/no_profile_img.gif" id="no_image" width="100%">
          </div>
+              <div style="width:500px;"> 
+              <input type="file" name="upfile" id="upfile" onchange="setProfile(event);" multiple>
+              </div>
          </td>
        </tr>
 		<tr>
         </tr>
-   </table> 
-   	<div style="width: 400px; height: 54px;  margin: 0 auto;">
-          <form action="/uploadProfile" method="post" enctype="multipart/form-data">
+   </table>
+   <br> 
+   <br> 
+   <br> 
+   	<div style="width: 200px; height: 54px;  margin: 0 auto;">
               <input type="hidden" name="user_id" value="${login.user_id}"  >
-              <div style="float: left;"> 
-              <input type="file" name="upfile" id="upfile" onchange="setProfile(event);" multiple>
-              </div>
-              <div style="float: right;">
+              <div>
               <input type="submit" class="button" value="업로드">
               </div> 
-          </form>
       </div>
+     </form>
   </div>
   <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

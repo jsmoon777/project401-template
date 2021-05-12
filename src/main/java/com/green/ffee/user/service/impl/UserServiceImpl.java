@@ -60,13 +60,15 @@ public class UserServiceImpl implements UserService {
 	public void insertProfile(HashMap<String, Object> map,
 			HttpServletRequest request) {
 
-		//System.out.println("service1 map:" + map);
+		System.out.println("service1 map:" + map);
+		System.out.println("service1 request:" + request);
+		
 		
 		// db 와 관련없는 로직처리 - 비지니스 로직
 		// 1. request 처리  - 넘어온 파일을 처리
-	    ProfileUtil.save(map, request);
+	    ProfileUtil.profilesave(map, request);
 		
-	    //	System.out.println("service2 map:" + map);
+	    	System.out.println("service2 map:" + map);
 		
 		// 2. 넘어온 정보 db 저장
 		userDao.insertProfile(map); 

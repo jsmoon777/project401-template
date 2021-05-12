@@ -67,7 +67,7 @@
       border-top: 3px solid #000;
       border-left:1px;
       border-right:1px;
-      width:1200px;
+      width:1000px;
       text-align: center;
       margin: 0 auto;
     }  
@@ -112,7 +112,7 @@
     }
     /* 타이틀 */
     .sns_title_box{
-       width:1200px;
+       width:1000px;
        height: 60px;
        background:#fff;
        margin: 0 auto;
@@ -179,7 +179,7 @@
 		<tr>
 			<th>프로필사진</th>
 	      <td>
-	      <div id="image_container" class="form-group" >
+	      <div id="image_container" class="form-group" style="overflow:hidden">
 	      <c:choose>
 				<c:when test="${profile.sfilename == null}">
 					<img src="/img/no_profile_img.gif" width="100%">
@@ -204,12 +204,14 @@
 		
 	      <td >
 		    <form action="/profilePhoto" method="post" enctype="multipart/form-data">
-		        <input type="submit" class="button" value="프로필사진 변경">    
+		        <input type="submit" class="button" style="pading-top:50px; width: 150px; height: 40px; line-height:40px;" value="프로필사진 변경">    
 		    </form>      
 	      </td>
 	      
 	    </tr> 
 </table>
+<br>
+<br>
 <br>
 	<div style="width: 400px; height: 54px;  margin: 0 auto;">
 		<div style="float: left;"> 

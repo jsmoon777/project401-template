@@ -93,6 +93,7 @@
 		 WHERE USER_ID = #{user_id}
 	</delete>
     
+    <!-- target 에 있는 usermapper랑 다르면 다른부분이 작동하지 않는다 -->
 </mapper>
 
 

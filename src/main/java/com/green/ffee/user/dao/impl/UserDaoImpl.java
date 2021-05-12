@@ -1,6 +1,5 @@
 package com.green.ffee.user.dao.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;

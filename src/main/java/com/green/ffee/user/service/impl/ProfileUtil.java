@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class ProfileUtil {
 
-	public static  void   save(
+	public static  void   profilesave(
 			HashMap<String, Object> map,
 			HttpServletRequest request) {
 		
@@ -71,9 +71,11 @@ public class ProfileUtil {
 				map.put("sfilename", sFileName);
 				
 				// 파일 저장 : C:\\ffee\\user\\
-				File file = new File(filePath + sFileName);				
+				File file = new File(filePath + sFileName);	
+				System.out.println("file : " + file);
 				try {
 					multipartFile.transferTo(file);   // 실제파일 저장
+					System.out.println("multipartFile : " + multipartFile);
 				} catch( IllegalStateException e ) {
 					e.printStackTrace();
 				} catch( IOException e ) {

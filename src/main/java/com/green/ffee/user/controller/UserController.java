@@ -152,7 +152,6 @@ public class UserController {
 	public String userDelete(UserVo userVo, HttpSession session) throws Exception{
 		userVo = (UserVo) session.getAttribute("login");
 		
-		System.out.println("delete-------------" + userVo);
 		userService.userDelete(userVo.getUser_id());
 		
 		return "user/userdelete";
@@ -170,6 +169,7 @@ public class UserController {
 		String user_id = userVo.getUser_id();
 		userVo = userService.getUser(user_id);
 		profileVo = userService.readProfile(user_id);
+		System.out.println("profileVo : " + profileVo);
 		
 		model.addAttribute("profile",profileVo);
 		model.addAttribute("userVo", userVo);
