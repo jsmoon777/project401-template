@@ -5,41 +5,78 @@
 <mapper namespace="eventMapper">
 
 
-	<!-- eventlist -->
+	<!-- 진행중인 eventlist -->
 	<select id="selectEventList" resultType="com.green.ffee.event.vo.EventFileVO">
-	<!-- 	
-		SELECT 
-			STORED_FILE_NAME,ENO 
-		FROM 
-			MP_EVENT_FILE
-		ORDER BY 
-			REGDATE DESC -->
 			
-		SELECT  STORED_FILE_NAME,TITLE,EVENTDAY,ENO FROM (
+		SELECT  STORED_FILE_NAME,TITLE,CONTENT,EVENTDAY,EVENTDAY2,ENO,EVENTDAY2 - TRUNC(SYSDATE) DDAY FROM (
 		
 		    SELECT 
-                E.TITLE,
-                E.EVENTDAY,
-		        MP.ENO,
-		        MP.ORG_FILE_NAME,
-		        MP.STORED_FILE_NAME,
-		        ROW_NUMBER() OVER ( PARTITION BY MP.ENO ORDER BY MP.FILE_NO ) CNT
-		        FROM MP_EVENT_FILE MP,MP_EVENT E
-                WHERE MP.ENO =E.ENO
+	                E.TITLE,
+	                E.CONTENT,
+                    E.EVENTDAY,
+	                E.EVENTDAY2,
+			        MP.ENO,
+			        MP.ORG_FILE_NAME,
+			        MP.STORED_FILE_NAME,
+			        ROW_NUMBER() OVER ( PARTITION BY MP.ENO ORDER BY MP.FILE_NO ) CNT
+	        FROM 	
+	        		EVENT_FILE MP,EVENT E
+            WHERE 	
+            		MP.ENO =E.ENO
+            AND     
+                    TO_CHAR(EVENTDAY2,'RRRR-MM-DD HH24:MI:SS') >=  TO_CHAR(SYSDATE-1/24/60/60, 'RRRR-MM-DD HH24:MI:SS')
 		)
-		WHERE CNT=1
-        ORDER BY ENO DESC
+		WHERE 
+					CNT=1
+        ORDER BY 
+        			ENO DESC
 		
+	</select>
+	
+	
+	<!-- 종료된 이벤트 -->
+	<select id="selectEventEndList" resultType="com.green.ffee.event.vo.EventFileVO">
+	 <![CDATA[
+	SELECT  STORED_FILE_NAME,TITLE,CONTENT,EVENTDAY,EVENTDAY2,ENO,SLIDE_TITLE,HASHTAG,EVENTDAY2 - TRUNC(SYSDATE) DDAY FROM (
 		
+		    SELECT 
+	                E.TITLE,
+	                E.CONTENT,
+                    E.EVENTDAY,
+	                E.EVENTDAY2,
+	                E.SLIDE_TITLE,
+	                E.HASHTAG,
+			        MP.ENO,
+			        MP.ORG_FILE_NAME,
+			        MP.STORED_FILE_NAME,
+			        ROW_NUMBER() OVER ( PARTITION BY MP.ENO ORDER BY MP.FILE_NO ) CNT
+	        FROM 	
+	        		EVENT_FILE MP,EVENT E
+            WHERE 	
+            		MP.ENO =E.ENO
+            AND     
+                    TO_CHAR(EVENTDAY2,'RRRR-MM-DD HH24:MI:SS') <  TO_CHAR(SYSDATE-1/24/60/60, 'RRRR-MM-DD HH24:MI:SS')
+		)
+		WHERE 
+					CNT=1
+        ORDER BY 
+        			ENO DESC
+ 	]]>     	
 	</select>
 
 	<select id="selectlist" resultType="com.green.ffee.event.vo.EventVO">
 		
 			
 	SELECT  
-		EF.STORED_FILE_NAME,E.TITLE,E.EVENTDAY,E.REGDATE, EF.ENO,E.ENO
+		EF.STORED_FILE_NAME,
+		E.TITLE,
+		E.EVENTDAY,
+		E.EVENTDAY2,
+		E.REGDATE, 
+		EF.ENO,
+		E.ENO
 	FROM 
-		MP_EVENT_FILE EF,MP_EVENT E
+		EVENT_FILE EF,EVENT E
 	WHERE
 	    EF.ENO = E.ENO
 	ORDER BY 
@@ -52,31 +89,40 @@
 	
 	<!-- 자동증가  -->
     <selectKey keyProperty="eno" resultType="int" order="BEFORE">
-    	SELECT MP_EVENT_SEQ.NEXTVAL FROM DUAL
+    	SELECT EVENT_SEQ.NEXTVAL FROM DUAL
     </selectKey>
-	INSERT INTO MP_EVENT(    	ENO 
+    
+	INSERT INTO EVENT(    	ENO 
 	   					       , TITLE 
+	   					       , EVENTDAY
+	   					       , EVENTDAY2
 	   					       , CONTENT 
-                               , EVENTDAY
-	   					       , WRITER  )
+	   					       , WRITER  
+	   					       , SLIDE_TITLE
+	   					       , HASHTAG
+	   					       )
 	                  VALUES(    #{eno}
 	                 		   , #{title}
                                , #{eventday}
+                               , #{eventday2}
 	                 		   , #{content}
-	                 		   , #{writer}  )
+	                 		   , #{writer}
+	                 		   , #{slide_title}
+	                 		   , #{hashtag}
+	                 		     )
    
     </insert>
    
    <!-- 파일 넣기  -->
     <insert id="insertFile" parameterType="hashMap">
-		INSERT INTO MP_EVENT_FILE(
+		INSERT INTO EVENT_FILE(
 			FILE_NO,
 			ENO,
 			ORG_FILE_NAME,
 			STORED_FILE_NAME,
 			FILE_SIZE
 		)VALUES(
-			SEQ_MP_EVENT_FILE.NEXTVAL,
+			SEQ_EVENT_FILE.NEXTVAL,
 			#{ENO},
 			#{ORG_FILE_NAME},
 			#{STORED_FILE_NAME},
@@ -89,10 +135,11 @@
     	SELECT   ENO
 			   , TITLE
 			   , EVENTDAY
+			   , EVENTDAY2
 			   , CONTENT
 			   , WRITER
 			   , REGDATE
-		  FROM MP_EVENT
+		  FROM EVENT
 		 WHERE ENO = #{eno}
 		 
     </select>
@@ -104,7 +151,7 @@
 			   ORG_FILE_NAME,
 			   STORED_FILE_NAME,
 			   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
-		  FROM MP_EVENT_FILE
+		  FROM EVENT_FILE
 		 WHERE ENO = #{eno}
 		   AND DEL_GB = 'N'
     </select>
