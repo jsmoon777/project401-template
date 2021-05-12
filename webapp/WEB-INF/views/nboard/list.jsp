@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <style type="text/css">
       
    .table {
@@ -59,6 +60,10 @@
        font-weight: 900;
     }
     
+    .td{
+    float:left; 
+    
+    }
     
     .listpage{
     position: relative;
@@ -66,12 +71,6 @@
     list-style:none;
     padding: 6px;
     }
-    
-    .td{
-    float:left; 
-    
-    }
-    
    .search{
    position: relative;
    left:800px;
@@ -167,31 +166,31 @@
 						</table>
 						 
 						<div class="listpage">
-						  <th>
-						     <c:if test="${pageMaker.prev }">
-						        <td><a href="list${pageMaker.makeSearch(pageMaker.startPage -1) }">이전</a></td>
-						     </c:if>
-						     
-						     <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						       <td><a href="list${pageMaker.makeSearch(idx) }">${idx }</a></td>
-						     </c:forEach>
-						     
-						     <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-						      <td><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></td>
-						     </c:if>
-						  </th>
-						</div>
+		                    <th>
+		                       <c:if test="${pageMaker.prev }">
+		                          <td><a href="list${pageMaker.makeSearch(pageMaker.startPage -1) }">이전</a></td>
+		                       </c:if>
+		                       
+		                       <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+		                         <td><a href="list${pageMaker.makeSearch(idx) }">${idx }</a></td>
+		                       </c:forEach>
+		                       
+		                       <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+		                        <td><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></td>
+		                       </c:if>
+		                    </th>
+		                  </div>
 						 
 						   <div class="search">
 						     <select name="searchType">
-						       <option value="n"<c:out value="${cri.searchType == null ?'selected' : '' }"/>>---</option>
-						       <option value="t"<c:out value="${cri.searchType eq 't' ?'selected' : '' }"/>>제목</option>
-						       <option value="c"<c:out value="${cri.searchType eq 'c' ?'selected' : '' }"/>>내용</option>
-						       <option value="w"<c:out value="${cri.searchType eq 'w' ?'selected' : '' }"/>>작성자</option>
-						       <option value="tc"<c:out value="${cri.searchType eq 'tc' ?'selected' : '' }"/>>제목+내용</option>
+						       <option value="n"<c:out value="${scri.searchType == null ?'selected' : '' }"/>>---</option>
+						       <option value="t"<c:out value="${scri.searchType eq 't' ?'selected' : '' }"/>>제목</option>
+						       <option value="c"<c:out value="${scri.searchType eq 'c' ?'selected' : '' }"/>>내용</option>
+						       <option value="w"<c:out value="${scri.searchType eq 'w' ?'selected' : '' }"/>>작성자</option>
+						       <option value="tc"<c:out value="${scri.searchType eq 'tc' ?'selected' : '' }"/>>제목+내용</option>
 						     </select>
 						     
-								<input type="text" name="keyword" id="keywordInput" value="${cri.keyword}" class="form-control" style="width:140px;height:30px;font-size:30px;"/>
+								<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control" style="width:140px;height:30px;font-size:30px;"/>
 								<button id="searchBtn" type="button" class="btn btn-default">검색</button> 	
 						     
 						     <script>
