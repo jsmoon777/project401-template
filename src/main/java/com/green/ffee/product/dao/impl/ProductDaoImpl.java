@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.green.ffee.product.dao.ProductDAO;
 import com.green.ffee.product.vo.ProductFileVO;
 import com.green.ffee.product.vo.ProductVO;
-import com.green.ffee.vo.SearchCriteria;
+import com.green.ffee.sns.vo.SearchCriteria;
 
 
 @Repository("productdao")
@@ -65,6 +65,12 @@ public class ProductDaoImpl implements ProductDAO {
 	@Override
 	public int listCount(SearchCriteria scri) {
 		return sqlsession.selectOne("productMapper.listCount",scri);
+	}
+
+	//삭제
+	@Override
+	public void delete(int product_id) {
+		sqlsession.selectOne("productMapper.delete",product_id);
 	}
 
 }

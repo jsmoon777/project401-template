@@ -15,7 +15,7 @@ import com.green.ffee.product.service.ProductService;
 import com.green.ffee.product.utils.ProductFile;
 import com.green.ffee.product.vo.ProductFileVO;
 import com.green.ffee.product.vo.ProductVO;
-import com.green.ffee.vo.SearchCriteria;
+import com.green.ffee.sns.vo.SearchCriteria;
 
 @Service("productservice")
 public class ProductServiceImpl implements ProductService {
@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 	ProductDAO productdao;
 	
 	
-	//이벤트 작성
+	//상품작성
 	@Override
 	public void write(ProductVO productvo, MultipartHttpServletRequest mpRequest) throws Exception {
 		productdao.write(productvo,mpRequest);
@@ -36,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
 		int size = list.size();
 		for (int i = 0; i < size; i++) {
 			productdao.insertFile(list.get(i));
+			
 		}
 	}
 
@@ -57,6 +58,7 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.read(product_id);
 	}
 
+	//첨부파일 조회
 	@Override
 	public List<ProductFileVO> selectFileList(int product_id) {
 		return productdao.selectFileList(product_id);
@@ -67,6 +69,15 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductFileVO> selectThumnail(int product_id) {
 		return productdao.selectThumnail(product_id);
 	}
+
+	//상품삭제
+	@Override
+	public void delete(int product_id) {
+		productdao.delete(product_id);
+	}
+
+
+	
 
 	
 }

@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.green.ffee.product.vo.ProductFileVO;
 import com.green.ffee.product.vo.ProductVO;
-import com.green.ffee.vo.SearchCriteria;
+import com.green.ffee.sns.vo.SearchCriteria;
 
 public interface ProductDAO {
 
@@ -28,6 +28,10 @@ public interface ProductDAO {
 
 	//썸네일
 	List<ProductFileVO> selectThumnail(int product_id);
+
+	//삭제
+	void delete(int product_id);
+
 
 
 }

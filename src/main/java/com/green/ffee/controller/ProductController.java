@@ -16,8 +16,9 @@ import com.green.ffee.event.vo.EventVO;
 import com.green.ffee.product.service.ProductService;
 import com.green.ffee.product.vo.ProductFileVO;
 import com.green.ffee.product.vo.ProductVO;
-import com.green.ffee.vo.PageMaker;
-import com.green.ffee.vo.SearchCriteria;
+import com.green.ffee.sns.vo.BoardVO;
+import com.green.ffee.sns.vo.PageMaker;
+import com.green.ffee.sns.vo.SearchCriteria;
 
 @Controller
 @RequestMapping("/product/*")
@@ -38,7 +39,7 @@ public class ProductController {
 		pageMaker.setTotalCount(productservice.listCount(scri));
 		
 		model.addAttribute("pageMaker", pageMaker);
-		
+		System.out.println("이벤트list 읽음");
 		return "product/productList";
 	} 
 
@@ -54,7 +55,6 @@ public class ProductController {
 		 //썸네일
 		 List<ProductFileVO> thumnailfile = productservice.selectThumnail(filevo.getProduct_id());
 		 model.addAttribute("thumnailfile",thumnailfile);
-		 
 		 
 		 
 		 return "product/productview";
@@ -73,14 +73,19 @@ public class ProductController {
 	public String write(ProductVO productvo,MultipartHttpServletRequest mpRequest) throws Exception {
 		
 		productservice.write(productvo,mpRequest);
+		System.out.println("이벤트 추가 완료");
 		return "redirect:/product/productList";
 		
 	}
 	
 	
-	//장바구니 추가
-	
-
-	
+	//상품삭제
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(ProductVO productvo) throws Exception{
+		
+		productservice.delete(productvo.getProduct_id());
+		
+		return "redirect:/product/productList";
+	}
 	
 }

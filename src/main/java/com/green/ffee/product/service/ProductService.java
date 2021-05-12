@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.green.ffee.product.vo.ProductFileVO;
 import com.green.ffee.product.vo.ProductVO;
-import com.green.ffee.vo.SearchCriteria;
+import com.green.ffee.sns.vo.SearchCriteria;
 
 public interface ProductService {
 
@@ -29,6 +29,9 @@ public interface ProductService {
 
 	//검색 : 게시글 총 갯수
 	public int listCount(SearchCriteria scri);
+
+	//상품삭제
+	void delete(int product_id);
 
 
 }
