@@ -27,7 +27,7 @@
     </insert>
    
 	<select id="listPage" resultType="com.green.ffee.nboard.vo.BoardVo" 
-	parameterType="com.green.ffee.nboard.vo.SearchCriteria">
+	parameterType="com.green.ffee.sns.vo.SearchCriteria">
 		SELECT  NNO, 
 		        TITLE, 
 		        CONTENT,
@@ -49,7 +49,7 @@
 		ORDER BY NNO DESC
 	</select>
 	
-	<select id="listCount" parameterType="com.green.ffee.nboard.vo.SearchCriteria" resultType="int">
+	<select id="listCount" parameterType="com.green.ffee.sns.vo.SearchCriteria" resultType="int">
 		
 		SELECT COUNT(NNO)
 		   FROM NOTICE
