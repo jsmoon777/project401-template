@@ -101,7 +101,7 @@
           <%-- <a href="<c:out value="/download/external/${ file.sfilename}" />"> --%>
           <div style="width:500px; height: 500px; overflow: hidden;"><img src="/image7/${ file.sfilename}" width="100%"/>${ file.sfilename}</div>
           
-          </a>
+          </a> 
           </div> 
        </c:forEach>      
       </td>

@@ -59,7 +59,7 @@
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-   $(function() {
+   $(function() { 
 	  $('input[type=button]').on('click', function(event) {
 		  var btn = event.target;
 		  var href = '';

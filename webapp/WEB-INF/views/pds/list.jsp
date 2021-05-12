@@ -162,7 +162,7 @@
 	
 	
   #pdsList td:nth-of-type(1) { width:48px; text-align:center; }
-  #pdsList td:nth-of-type(2) { width:308px; }
+  #pdsList td:nth-of-type(2) { width:308px; } 
   #pdsList td:nth-of-type(3) { width:78px; text-align:center; }
   #pdsList td:nth-of-type(4) { width:78px; text-align:center;}
   #pdsList td:nth-of-type(5) { width:68px; text-align:center; }

@@ -195,7 +195,7 @@
 		font-size: 12px;
 		line-height: 50px;
 		text-align: center;
-	}
+	}  
   #writeTable  input[type=text] { width:660px; } 
   #writeTable  textarea         { width:660px;  height:300px;} 
   /* #writeTable  { text-align: center;} */
