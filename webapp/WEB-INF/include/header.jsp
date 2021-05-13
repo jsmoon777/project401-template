@@ -207,11 +207,11 @@ $(function(){
 			    </li>
 			</ul>
 		</li>  		
-		<li class="hvr-underline-from-left"><a href="sns/snslist.jsp">SNS</a></li>
+		<li class="hvr-underline-from-left"><a href="/sns/snslist.jsp">SNS</a></li>
 		<li><img src="img/mp_logo.png" width="100px;" alt="ffee"></li>
-		<li class="hvr-underline-from-left"><a href="#">이벤트</a></li>
+		<li class="hvr-underline-from-left"><a href="/event/eventlist">이벤트</a></li>
 		<li class="hvr-underline-from-left"><a href="/nboard/list">공지</a></li>
-		<li class="hvr-underline-from-left"><a href="#">문의</a>
+		<li class="hvr-underline-from-left"><a href="">문의</a>
 			<ul>
 				<li><a href="/MBoard/WriteForm?menu_id=MENU01&bnum=0&lvl=0&step=0&nref=0" class="hvr-underline-from-left">등록&문의</a></li>
 			</ul>
