@@ -134,7 +134,7 @@ $(function(){
   <nav class="menu_nav">
     <ul class="menu_ul">
 		<li class="hvr-underline-from-left"><a href="/mat/map">맛집정보</a></li>
-		<li class="hvr-underline-from-left"><a href="/Mboard/View">카페추천</a></li>
+		<li class="hvr-underline-from-left"><a href="/PDS/List?menu_id=MENU01">카페추천</a></li>
 		<li class="hvr-underline-from-left"><a href="/board/snslist">SNS</a></li>
 		<li><a href="/"><img src="/img/logo.png" width="100px;"alt="ffee"></a></li>
 		<li class="hvr-underline-from-left"><a href="/product/productList">주문</a></li>
