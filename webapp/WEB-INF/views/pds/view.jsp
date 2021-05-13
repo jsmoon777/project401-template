@@ -54,7 +54,41 @@
     input[type="text"]{
        width:100%;
     }
- 
+ 	  /* 버튼 css */
+   
+   .button {
+      display: inline-block;
+      width: 200px;
+      height: 54px;
+      text-align: center;
+      text-decoration: none;
+      line-height: 54px;
+      outline: none;
+   }
+   .button::before,
+   .button::after {
+      position: absolute;
+      z-index: -1;
+      display: block;
+      content: '';
+   }
+   .button,
+   .button::before,
+   .button::after {
+      -webkit-box-sizing: border-box; 
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+   }
+   
+   .button {
+   background-color: #000;
+   color: #fff;
+   }
+   .button:hover {
+      letter-spacing: 5px;
+   }
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
@@ -67,7 +101,7 @@
    <!-- 메뉴 목록 -->\
    
    <%@include file="/WEB-INF/include/sub_header.jsp" %>
-   
+   <div style="margin-bottom:250px; margin-top:250px;">
    <table id="pdsView" class="table">
     <caption><h2>내용 보기</h2></caption>
     <tr>
@@ -110,20 +144,21 @@
     
     <tr>
        <td colspan="4">
-          <a href="/PDS/List?menu_id=${ pdsVo.menu_id }">목록</a>&nbsp;&nbsp;
-          <a href="/PDS/WriteForm?menu_id=${ pdsVo.menu_id }&bnum=0&lvl=0&step=0&nref=0">새글 쓰기</a>&nbsp;&nbsp;
-          <a href="/PDS/WriteForm?menu_id=${pdsVo.menu_id}&bnum=${pdsVo.bnum}&lvl=${pdsVo.lvl}&step=${pdsVo.step}&nref=${pdsVo.nref}">답글 쓰기</a>&nbsp;&nbsp;
+          <a href="/PDS/List?menu_id=${ pdsVo.menu_id }" class="button">목록</a>&nbsp;&nbsp;
+          <a href="/PDS/WriteForm?menu_id=${ pdsVo.menu_id }&bnum=0&lvl=0&step=0&nref=0" class="button">새글 쓰기</a>&nbsp;&nbsp;
+          <a href="/PDS/WriteForm?menu_id=${pdsVo.menu_id}&bnum=${pdsVo.bnum}&lvl=${pdsVo.lvl}&step=${pdsVo.step}&nref=${pdsVo.nref}" class="button">답글 쓰기</a>&nbsp;&nbsp;
          
           <c:choose>
           <c:when test="${login.user_id  == 'admin'}">
-          <a href="/PDS/UpdateForm?menu_id=${pdsVo.menu_id}&idx=${pdsVo.idx}">수정</a>&nbsp;&nbsp;
-          <a href="/PDS/Delete?menu_id=${pdsVo.menu_id}&idx=${pdsVo.idx}&nref=${pdsVo.nref}&lvl=${pdsVo.lvl}&step=${pdsVo.step}">삭제</a>
+          <a href="/PDS/UpdateForm?menu_id=${pdsVo.menu_id}&idx=${pdsVo.idx}" class="button">수정</a>&nbsp;&nbsp;
+          <a href="/PDS/Delete?menu_id=${pdsVo.menu_id}&idx=${pdsVo.idx}&nref=${pdsVo.nref}&lvl=${pdsVo.lvl}&step=${pdsVo.step}" class="button">삭제</a>
        	  </c:when>
        	  </c:choose>
        </td>
     </tr>
     
-   </table>   
+   </table>  
+   </div> 
    <%@include file="/WEB-INF/include/footer.jsp" %>   
 </body>
 </html>
