@@ -66,6 +66,7 @@
 <body>
    <!-- 메뉴 목록 -->\
    
+   <%@include file="/WEB-INF/include/sub_header.jsp" %>
    
    <table id="pdsView" class="table">
     <caption><h2>내용 보기</h2></caption>
@@ -123,6 +124,6 @@
     </tr>
     
    </table>   
-      
+   <%@include file="/WEB-INF/include/footer.jsp" %>   
 </body>
 </html>
