@@ -51,7 +51,7 @@ public class AdminController {
 	@Inject NBoardService  nboardService;
 	@Inject UserService  userService;
 	
-	//관리자 메인페이지
+	//관리자 메인페이지 
 	@Auth(role=Role.ADMIN)
 	@RequestMapping(value="/adminmainpage" , method=RequestMethod.GET)
 	public String myPage(HttpSession session, Model model) {
